@@ -1,0 +1,207 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+  </head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="../math/index.html" class="px-4">Math</a>
+        <a href="./index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="px-4">Blog</a>
+      <a href="../math/index.html" class="px-4">Math</a>
+      <a href="./index.html" class="px-4">Code</a>
+      <a href="../contact.html" class="px-4">Contact</a>
+  </div>
+    </nav>
+
+    <main class="container mx-auto p-6">
+      <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">Alpha Beta Matrix Multiplication</h2>
+      <hr>
+      <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
+  
+      <p>We have many methods to find matrix multiplication. Now, we will see another one for square matrices.</p>
+      <p>We know what matrix multiplication is:</p>
+  
+      \[
+      \begin{bmatrix} a & b & c \\ . & . & . \\ . & . & . \end{bmatrix} 
+      \times 
+      \begin{bmatrix} x & . & . \\ y & . & . \\ z & . & . \end{bmatrix} 
+      = 
+      \begin{bmatrix} ax+by+cz & . & . \\ . & . & . \\ . & . & . \end{bmatrix}
+      \]
+  
+      <p>Here, if you see, we need to find a new sum every time, with no way to reuse previously computed values. We will try to reuse computations in our algorithm.</p>
+  
+      <p>First, consider:</p>
+      \[
+      ax + by + cz = \alpha \cdot (a+b+c) \cdot (x+y+z)
+      ->Eq. 1\]
+      <p>Where \( \alpha \) is a function that satisfies this equation.</p>
+  
+      <p>We know that we can express any two-number product in the summation format:</p>
+      \[
+      n \cdot m = n + (m-1) \cdot n
+      ->Eq. 2\]
+  
+      <p>Apply Eq.2 in Eq.1:</p>
+      \[
+      S_x + (a-1)x + (b-1)y + (c-1)z = \alpha \cdot S_a + S_x
+      \]
+      <p>Where \( S_a \) is the sum of \( a, b, c \) and \( S_x \) is the sum of \( x, y, z \).</p>
+
+      <p>Apply Eq.2 in Eq.1 for 'a' times:</p>
+      \[
+      aS_x + (b-a)y + (c-a)z = \alpha \cdot S_a + S_x
+      \]
+  
+      <p>Solving for \( \alpha \):</p>
+      \[
+      \alpha = \frac{a}{S_a} + \frac{(b-a)y + (c-a)z}{S_a S_x}
+      \]
+  
+      <p>Let \( \beta = (b-a)y + (c-a)z \), then:</p>
+      \[
+      \alpha = \frac{a}{S_a} + \frac{\beta}{S_a S_x}
+      \]
+  
+      <p>Now, we can reuse \( S_a \) and \( S_x \) in our calculations instead of performing full array multiplication every time.</p>
+  
+      <h3 class="text-2xl font-bold mt-6">Python Implementation</h3>
+      <div class="relative bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+        <button id="copy-btn" 
+            class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-sm px-3 py-1 rounded">
+            Copy Code
+        </button>
+        <pre id="code-block"  class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-python">
+from random import randint
+import numpy as np
+
+def generate_random_int():
+    min_int = -10 ** 6
+    max_int = 10 ** 6
+    return randint(int(min_int), int(max_int))
+
+def generate_random_array(size):
+    return [generate_random_int() for _ in range(size)]
+
+def alpha_beta_matrix_multiplication(A, B):
+    nA = np.array(A)
+    nB = np.array(B)
+
+    lb, l0b = nB.shape
+
+    sumArows = np.sum(nA, axis=1) # Sa
+    sumBcols = np.sum(nB, axis=0) # Sx
+
+    firstItemOfRowBarSumArows = nA[:, 0] / (sumArows) # a/Sa
+
+    inverseOfEachSumArows = np.ones(lb) / (sumArows) # 1/Sa
+    inverseOfEachSumBcols = np.ones(lb) / (sumBcols) # 1/Sx
+
+    a_idx = 0
+    result = np.zeros((lb, l0b))
+
+    for a in nA:
+        sa_a_idx = sumArows[a_idx]
+        fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx]
+        first_item_sub_all = a[1:] - a[0] # [b-a, c-a]
+        ioesa_a_idx = inverseOfEachSumArows[a_idx]
+        b_idx = 0
+
+        for col_itr in range(lb):
+            beta = np.dot(nB[1:, col_itr], first_item_sub_all) # [y,z] * [b-a,c-a]
+            alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]) # a/Sa + beta/(Sa*Sx)
+            result[a_idx][b_idx] = round(sa_a_idx * sumBcols[b_idx] * alpha)
+            b_idx += 1
+
+        a_idx += 1
+
+    return result
+
+if __name__ == "__main__":
+    mat_a, mat_b = [], []
+    dimension = 50 # 50*50
+    print(f"Generating matrix with size {dimension}..")
+    for _ in range(dimension):
+        mat_a.append(generate_random_array(dimension))
+    for _ in range(dimension):
+        mat_b.append(generate_random_array(dimension))
+    
+    mat_c = alpha_beta_matrix_multiplication(mat_a, mat_b)
+    print(mat_c)</code>
+        </pre>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md" style="margin-top: 2em;">
+        <p class="text-lg text-gray-800 font-semibold">Find the benchmark for below:</p>
+        <p class="text-gray-700 mt-2">Generating matrices with dimensions <span class="font-bold">750 × 750</span></p>
+        
+        <div class="bg-white p-4 mt-4 rounded-md shadow-sm">
+            <p class="text-gray-600"><span class="font-bold">Execution Time:</span></p>
+            <ul class="list-disc pl-6 text-gray-700 mt-2">
+                <li><span class="font-semibold">General 3-loop Algorithm:</span> <span class="text-red-600">312.451826 secs</span></li>
+                <li><span class="font-semibold">Alpha Beta Algorithm:</span> <span class="text-yellow-600">5.155557 secs</span></li>
+                <li><span class="font-semibold">NumPy dot Method:</span> <span class="text-green-600">0.906895 sec</span></li>
+            </ul>
+        </div>
+    
+        <p class="mt-4">
+            🔗 <a href="https://github.com/balajisuresh1359/my-algorithms/blob/main/matrix/analysis-matrix-multiplication.py" 
+            class="text-blue-600 font-semibold hover:underline" target="_blank">View the full code here</a>
+        </p>
+    </div>
+    <div id="flash-message" 
+      class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden">
+      Code copied!
+    </div>
+
+    
+  </main>
+  
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          document.getElementById("copy-btn").addEventListener("click", function () {
+              const codeBlock = document.getElementById("code-block").innerText;
+              navigator.clipboard.writeText(codeBlock).then(() => {
+                  showFlashMessage();
+              }).catch(err => {
+                  console.error("Failed to copy: ", err);
+              });
+          });
+
+          function showFlashMessage() {
+              const flashMessage = document.getElementById("flash-message");
+              flashMessage.classList.remove("hidden");
+              flashMessage.classList.add("opacity-100");
+
+              setTimeout(() => {
+                  flashMessage.classList.add("hidden");
+              }, 2000); // Hide after 2 seconds
+          }
+      });
+    </script>
+</body>
+</html>

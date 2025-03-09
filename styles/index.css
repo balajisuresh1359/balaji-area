@@ -1,0 +1,460 @@
+:root {
+  --bg-light: #fdf6e3;
+  --bg-dark: #1e1e1e;
+  --text-light: #3d2c2e;
+  --text-dark: #e4dcd3;
+  --banner-bg: #e9b855;
+  --banner-text: #333333;
+
+}
+
+* {
+  font-family: 'Inter', sans-serif !important;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  font-family: 'Georgia', serif;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+footer {
+  background-color: #374151;
+  padding: 16px;
+  text-align: center;
+}
+
+footer a {
+  color: #a5b4fc;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  background-color: #1f2937;
+  padding: 16px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+#mobile-menu a {
+  color: white;
+  padding: 10px;
+  display: block;
+}
+
+#mobile-menu a:hover {
+  background-color: #374151;
+}
+
+
+.fancy-card {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.fancy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.fancy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fancy-card:hover::before {
+  transform: scaleX(1);
+}
+
+.fancy-card h2 {
+  transition: color 0.3s ease;
+}
+
+.fancy-card:hover h2 {
+  color: #6366f1;
+}
+
+.fancy-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: transform 0.7s ease-in-out;
+  opacity: 0;
+}
+
+.fancy-card:hover::after {
+  transform: rotate(30deg) translate(10%, 10%);
+  opacity: 1;
+}
+
+.contact-card {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact link styling */
+.contact-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.contact-link:hover {
+  transform: translateX(10px);
+}
+
+/* Light theme specific styles */
+.contact-link.email {
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+}
+
+.contact-link.linkedin {
+  color: #0077b5;
+  border-left: 4px solid #0077b5;
+}
+
+.contact-link.github {
+  color: #333333;
+  border-left: 4px solid #333333;
+}
+
+.contact-link.email:hover {
+  background-color: rgba(211, 47, 47, 0.1);
+}
+
+.contact-link.linkedin:hover {
+  background-color: rgba(0, 119, 181, 0.1);
+}
+
+.contact-link.github:hover {
+  background-color: rgba(51, 51, 51, 0.1);
+}
+
+/* Dark mode overrides */
+.dark .contact-link.github {
+  color: #f0f6fc;
+  border-left: 4px solid #f0f6fc;
+}
+
+.dark .contact-link.github:hover {
+  background-color: rgba(240, 246, 252, 0.1);
+}
+
+/* Icon styling - ensuring visibility in both themes */
+.contact-icon {
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure icons are visible in both themes */
+.contact-icon i {
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* GitHub icon specific styling for both themes */
+.contact-link.github .contact-icon i {
+  color: inherit; /* This will inherit from parent which changes based on theme */
+}
+
+.contact-link:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Theme toggle styling */
+.theme-icon-light {
+  display: inline-block;
+}
+
+.theme-icon-dark {
+  display: none;
+}
+
+.dark .theme-icon-light {
+  display: none;
+}
+
+.dark .theme-icon-dark {
+  display: inline-block;
+}
+
+
+
+/* Fancy horizontal line style */
+hr {
+  border: 10;
+  height: 2px;
+  margin-bottom: 0.5em !important;
+  margin: 2.5rem 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0)
+  );
+  position: relative;
+}
+
+/* Add decorative element in the middle */
+hr::after {
+  content: '•';
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 0.75rem;
+  background-color: var(--bg-light);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
+}
+
+/* Dark mode styles */
+.dark hr {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.dark hr::after {
+  background-color: var(--bg-dark);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Alternative style - you can toggle between them by adding class="alt" to your hr */
+hr.alt {
+  border: 0;
+  height: 1px;
+  background: none;
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+hr.alt::before {
+  content: '✦ ✦ ✦';
+  display: inline-block;
+  color: var(--primary);
+  font-size: 1rem;
+  letter-spacing: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+
+nav.bg-gray-800 {
+  background: linear-gradient(to right, #1a202c, #2d3748);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+nav .font-bold {
+  font-size: 1.25rem;
+  background: linear-gradient(to right, #f7fafc, #edf2f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  padding-bottom: 2px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+nav .font-bold:hover {
+  background: linear-gradient(to right, #ffffff, #cbd5e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+nav .font-bold::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #4299e1, #7f9cf5);
+  transition: width 0.3s ease;
+}
+#nav-links a:hover {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+#nav-links a {
+  color: #f7fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  transition: left 0.3s ease;
+}
+
+#nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+#nav-links a:hover::before {
+  left: 100%;
+}
+
+#nav-links a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+#nav-links a.active {
+  background-color: rgba(66, 153, 225, 0.5);
+  border-color: rgba(66, 153, 225, 0.8);
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.3);
+}
+
+
+nav .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#theme-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+#theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+}
+
+#mobile-menu a {
+  padding: 0.5rem 1rem;
+  background-color: #4b5563; /* bg-gray-600 */
+  color: white;
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500; /* font-medium */
+  text-decoration: none;
+  margin-bottom: 0.3em;
+}
+
+#mobile-menu a:hover {
+  background-color: #6b7280; /* bg-gray-500 */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 5px -1px rgba(0, 0, 0, 0.06);
+  text-decoration: none !important;
+}
+
+#mobile-menu a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}

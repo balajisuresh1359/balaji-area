@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+  </head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="../math/index.html" class="px-4">Math</a>
+        <a href="./index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="px-4">Blog</a>
+      <a href="../math/index.html" class="px-4">Math</a>
+      <a href="./index.html" class="px-4">Code</a>
+      <a href="../contact.html" class="px-4">Contact</a>
+  </div>
+    </nav>
+    <main class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold">Code</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <a href="./alpha-beta-matrix-multiplication.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Alpha Beta Matrix Multiplication</h2>
+                <p class="text-gray-600 dark:text-gray-400">Another method for matrix multiplication!</p>
+            </a>
+            </a>
+
+        </div>
+    </main>
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+  <style>
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+    .blog-card img {
+      transition: transform 0.3s ease-in-out;
+    }
+    .blog-card:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+  </head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="./index.html" class="px-4">Blog</a>
+        <a href="../math/index.html" class="px-4">Math</a>
+        <a href="../code/index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="./index.html" class="px-4">Blog</a>
+      <a href="../math/index.html" class="px-4">Math</a>
+      <a href="../code/index.html" class="px-4">Code</a>
+      <a href="../contact.html" class="px-4">Contact</a>
+    </div>
+    </nav>
+    <main class="container mx-auto p-6">
+      <h1 class="text-4xl font-bold text-center mb-8" style="text-align: left;">Blog</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden blog-card transition duration-300">
+              <img src="./images/crypto-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
+              <div class="p-4">
+                  <h2 class="text-gray-700 font-semibold text-lg">When the Old Guard Can No Longer Protect Us ⛓️‍💥</h2>
+                  <p class="text-gray-600 mt-2">Exploring the Evolution of Cryptography Techniques</p>
+                  <a href="https://inside.caratlane.com/when-the-old-guard-can-no-longer-protect-us-%EF%B8%8F-the-future-of-security-part-1-3d6bec98a529" class="text-red-600 font-semibold mt-2 inline-block" target="_blank">Continue Reading →</a>
+              </div>
+          </div>
+
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden blog-card transition duration-300">
+            <img src="./images/help-harry-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-gray-700 font-semibold text-lg">Help Harry Finish His Project</h2>
+                <p class="text-gray-600 mt-2">A Design Pattern Game</p>
+                <a href="https://inside.caratlane.com/help-harry-finish-his-project-4f0a10134476" class="text-red-600 font-semibold mt-2 inline-block" target="_blank">Continue Reading →</a>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden blog-card transition duration-300">
+          <img src="./images/pds-2-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
+          <div class="p-4">
+              <h2 class="text-gray-700 font-semibold text-lg">The Power of Probabilistic Data Structures</h2>
+              <p class="text-gray-600 mt-2">Chapter 2 — Beyond Bloom: The Cuckoo Filter Saga</p>
+              <a href="https://inside.caratlane.com/the-power-of-probabilistic-data-structures-in-web-technology-a39545f9cdb2" class="text-red-600 font-semibold mt-2 inline-block" target="_blank">Continue Reading →</a>
+          </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden blog-card transition duration-300">
+          <img src="./images/pds-1-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
+          <div class="p-4">
+              <h2 class="text-gray-700 font-semibold text-lg">The Power of Probabilistic Data Structures</h2>
+              <p class="text-gray-600 mt-2">Chapter 1 — In the Land of Hashing: Bloom Filter Tales</p>
+              <a href="https://inside.caratlane.com/the-power-of-probabilistic-data-structures-in-web-technology-62464ed3317d" class="text-red-600 font-semibold mt-2 inline-block" target="_blank">Continue Reading →</a>
+          </div>
+        </div>
+    </div>
+    </main>
+
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+.math-display {
+  text-align: center;
+  margin: 1em 0;
+}
+.text-content {
+  text-align: left;
+}
+
+.notification-banner {
+  padding: 1.6em;
+  background-color: var(--banner-bg);
+  text-align: center;
+  color: var(--banner-text);
+}    
+
+
+*{
+    font-family: 'Inter', sans-serif !important;
+}
+
+body {
+  text-align: justify;
+  font-size: larger !important;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.modal-content {
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.zoom-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  gap: 15px;
+  z-index: 150;
+}
+
+.zoom-btn {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.zoom-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.close {
+  position: fixed;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 150;
+}
+
+.article-image {
+  cursor: pointer;
+  transition: all 0.3s;
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.article-image:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    touch-action: pinch-zoom;
+  }
+}
+.math {
+  margin: 1rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+pre {
+  background-color: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: 1rem;
+  }
+  
+  .article-image {
+    width: 100%;
+  }
+}
+
+h2, h3, h4, table {
+  text-align: center;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+}
+

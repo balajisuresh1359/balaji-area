@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Contact</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="./styles/index.css" rel="stylesheet">
+  <!-- Updated Font Awesome with integrity and referrerpolicy attributes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="./script/common.js"></script>
+</head>
+<body class="dark:bg-gray-900 dark:text-white flex flex-col min-h-screen">
+  <nav class="bg-gray-800 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+      <a href="./index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+      <div class="flex items-center">
+        <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+        <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+      </div>
+      <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+      <a href="./blog/index.html" class="px-4">Blog</a>
+      <a href="./math/index.html" class="px-4">Math</a>
+      <a href="./code/index.html" class="px-4">Code</a>
+      <a href="./contact.html" class="px-4">Contact</a>
+      <button id="theme-toggle" class="ml-4">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+      </div>
+  </div>
+  <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="./blog/index.html" class="py-2">Blog</a>
+      <a href="./math/index.html" class="py-2">Math</a>
+      <a href="./code/index.html" class="py-2">Code</a>
+      <a href="./contact.html" class="py-2">Contact</a>
+  </div>
+  </nav>
+
+  <main class="container mx-auto p-6 flex flex-col items-center justify-center text-center flex-grow">
+    <h1 class="text-4xl font-bold mb-8">Contact Me</h1>
+    
+    <div class="text-center mt-8">
+      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark">
+        Hey all,  
+        Thanks for visiting my site.  
+        I'm a software developer passionate about problem-solving and coding.  
+        Sometimes, I do unnecessary but interesting math calculations.  
+      </p>
+    </div>
+    
+    
+    <div class="contact-card" style="font-weight: bolder;">
+        <!-- Email -->
+        <a href="mailto:balajisuresh1359@gmail.com" class="contact-link email" target="_blank" >
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <span>Email</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://in.linkedin.com/in/balaji-suresh-739a231a9" target="_blank" class="contact-link linkedin">
+            <div class="contact-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <span>LinkedIn Profile</span>
+        </a>
+
+        <!-- GitHub - Updated to work in both themes -->
+        <a href="https://github.com/balajisuresh1359" target="_blank" class="contact-link github">
+            <div class="contact-icon">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <span>GitHub Profile</span>
+        </a>
+    </div>
+    
+    <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark">
+      <p class="text-gray-400 text-sm md:text-base font-semibold tracking-wide">
+        📍 Based in <span class="text-blue-400 hover:text-blue-300">Chennai, India</span>
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+    <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+  </footer>
+
+</body>
+</html>

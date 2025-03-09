@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Math</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+  </head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="./index.html" class="px-4">Math</a>
+        <a href="../code/index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+        <a href="../blog/index.html" class="py-2">Blog</a>
+        <a href="./index.html" class="py-2">Math</a>
+        <a href="../code/index.html" class="py-2">Code</a>
+        <a href="../contact.html" class="py-2">Contact</a>
+    </div>
+    </nav>
+    <main class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold">Math</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <a href="./hardest-way-to-find-the-sqaure-root.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Hardest way to find the sqaure root</h2>
+                <p class="text-gray-600 dark:text-gray-400">Another method to find sqaure root, but it is not easy!</p>
+            </a>
+            <a href="./sum-of-first-n-natural-numbers.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">New approach to find the sum of the first n natural numbers</h2>
+                <p class="text-gray-600 dark:text-gray-400">1+2+3...!</p>
+            </a>
+            <a href="./a-new-algebraic-relation-between-sequential-natural-number-sums.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">A New Algebraic Relation Between Sequential Natural Number Sums</h2>
+                <p class="text-gray-600 dark:text-gray-400">a + b = Sn</p>
+            </a>
+            <a href="./amazing-numbers.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Amazing numbers.. Play with numbers!</h2>
+                <p class="text-gray-600 dark:text-gray-400">
+                    a + b = ab
+                </p>
+            </a>
+            <a href="./find-the-first-two-digits-of-n+1-sqaure-root.html" class="fancy-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">The first two decimal digits of the \((n+1)^\text{th}\) number square root using \(\sqrt{n}\)</h2>
+                <p class="text-gray-600 dark:text-gray-400">Way to find the first two digits of n+1 sqaure root</p>
+            </a>
+
+            <div class="bg-white shadow-md rounded-lg overflow-hidden flex items-center justify-center p-6 text-center opacity-80">
+                <p class="text-gray-600 text-lg font-semibold">Adding more, more to come in future... 🚀</p>
+            </div>
+            
+            
+        </div>
+    </main>
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+</body>
+</html>

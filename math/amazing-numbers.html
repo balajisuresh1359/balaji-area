@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Math</title>
+  <link href="../styles/index.css" rel="stylesheet">
+  <link href="./styles/index.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+</head>
+<body>
+  <nav class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+      <div class="flex items-center">
+        <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+        <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+      </div>      
+      <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="./index.html" class="px-4">Math</a>
+        <a href="../code/index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="py-2">Blog</a>
+      <a href="./index.html" class="py-2">Math</a>
+      <a href="../code/index.html" class="py-2">Code</a>
+      <a href="../contact.html" class="py-2">Contact</a>
+    </div>
+  </nav>
+  <main class="container mx-auto p-6">
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 1em;">Amazing Numbers</h2>
+    <hr>
+
+    <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
+    <p>Numbers are always amazing. Some numbers, equations, series, and patterns behave differently under certain operations. Even though all numbers follow general mathematical rules, some patterns surprise us. Let’s explore a few of these cases.</p>
+    
+    <h3 class="text-2xl font-semibold mt-6" style="text-align: left;margin-bottom: 0.5em;">1. Product and Sum Are the Same</h3>
+    <p>Have you ever seen numbers where the sum and product are equal? We know that:</p>
+    \[
+      2 + 2 = 2 \times 2
+    \]
+    <p>But are there more such pairs? Yes! There are infinitely many such pairs that satisfy:</p>
+    \[
+      a + b = a \times b
+    \]
+    <p>Some examples are:</p>
+    \[
+      (5, 1.25), \quad (6, 1.2), \quad (7, 1.1666), \dots
+    \]
+    <p>The general formula for such pairs is:</p>
+    \[
+      \left(n, \frac{n}{n-1}\right)
+    \]
+    <p>which satisfies:</p>
+    \[
+      n \times \frac{n}{n-1} = n + \frac{n}{n-1}
+    \]
+
+    <p>Similarly</p>
+    \[
+    n \times \frac{n}{n+1} = n - \frac{n}{n+1}
+    \]
+    <h3 class="text-2xl font-semibold mt-6" style="text-align: left;margin-bottom: 0.5em;margin-top: 2em;">2. Square Root Pattern</h3>
+    <p>There exists a number for which:</p>
+    \[
+      \sqrt{x} + \sqrt{x+1} = \sqrt{x+2}
+    \]
+    <p>Solving this equation, we get:</p>
+    \[
+      x \approx 0.154700538
+    \]
+    
+    <h3 class="text-2xl font-semibold mt-6" style="text-align: left;margin-bottom: 0.5em;margin-top: 2em;">3. Sum of a Number and Its Square Equals Its Cube</h3>
+    <p>In school, we often mistakenly assume:</p>
+    \[
+      x^a + x^b = x^{a+b}
+    \]
+    <p>which is incorrect. However, there exists a special number for which:</p>
+    \[
+      x + x^2 = x^3
+    \]
+    <p>That number is the famous <b>Golden Ratio</b>:</p>
+    \[
+      x \approx 1.618033989
+    \]
+    
+    <h3 class="text-2xl font-semibold mt-6" style="text-align: left;margin-bottom: 0.5em;margin-top: 2em;">4. The Range of Nth Power Roots</h3>
+    <p>For any natural number \( n \), the nth root of \( n \) always lies in the range:</p>
+    \[
+      1 \leq n^{\frac{1}{n}} \leq 1.442
+    \]
+    <p>Similarly, its reciprocal follows:</p>
+    \[
+      0.5 \leq \frac{1}{n^{\left(\frac{1}{n}-1\right)}} < 1
+    \]
+  </main>
+  <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+    <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
+  </footer>
+</body>
+</html>
