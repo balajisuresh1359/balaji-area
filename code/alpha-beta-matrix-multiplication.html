@@ -9,6 +9,16 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
+  <style>
+        pre[class*="language-"] {
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        code[class*="language-"] {
+            font-size: 1em;
+        }
+
+  </style>
   </head>
 <body>
     <nav class="bg-gray-800 text-white p-4">
@@ -34,174 +44,350 @@
   </div>
     </nav>
 
-    <main class="container mx-auto p-6">
-      <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">Alpha Beta Matrix Multiplication</h2>
-      <hr>
-      <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
-  
-      <p>We have many methods to find matrix multiplication. Now, we will see another one for square matrices.</p>
-      <p>We know what matrix multiplication is:</p>
-  
-      \[
-      \begin{bmatrix} a & b & c \\ . & . & . \\ . & . & . \end{bmatrix} 
-      \times 
-      \begin{bmatrix} x & . & . \\ y & . & . \\ z & . & . \end{bmatrix} 
-      = 
-      \begin{bmatrix} ax+by+cz & . & . \\ . & . & . \\ . & . & . \end{bmatrix}
-      \]
-  
-      <p>Here, if you see, we need to find a new sum every time, with no way to reuse previously computed values. We will try to reuse computations in our algorithm.</p>
-  
-      <p>First, consider:</p>
-      \[
-      ax + by + cz = \alpha \cdot (a+b+c) \cdot (x+y+z)
-      ->Eq. 1\]
-      <p>Where \( \alpha \) is a function that satisfies this equation.</p>
-  
-      <p>We know that we can express any two-number product in the summation format:</p>
-      \[
-      n \cdot m = n + (m-1) \cdot n
-      ->Eq. 2\]
-  
-      <p>Apply Eq.2 in Eq.1:</p>
-      \[
-      S_x + (a-1)x + (b-1)y + (c-1)z = \alpha \cdot S_a + S_x
-      \]
-      <p>Where \( S_a \) is the sum of \( a, b, c \) and \( S_x \) is the sum of \( x, y, z \).</p>
-
-      <p>Apply Eq.2 in Eq.1 for 'a' times:</p>
-      \[
-      aS_x + (b-a)y + (c-a)z = \alpha \cdot S_a + S_x
-      \]
-  
-      <p>Solving for \( \alpha \):</p>
-      \[
-      \alpha = \frac{a}{S_a} + \frac{(b-a)y + (c-a)z}{S_a S_x}
-      \]
-  
-      <p>Let \( \beta = (b-a)y + (c-a)z \), then:</p>
-      \[
-      \alpha = \frac{a}{S_a} + \frac{\beta}{S_a S_x}
-      \]
-  
-      <p>Now, we can reuse \( S_a \) and \( S_x \) in our calculations instead of performing full array multiplication every time.</p>
-  
-      <h3 class="text-2xl font-bold mt-6">Python Implementation</h3>
-      <div class="relative bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
-        <button id="copy-btn" 
-            class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-sm px-3 py-1 rounded">
-            Copy Code
-        </button>
-        <pre id="code-block"  class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-python">
-from random import randint
-import numpy as np
-
-def generate_random_int():
-    min_int = -10 ** 6
-    max_int = 10 ** 6
-    return randint(int(min_int), int(max_int))
-
-def generate_random_array(size):
-    return [generate_random_int() for _ in range(size)]
-
-def alpha_beta_matrix_multiplication(A, B):
-    nA = np.array(A)
-    nB = np.array(B)
-
-    lb, l0b = nB.shape
-
-    sumArows = np.sum(nA, axis=1) # Sa
-    sumBcols = np.sum(nB, axis=0) # Sx
-
-    firstItemOfRowBarSumArows = nA[:, 0] / (sumArows) # a/Sa
-
-    inverseOfEachSumArows = np.ones(lb) / (sumArows) # 1/Sa
-    inverseOfEachSumBcols = np.ones(lb) / (sumBcols) # 1/Sx
-
-    a_idx = 0
-    result = np.zeros((lb, l0b))
-
-    for a in nA:
-        sa_a_idx = sumArows[a_idx]
-        fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx]
-        first_item_sub_all = a[1:] - a[0] # [b-a, c-a]
-        ioesa_a_idx = inverseOfEachSumArows[a_idx]
-        b_idx = 0
-
-        for col_itr in range(lb):
-            beta = np.dot(nB[1:, col_itr], first_item_sub_all) # [y,z] * [b-a,c-a]
-            alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]) # a/Sa + beta/(Sa*Sx)
-            result[a_idx][b_idx] = round(sa_a_idx * sumBcols[b_idx] * alpha)
-            b_idx += 1
-
-        a_idx += 1
-
-    return result
-
-if __name__ == "__main__":
-    mat_a, mat_b = [], []
-    dimension = 50 # 50*50
-    print(f"Generating matrix with size {dimension}..")
-    for _ in range(dimension):
-        mat_a.append(generate_random_array(dimension))
-    for _ in range(dimension):
-        mat_b.append(generate_random_array(dimension))
+    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold my-6">Alpha Beta Matrix Multiplication</h2>
+      <hr class="border-gray-300 dark:border-gray-700">
+      <p class="text-gray-500 text-sm italic mb-6">Updated on: <span class="font-semibold">March 12, 2025</span></p>
     
-    mat_c = alpha_beta_matrix_multiplication(mat_a, mat_b)
-    print(mat_c)</code>
-        </pre>
+      <div class="prose prose-lg max-w-none">
+        <p>We have many methods to find matrix multiplication. Now, we will see another one for square matrices.</p>
+        <p>We know what matrix multiplication is:</p>
+    
+        \[
+        \begin{bmatrix} a & b & c \\ . & . & . \\ . & . & . \end{bmatrix} 
+        \times 
+        \begin{bmatrix} x & . & . \\ y & . & . \\ z & . & . \end{bmatrix} 
+        = 
+        \begin{bmatrix} ax+by+cz & . & . \\ . & . & . \\ . & . & . \end{bmatrix}
+        \]
+    
+        <p>Here, if you see, we need to find a new sum every time, with no way to reuse previously computed values. We will try to reuse computations in our algorithm.</p>
+    
+        <p>First, consider:</p>
+        \[
+        ax + by + cz = \alpha \cdot (a+b+c) \cdot (x+y+z)
+        ->Eq. 1\]
+        <p>Where \( \alpha \) is a function that satisfies this equation.</p>
+    
+        <p>We know that we can express any two-number product in the summation format:</p>
+        \[
+        n \cdot m = n + (m-1) \cdot n
+        ->Eq. 2\]
+    
+        <p>Apply Eq.2 in Eq.1:</p>
+        \[
+        S_x + (a-1)x + (b-1)y + (c-1)z = \alpha \cdot S_a + S_x
+        \]
+        <p>Where \( S_a \) is the sum of \( a, b, c \) and \( S_x \) is the sum of \( x, y, z \).</p>
+        <p>Apply Eq.2 in Eq.1 for 'a' times:</p>
+        \[
+        aS_x + (b-a)y + (c-a)z = \alpha \cdot S_a + S_x
+        \]
+    
+        <p>Solving for \( \alpha \):</p>
+        \[
+        \alpha = \frac{a}{S_a} + \frac{(b-a)y + (c-a)z}{S_a S_x}
+        \]
+    
+        <p>Let \( \beta = (b-a)y + (c-a)z \), then:</p>
+        \[
+        \alpha = \frac{a}{S_a} + \frac{\beta}{S_a S_x}
+        \]
+    
+        <p>Now, we can reuse \( S_a \) and \( S_x \) in our calculations instead of performing full array multiplication every time.</p>
+      </div>
+    
+      <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">Algorithm</h2>
+      <div class="p-4 rounded-lg mb-6">
+        <ol class="list-decimal list-inside space-y-1">
+          <li>Find the sum of all rows in Matrix A and store it in an array <strong>Sa</strong>.</li>
+          <li>Compute the sum of each column in Matrix B and store it in an array <strong>Sx</strong>.</li>
+          <li>Find the inverse of each item present in these two arrays: <strong>a/Sa</strong>.</li>
+          <li>Find the first item of each row in Matrix A and divide it by the sum of the entire row.</li>
+          <li>Create a <strong>for</strong> loop and iterate until <strong>n</strong>.</li>
+          <li>Inside the <strong>for</strong> loop, create an array that stores the difference between the first element of each row in Matrix A and the remaining elements in that row: <strong>(b-a), (c-a), ...</strong>.</li>
+          <li>Create two nested <strong>for</strong> loop inside the main loop. Outer loop iterate until <strong>n</strong> and inner loop iterate until <strong>n-1</strong>.</li>
+          <li>Compute <strong>beta</strong> as <strong>(b-a)y + (c-a)z + ... </strong> inside the loop.</li>
+          <li>After the last loop ends, compute <strong>alpha = a/Sa + beta / (Sa * Sx)</strong>.</li>
+          <li>Store <strong>alpha * Sa * Sx</strong> in the respective cell of the result matrix.</li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-bold mb-4">
+          C Implementation: 
+          <a href="https://github.com/balajisuresh1359/my-algorithms/blob/main/matrix/c-implementation-and-analysis.c" 
+             target="_blank" 
+             class="text-[#00DDFF] font-semibold underline decoration-dashed hover:text-[#00BBCC] hover:decoration-solid transition-all duration-300 ease-in-out">
+             View the full file here
+          </a> 🔗
+      </h3>
+      
+      <div class="p-4 rounded-lg overflow-x-auto mb-6">
+        <pre><code class="language-c">#include &lt;stdio.h&gt;
+    #include &lt;stdlib.h&gt;
+    #include &lt;math.h&gt;
+    
+    int matrices_are_equal(int **A, int **B, int rows, int cols) {
+      for (int i = 0; i < rows; i++) {
+          for (int j = 0; j < cols; j++) {
+              if (A[i][j] != B[i][j]) {
+                  return 0;
+              }
+          }
+      }
+      return 1;
+    }
+    
+    void print_matrix(int **matrix, int rows, int cols) {
+      for (int i = 0; i < rows; i++) {
+          for (int j = 0; j < cols; j++) {
+              printf("%4d ", matrix[i][j]);
+          }
+          printf("\n");
+      }
+      printf("\n");
+    }
+    
+    
+    int **allocate_matrix(int rows, int cols) {
+      int **matrix = (int **)malloc(rows * sizeof(int *));
+      for (int i = 0; i < rows; i++) {
+          matrix[i] = (int *)malloc(cols * sizeof(int));
+      }
+      return matrix;
+    }
+    
+    void standard_matrix_multiplication(int **A, int **B, int **C, int n) {
+      for (int i = 0; i < n; i++) {
+          for (int j = 0; j < n; j++) {
+              C[i][j] = 0;
+              for (int k = 0; k < n; k++) {
+                  C[i][j] += A[i][k] * B[k][j];
+              }
+          }
+      }
+    }
+    
+    void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n) {
+        int *sumArows = (int *)malloc(n * sizeof(int));
+        int *sumBcols = (int *)malloc(n * sizeof(int));
+        double *firstItemOfRowBarSumArows = (double *)malloc(n * sizeof(double));
+        double *inverseOfEachSumArows = (double *)malloc(n * sizeof(double));
+        double *inverseOfEachSumBcols = (double *)malloc(n * sizeof(double));
+        double *first_item_sub_all = (double *)malloc((n - 1) * sizeof(double));
+    
+        for (int i = 0; i < n; i++) {
+            sumArows[i] = 0;
+            sumBcols[i] = 0;
+            for (int j = 0; j < n; j++) {
+                sumArows[i] += A[i][j];
+                sumBcols[i] += B[j][i];
+            }
+            inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
+            inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
+            firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
+        }
+    
+        for (int a_idx = 0; a_idx < n; a_idx++) {
+            double sa_a_idx = sumArows[a_idx];
+            double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
+            double ioesa_a_idx = inverseOfEachSumArows[a_idx];
+    
+            for (int i = 1; i < n; i++) {
+                first_item_sub_all[i - 1] = A[a_idx][i] - A[a_idx][0];
+            }
+    
+            for (int b_idx = 0; b_idx < n; b_idx++) {
+                double beta = 0;
+                for (int i = 0; i < n - 1; i++) {
+                    beta += B[i + 1][b_idx] * first_item_sub_all[i];
+                }
+                double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
+                C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
+            }
+        }
+    
+        free(sumArows);
+        free(sumBcols);
+        free(firstItemOfRowBarSumArows);
+        free(inverseOfEachSumArows);
+        free(inverseOfEachSumBcols);
+        free(first_item_sub_all);
+    }
+    
+    void generate_random_matrix(int **matrix, int rows, int cols, int min_val, int max_val) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = min_val + rand() % (max_val - min_val + 1);
+            }
+        }
+    }
+    
+    int main() {
+        int n = 3;
+        int **A = allocate_matrix(n, n);
+        int **B = allocate_matrix(n, n);
+        int **C_std = allocate_matrix(n, n);
+        int **C_ab = allocate_matrix(n, n);
+        
+        generate_random_matrix(A, n, n, 1, 10);
+        generate_random_matrix(B, n, n, 1, 10);
+        alpha_beta_matrix_multiplication(A, B, C_ab, n);
+    
+        printf("Matrix A:\n");
+        print_matrix(A, n, n);
+        printf("Matrix B:\n");
+        print_matrix(B, n, n);
+        printf("Result:\n");
+        print_matrix(C_ab, n, n);
+    
+        standard_matrix_multiplication(A, B, C_std, n);
+        int ab1_correct = matrices_are_equal(C_std, C_ab, n, n);
+        if(ab1_correct) {
+          printf("Matrix multiplication is correct");
+        } else {
+          printf("Matrix multiplication is incorrect");
+        }
+    }</code></pre>
+      </div>
+    
+      <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">Algorithm Performance Analysis</h2>
+      <div class="space-y-4">
+        <p>This reuse operation significantly helps my algorithm to beat the standard 3-loop algorithm.</p>
+        <p>I tested my code on one type of CPU architecture only. I need to check more about this.</p>
+        <p>When I completed my testing on my machine, I noticed that my algorithm performed at an average speed of <span class="font-bold text-red-600 dark:text-red-400">1.28x</span> compared to the standard 3-loop implementation in <span class="font-bold text-red-600 dark:text-red-400">C</span> (Thanks to ChatGPT & Claude AI for converting my Python code to C).</p>
+        <p>The NumPy implementation showed impressive speed.</p>
+        <p>The next step is to test on different systems and environments. I also need to think about how I can format the <span class="font-bold text-red-600 dark:text-red-400">beta value</span> and separate the its multiplicative terms and memory consumption.</p>
+        <p>I am definitely using extra space, so I need to check how to reduce that.</p>
+        <p>When you simplify my equation, you will get <span class="font-bold text-red-600 dark:text-red-400">ax + by + cz</span>, the original equation. But instead of solving it directly, what I did was:</p>
+      </div>
+    
+      <ul class="list-disc list-inside space-y-2 my-6 ml-4">
+        <li>First, I looked for a way to <span class="font-bold text-red-600 dark:text-red-400">reuse computed values</span>.</li>
+        <li>For that, I created a <span class="font-bold text-red-600 dark:text-red-400">dummy equation</span> and started finding a <span class="font-bold text-red-600 dark:text-red-400">balancer</span> to make my dummy equation true.</li>
+        <li>This separation helps me reuse computed values and modify the existing standard algorithm.</li>
+      </ul>
+    
+      <div class="overflow-x-auto my-6">
+        <table class="w-full md:w-4/5 mx-auto border-collapse">
+          <thead class="bg-black-200 dark:bg-black-700">
+            <tr>
+              <th class="border border-black-300 dark:border-black-600 p-2">Dimension n*n</th>
+              <th class="border border-black-300 dark:border-black-600 p-2">Standard Algorithm(sec)</th>
+              <th class="border border-black-300 dark:border-black-600 p-2">AlphaBeta Algorithm(sec)</th>
+              <th class="border border-black-300 dark:border-black-600 p-2">Speedup Factor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">5</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000003</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000005</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.60x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">10</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000018</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000019</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.95x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">20</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000101</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000119</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.85x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">50</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000704</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000340</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">2.07x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">100</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.002882</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.002431</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.19x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">200</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.022706</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.018150</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.25x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.383213</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.285080</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.34x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">3.675808</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">2.708856</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.36x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">14.398306</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">9.713360</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.48x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">37.495369</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">26.228778</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.43x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">74.025922</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">50.163575</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.48x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">3000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">138.272042</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">104.693285</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.32x</td></tr>
+          </tbody>
+        </table>
+      </div>    
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+        <div class="image-container">
+          <img src="./images/speedup_comparison.png" alt="Speedup Comparison" class="w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity">
+        </div>
       </div>
 
-      <div class="bg-gray-100 p-6 rounded-lg shadow-md" style="margin-top: 2em;">
-        <p class="text-lg text-gray-800 font-semibold">Find the benchmark for below:</p>
-        <p class="text-gray-700 mt-2">Generating matrices with dimensions <span class="font-bold">750 × 750</span></p>
-        
-        <div class="bg-white p-4 mt-4 rounded-md shadow-sm">
-            <p class="text-gray-600"><span class="font-bold">Execution Time:</span></p>
-            <ul class="list-disc pl-6 text-gray-700 mt-2">
-                <li><span class="font-semibold">General 3-loop Algorithm:</span> <span class="text-red-600">312.451826 secs</span></li>
-                <li><span class="font-semibold">Alpha Beta Algorithm:</span> <span class="text-yellow-600">5.155557 secs</span></li>
-                <li><span class="font-semibold">NumPy dot Method:</span> <span class="text-green-600">0.906895 sec</span></li>
-            </ul>
+        <div class="space-y-4 my-6">
+          <p>When you closely compare my algorithm and the standard one in <span class="font-bold text-red-600 dark:text-red-400">C implementation</span>, you will notice there is <span class="font-bold text-red-600 dark:text-red-400">only one change</span>:</p>
+          <p>In the innermost loop, I loop for only <span class="font-bold text-red-600 dark:text-red-400">n-1</span> times instead of <span class="font-bold text-red-600 dark:text-red-400">n</span> times.</p>
+          <p>In <span class="font-bold text-red-600 dark:text-red-400">Python</span>, using <span class="font-bold text-red-600 dark:text-red-400">NumPy</span>, we can optimize this algorithm even further.</p>
+          <p>Also, this method applies only to <span class="font-bold text-red-600 dark:text-red-400">two identical n × n matrices</span>.</p>
         </div>
-    
-        <p class="mt-4">
-            🔗 <a href="https://github.com/balajisuresh1359/my-algorithms/blob/main/matrix/analysis-matrix-multiplication.py" 
-            class="text-blue-600 font-semibold hover:underline" target="_blank">View the full code here</a>
-        </p>
-    </div>
-    <div id="flash-message" 
-      class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg hidden">
-      Code copied!
-    </div>
+      
+        <h3 class="text-xl md:text-2xl font-bold mt-8 mb-4">Execution Time Comparison in C Implementation</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+          <div class="image-container">
+            <img src="./images/execution_time_comparison.png" alt="Execution Time Comparison" class="w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity">
+          </div>
+          <div class="image-container">
+            <img src="./images/largest_sizes_comparison.png" alt="Largest Sizes Comparison" class="w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity">
+          </div>
+        </div>
+      
+        <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+          <div class="relative max-w-4xl w-full mx-4">
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-2xl font-bold hover:text-gray-300">&times;</button>
+            <div class="flex items-center justify-center">
+              <img id="modalImage" src="" alt="Zoomed Image" class="max-w-full max-h-[80vh] object-contain">
+            </div>
+            <div class="mt-4 flex justify-center">
+              <button id="zoomIn" class="bg-lightblue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600"></button>
+              <button id="zoomOut" class="bg-lightbluelightblue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></button>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('closeModal');
+            const zoomInBtn = document.getElementById('zoomIn');
+            const zoomOutBtn = document.getElementById('zoomOut');
+            const images = document.querySelectorAll('.image-container img');
+            
+            let currentScale = 1;
+            
+            images.forEach(img => {
+              img.addEventListener('click', function() {
+                modal.classList.remove('hidden');
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                currentScale = 1;
+                modalImg.style.transform = `scale(${currentScale})`;
+              });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+              modal.classList.add('hidden');
+            });
+            
+            zoomInBtn.addEventListener('click', function() {
+              currentScale += 0.2;
+              modalImg.style.transform = `scale(${currentScale})`;
+            });
+            
+            zoomOutBtn.addEventListener('click', function() {
+              if (currentScale > 0.4) {
+                currentScale -= 0.2;
+                modalImg.style.transform = `scale(${currentScale})`;
+              }
+            });
+            
+            modal.addEventListener('click', function(event) {
+              if (event.target === modal) {
+                modal.classList.add('hidden');
+              }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+              if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+              }
+            });
+          });
+        </script>
+      </main>
 
-    
-  </main>
-  
+
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
         <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          document.getElementById("copy-btn").addEventListener("click", function () {
-              const codeBlock = document.getElementById("code-block").innerText;
-              navigator.clipboard.writeText(codeBlock).then(() => {
-                  showFlashMessage();
-              }).catch(err => {
-                  console.error("Failed to copy: ", err);
-              });
-          });
 
-          function showFlashMessage() {
-              const flashMessage = document.getElementById("flash-message");
-              flashMessage.classList.remove("hidden");
-              flashMessage.classList.add("opacity-100");
-
-              setTimeout(() => {
-                  flashMessage.classList.add("hidden");
-              }, 2000); // Hide after 2 seconds
-          }
-      });
-    </script>
 </body>
 </html>
