@@ -47,7 +47,7 @@
     <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
       <h2 class="text-3xl md:text-4xl font-bold my-6">Alpha Beta Matrix Multiplication!</h2>
       <hr class="border-gray-300 dark:border-gray-700">
-      <p class="text-gray-500 text-sm italic mb-6">Updated on: <span class="font-semibold">March 12, 2025</span></p>
+      <p class="text-gray-500 text-sm italic mb-6">Updated on: <span class="font-semibold">March 13, 2025</span></p>
     
       <div class="prose prose-lg max-w-none">
         <p>We have many methods to find matrix multiplication. Now, we will see the new one for square matrices.</p>
@@ -107,12 +107,11 @@
       
       <p>With this method, precomputing values requires O(n²), and the main algorithm runs in O(n * n * (n - 1)).</p>
       <br>
-      <br>
       
       <p>For example, let's say we have matrices A, B, C, and D, and we need to perform multiple matrix multiplications. We assume that the same matrices will be used with different matrices, such as A*C, C*D, A*D, and C*B needed to calculate.</p>
       <br>
       
-      <p>To optimize this, we calculate the constant values for each matrix, such as a/Sa, 1/Sa, and 1/Sx (if the matrix is on the right side of the multiplication). This allows us to reuse these values and perform matrix multiplication in O(n * n * (n - 1)).</p>
+      <p>To run this in alpha beta algorithm, we calculate the constant values for each matrix, such as a/Sa, 1/Sa, and 1/Sx (if the matrix is on the right side of the multiplication). This allows us to reuse these values and perform matrix multiplication in O(n * n * (n - 1)).</p>
       <br>
       
       <p>For example, consider 5×5 matrices A, B, C, and D. We need to compute:</p>
@@ -246,14 +245,14 @@ for (int a_idx = 0; a_idx < n; a_idx++) {
             <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">10</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000018</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000019</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.95x</td></tr>
             <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">20</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000101</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000119</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.85x</td></tr>
             <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">50</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000704</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.000340</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">2.07x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">100</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.002882</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.002431</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.19x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">200</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.022706</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.018150</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.25x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.383213</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.285080</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.34x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">3.675808</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">2.708856</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.36x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">14.398306</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">9.713360</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.48x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">37.495369</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">26.228778</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.43x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">74.025922</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">50.163575</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.48x</td></tr>
-            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">3000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">138.272042</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">104.693285</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.32x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">100</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.004429</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.003230</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.37x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">200</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.022573</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.018314</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.23x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.397208</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">0.298162</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.33x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">3.829336</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">2.948415</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.29x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">1500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">14.227654</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">10.817139</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.31x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">55.889342</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">43.312036</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.29x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">2500</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">118.649450</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">91.253632</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.30x</td></tr>
+            <tr><td class="border border-black-300 dark:border-black-600 p-2 text-center">3000</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">170.963293</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">137.742198</td><td class="border border-black-300 dark:border-black-600 p-2 text-center">1.24x</td></tr>
           </tbody>
         </table>
       </div>    
@@ -275,12 +274,12 @@ for (int a_idx = 0; a_idx < n; a_idx++) {
         </div>
 
         <p>I asked ChatGPT to find any real-time use cases similar to this, and found the following:</p>
-        <ul>
-          <li><strong>Machine Learning</strong> – Reusing weight matrices in inference (e.g., Transformers, neural networks).</li>
-          <li><strong>Graph Processing</strong> – Faster adjacency matrix operations (e.g., PageRank, shortest paths).</li>
-          <li><strong>Financial Modeling</strong> – Portfolio risk calculations with repeated data.</li>
-          <li><strong>Physics Simulations</strong> – Real-time 3D transformations in robotics/games.</li>
-          <li><strong>Traffic/Network Simulations</strong> – Optimizing routing using fixed structures.</li>
+        <ul style="list-style-type: circle">
+          <li><strong>Machine Learning</strong> - Reusing weight matrices in inference (e.g., Transformers, neural networks).</li>
+          <li><strong>Graph Processing</strong> - Faster adjacency matrix operations (e.g., PageRank, shortest paths).</li>
+          <li><strong>Financial Modeling</strong> - Portfolio risk calculations with repeated data.</li>
+          <li><strong>Physics Simulations</strong> - Real-time 3D transformations in robotics/games.</li>
+          <li><strong>Traffic/Network Simulations</strong> - Optimizing routing using fixed structures.</li>
         </ul>
               
         <h3 class="text-xl md:text-2xl font-bold mt-8 mb-4">Execution Time Comparison in C Implementation</h3>
