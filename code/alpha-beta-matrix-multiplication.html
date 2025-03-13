@@ -168,52 +168,47 @@
       }
     }
     
-    void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n) {
-        int *sumArows = (int *)malloc(n * sizeof(int));
-        int *sumBcols = (int *)malloc(n * sizeof(int));
-        double *firstItemOfRowBarSumArows = (double *)malloc(n * sizeof(double));
-        double *inverseOfEachSumArows = (double *)malloc(n * sizeof(double));
-        double *inverseOfEachSumBcols = (double *)malloc(n * sizeof(double));
-        double *first_item_sub_all = (double *)malloc((n - 1) * sizeof(double));
-    
-        for (int i = 0; i < n; i++) {
-            sumArows[i] = 0;
-            sumBcols[i] = 0;
-            for (int j = 0; j < n; j++) {
-                sumArows[i] += A[i][j];
-                sumBcols[i] += B[j][i];
-            }
-            inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
-            inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
-            firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
+void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n) {
+    int *sumArows = (int *)malloc(n * sizeof(int));
+    int *sumBcols = (int *)malloc(n * sizeof(int));
+    double *firstItemOfRowBarSumArows = (double *)malloc(n * sizeof(double));
+    double *inverseOfEachSumArows = (double *)malloc(n * sizeof(double));
+    double *inverseOfEachSumBcols = (double *)malloc(n * sizeof(double));
+
+    for (int i = 0; i < n; i++) {
+        sumArows[i] = 0;
+        sumBcols[i] = 0;
+        for (int j = 0; j < n; j++) {
+            sumArows[i] += A[i][j];
+            sumBcols[i] += B[j][i];
         }
-    
-        for (int a_idx = 0; a_idx < n; a_idx++) {
-            double sa_a_idx = sumArows[a_idx];
-            double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
-            double ioesa_a_idx = inverseOfEachSumArows[a_idx];
-    
-            for (int i = 1; i < n; i++) {
-                first_item_sub_all[i - 1] = A[a_idx][i] - A[a_idx][0];
-            }
-    
-            for (int b_idx = 0; b_idx < n; b_idx++) {
-                double beta = 0;
-                for (int i = 0; i < n - 1; i++) {
-                    beta += B[i + 1][b_idx] * first_item_sub_all[i];
-                }
-                double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
-                C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
-            }
-        }
-    
-        free(sumArows);
-        free(sumBcols);
-        free(firstItemOfRowBarSumArows);
-        free(inverseOfEachSumArows);
-        free(inverseOfEachSumBcols);
-        free(first_item_sub_all);
+        inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
+        inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
+        firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
     }
+
+    for (int a_idx = 0; a_idx < n; a_idx++) {
+        double sa_a_idx = sumArows[a_idx];
+        double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
+        double ioesa_a_idx = inverseOfEachSumArows[a_idx];
+
+        for (int b_idx = 0; b_idx < n; b_idx++) {
+            double beta = 0;
+            for (int i = 1; i < n; i++) {
+                int b_a = A[a_idx][i] - A[a_idx][0];
+                beta += B[i][b_idx] * b_a;
+            }
+            double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
+            C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
+        }
+    }
+
+    free(sumArows);
+    free(sumBcols);
+    free(firstItemOfRowBarSumArows);
+    free(inverseOfEachSumArows);
+    free(inverseOfEachSumBcols);
+}
     
     void generate_random_matrix(int **matrix, int rows, int cols, int min_val, int max_val) {
         for (int i = 0; i < rows; i++) {
