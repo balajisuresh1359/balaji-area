@@ -174,45 +174,50 @@
       </h3>
       
       <div class="p-4 rounded-lg overflow-x-auto mb-6">
-        <pre><code class="language-c">void precompute(int **A, int **B, int n, int *sumArows, int *sumBcols,
-          double *firstItemOfRowBarSumArows, double *inverseOfEachSumArows, double *inverseOfEachSumBcols,
-          int **first_item_sub_all) {
-for (int i = 0; i < n; i++) {
-  sumArows[i] = 0;
-  sumBcols[i] = 0;
-  for (int j = 0; j < n; j++) {
-      sumArows[i] += A[i][j];
-      sumBcols[i] += B[j][i];
-  }
-  inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
-  inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
-  firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
+        <pre><code class="language-c">void precompute_for_left_matrix(int **A, int n, int *sumArows, double *firstItemOfRowBarSumArows, double *inverseOfEachSumArows, int **first_item_sub_all) {
+    for (int i = 0; i < n; i++) {
+        sumArows[i] = 0;
+        for (int j = 0; j < n; j++) {
+            sumArows[i] += A[i][j];
+        }
+        inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
+        firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            first_item_sub_all[i][j - 1] = A[i][j] - A[i][0];
+        }
+    }
 }
-for (int i = 0; i < n; i++) {
-  for (int j = 1; j < n; j++) {
-      first_item_sub_all[i][j - 1] = A[i][j] - A[i][0];
-  }
-}
+
+void precompute_for_right_matrix(int **B, int n, int *sumBcols, double *inverseOfEachSumBcols) {
+    for (int i = 0; i < n; i++) {
+        sumBcols[i] = 0;
+        for (int j = 0; j < n; j++) {
+            sumBcols[i] += B[j][i];
+        }
+        inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
+    }
 }
 
 void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n,
-                                int *sumArows, int *sumBcols,
-                                double *firstItemOfRowBarSumArows,
-                                double *inverseOfEachSumArows, double *inverseOfEachSumBcols,
-                                int **first_item_sub_all) {
-for (int a_idx = 0; a_idx < n; a_idx++) {
-  double sa_a_idx = sumArows[a_idx];
-  double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
-  double ioesa_a_idx = inverseOfEachSumArows[a_idx];
-  for (int b_idx = 0; b_idx < n; b_idx++) {
-      double beta = 0;
-      for (int i = 1; i < n; i++) {
-          beta += B[i][b_idx] * first_item_sub_all[a_idx][i - 1];
-      }
-      double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
-      C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
-  }
-}
+                                      int *sumArows, int *sumBcols,
+                                      double *firstItemOfRowBarSumArows,
+                                      double *inverseOfEachSumArows, double *inverseOfEachSumBcols,
+                                      int **first_item_sub_all) {
+    for (int a_idx = 0; a_idx < n; a_idx++) {
+        double sa_a_idx = sumArows[a_idx];
+        double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
+        double ioesa_a_idx = inverseOfEachSumArows[a_idx];
+        for (int b_idx = 0; b_idx < n; b_idx++) {
+            double beta = 0;
+            for (int i = 1; i < n; i++) {
+                beta += B[i][b_idx] * first_item_sub_all[a_idx][i - 1];
+            }
+            double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
+            C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
+        }
+    }
 }</code></pre>
       </div>
     
