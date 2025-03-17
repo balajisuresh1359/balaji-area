@@ -1,217 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Balaji | Math</title>
-  <link href="../styles/index.css" rel="stylesheet">
-  <link href="./styles/index.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script defer src="../script/common.js"></script>
-</head>
-<body>
-  <nav class="bg-gray-800 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
-      <div class="flex items-center">
-        <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
-        <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
-      </div>      
-      <div id="nav-links" class="hidden md:flex space-x-4 items-center">
-        <a href="../blog/index.html" class="px-4">Blog</a>
-        <a href="./index.html" class="px-4">Math</a>
-        <a href="../code/index.html" class="px-4">Code</a>
-        <a href="../contact.html" class="px-4">Contact</a>
-        <button id="theme-toggle" class="ml-4">🌙</button>
-      </div>
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content-container" id="modalContainer">
+      <img class="modal-content" id="expandedImg">
     </div>
-    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
-      <a href="../blog/index.html" class="py-2">Blog</a>
-      <a href="./index.html" class="py-2">Math</a>
-      <a href="../code/index.html" class="py-2">Code</a>
-      <a href="../contact.html" class="py-2">Contact</a>
+    <div class="zoom-controls">
+      <button class="zoom-btn" id="zoom-out">−</button>
+      <button class="zoom-btn" id="zoom-in">+</button>
+      <button class="zoom-btn" id="zoom-reset">⟲</button>
     </div>
-  </nav>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balaji | Math</title>
-    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  </head>
-  <body>
-    <main class="container mx-auto p-6">
-      <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">A New Algebraic Relation Between Sequential Natural Number Sums</h2>
-      <hr>
-      <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
-
-      <p class="text-content">We know how to calculate the sum of the first natural numbers. If our sequence doesn't start with 1, then we can use the arithmetic series formula to find any series' nth sum.</p>
-      
-      <p class="text-content">By using these two formulas, we can find any even-length series sum with increment value d = 1 by just calculating its first half sum. Let's see how we can do this.</p>
-      
-      <div style="margin-top: 1em;" class="text-content">
-        Consider any series with r = 1.<br>
-        Let's take this: 7, 8, 9, 10, 11, 12, where N = 6.<br>
-        Let a be the first half sum of this series, i.e., 7+8+9.<br>
-        Let b be the second half sum of this series, i.e., 10+11+12.<br>
-        We can find b by just adding (N/2)² to the value a:
-      </div>
-      
-      <div class="math-display">
-        \[b = a + (N/2)^2\]
-      </div>
-      
-      <div class="text-content">
-        Let's say n = N/2, then:
-      </div>
-      
-      <div class="math-display">
-        \[b = a + n^2\]
-      </div>
-      
-      <div class="text-content">
-        The sum of the series would be:
-      </div>
-      
-      <div class="math-display">
-        \[T = a + b = 2a + n^2\]
-      </div>
-      
-      <p class="text-content">For example: T = 2(24) + 3² = 48 + 9 = 57</p>
-      
-      <p style="margin-top: 1em;" class="text-content">We're not stopping here. Let's do the same for the square series as well.</p>
-      
-      <div style="margin-top: 1em;" class="text-content">
-        Consider any series with r = 1.<br>
-        Let's take this: 7², 8², 9², 10², 11², 12², where N = 6.<br>
-        Let x be the first half sum of this series, i.e., 7² + 8² + 9².<br>
-        Let y be the second half sum of this series, i.e., 10² + 11² + 12².<br>
-        Then:
-      </div>
-      
-      <div class="math-display">
-        \[y = x + nT\]
-      </div>
-      
-      <div class="text-content">
-        Where T is the sum of the original sequence: 7+8+9+10+11+12.<br>
-        The sum of the squared series will be:
-      </div>
-      
-      <div class="math-display">
-        \[T_2 = x + y = 2x + nT\]
-      </div>
-      
-      <p class="text-content">Let's expand this formula to make the calculation even easier:</p>
-      
-      <div class="math-display">
-        \[T = \frac{N}{2}(2A + (N-1)d) \text{ (arithmetic series formula)}\]
-      </div>
-      
-      <div class="text-content">
-        Where A is the starting term, N = 2n, and d = 1.
-      </div>
-      
-      <div class="math-display">
-        \begin{align}
-        T_2 &= 2x + n\left(\frac{N}{2}(2A + N - 1)\right)\\
-        &= 2x + n(n(2A + 2n - 1))\\
-        &= 2x + 2An^2 + 2n^3 - n^2\\
-        &= 2(x + n^3) + n^2(2A-1)
-        \end{align}
-      </div>
-      
-      <p class="text-content">Example:</p>
-      
-      <div class="text-content">
-        x = 7²+8²+9² = 194<br>
-        A = 7<br>
-        n = 3
-      </div>
-      
-      <div class="math-display">
-        \begin{align}
-        T_2 &= 2(194 + 27) + 9(13)\\
-        &= 2(221) + 117\\
-        &= 442 + 117\\
-        &= 559
-        \end{align}
-      </div>
-      
-      <div class="text-content" style="text-align: center;">
-        = 7²+8²+9²+10²+11²+12²
-      </div>
-      
-      <p class="text-content">Let's derive a formula for the first n natural numbers:</p>
-      <p class="text-content">For the first n natural numbers, A will be 1</p>
-      
-      <div class="math-display">
-        \[S_n = 2a + n^2 \quad \text{(from our first formula)}\]
-      </div>
-      
-      <div class="text-content">
-        Applying a value, we get:
-      </div>
-      
-      <div class="math-display">
-        \[S_n = 2n^2 + n\]
-      </div>
-      
-      <div class="text-content">
-        So:
-      </div>
-      
-      <div class="math-display">
-        \[a + b = 2n^2 + n\]
-      </div>
-      
-      <div class="text-content">
-        But we also know:
-      </div>
-      
-      <div class="math-display">
-        \[An^2 = \sqrt{b-a}\]
-      </div>
-      
-      <div class="text-content">
-        Since A = 1:
-      </div>
-      
-      <div class="math-display">
-        \begin{align}
-        a + b &= 2(b-a)+\sqrt{b-a}\\
-        3a - b &= \sqrt{b-a}
-        \end{align}
-      </div>
-      
-      <div class="text-content">
-        Squaring both sides:
-      </div>
-      
-      <div class="math-display">
-        \begin{align}
-        9a^2+b^2-2(3a)(b) &= b-a
-        \end{align}
-      </div>
-      
-      <div class="text-content">
-        After simplification:
-      </div>
-      
-      <div class="math-display">
-        \[\frac{9a+1}{6b} + \frac{b-1}{6a} = 1\]
-      </div>
-      
-      <p class="text-content">This equation holds true for all natural number series starting with 1.</p>
-    </main>
-  
+  </div>
   <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
     <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("expandedImg");
+      const modalContainer = document.getElementById("modalContainer");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      const images = document.getElementsByClassName("article-image");
+      const zoomIn = document.getElementById("zoom-in");
+      const zoomOut = document.getElementById("zoom-out");
+      const zoomReset = document.getElementById("zoom-reset");
+      
+      let currentZoom = 1;
+      const zoomStep = 0.25;
+      const maxZoom = 3;
+      const minZoom = 0.5;
+      
+      let isDragging = false;
+      let startX, startY;
+      let translateX = 0;
+      let translateY = 0;
+      
+      function handleZoomIn() {
+        if (currentZoom < maxZoom) {
+          currentZoom += zoomStep;
+          updateZoom();
+        }
+      }
+      
+      function handleZoomOut() {
+        if (currentZoom > minZoom) {
+          currentZoom -= zoomStep;
+          updateZoom();
+        }
+      }
+      
+      function handleZoomReset() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        updateZoom();
+      }
+      
+      function updateZoom() {
+        modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+      }
+      
+      modalImg.addEventListener('mousedown', function(e) {
+        if (currentZoom > 1) {
+          isDragging = true;
+          startX = e.clientX - translateX;
+          startY = e.clientY - translateY;
+          modalImg.style.cursor = 'grabbing';
+        }
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          translateX = e.clientX - startX;
+          translateY = e.clientY - startY;
+          updateZoom();
+        }
+      });
+      
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+        modalImg.style.cursor = 'grab';
+      });
+      
+      modalImg.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1 && currentZoom > 1) {
+          isDragging = true;
+          startX = e.touches[0].clientX - translateX;
+          startY = e.touches[0].clientY - translateY;
+        } else if (e.touches.length === 2) {
+          // Pinch zoom logic
+          initialDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+          );
+        }
+      }, { passive: false });
+      
+      document.addEventListener('touchmove', function(e) {
+        if (isDragging && e.touches.length === 1) {
+          e.preventDefault();
+          translateX = e.touches[0].clientX - startX;
+          translateY = e.touches[0].clientY - startY;
+          updateZoom();
+        } else if (e.touches.length === 2) {
+          e.preventDefault();
+          
+          const currentDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+          );
+          
+          if (initialDistance > 0) {
+            if (currentDistance > initialDistance + 10 && currentZoom < maxZoom) {
+              currentZoom += zoomStep;
+              updateZoom();
+              initialDistance = currentDistance;
+            } else if (currentDistance < initialDistance - 10 && currentZoom > minZoom) {
+              currentZoom -= zoomStep;
+              updateZoom();
+              initialDistance = currentDistance;
+            }
+          }
+        }
+      }, { passive: false });
+      
+      document.addEventListener('touchend', function() {
+        isDragging = false;
+      });
+      
+      zoomIn.addEventListener('click', handleZoomIn);
+      zoomOut.addEventListener('click', handleZoomOut);
+      zoomReset.addEventListener('click', handleZoomReset);
+      
+      modalImg.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+          handleZoomIn();
+        } else {
+          handleZoomOut();
+        }
+      });
+      
+      let initialDistance = 0;
+      
+      let lastTap = 0;
+      modalImg.addEventListener('touchend', function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        
+        if (tapLength < 300 && tapLength > 0) {
+          if (currentZoom > 1) {
+            handleZoomReset();
+          } else {
+            currentZoom = 2;
+            updateZoom();
+          }
+          e.preventDefault();
+        }
+        
+        lastTap = currentTime;
+      });
+      
+      for (let i = 0; i < images.length; i++) {
+        images[i].addEventListener('click', function() {
+          modal.style.display = "flex";
+          modalImg.src = this.src;
+          document.body.style.overflow = "hidden";
+          currentZoom = 1;
+          translateX = 0;
+          translateY = 0;
+          updateZoom();
+          modalImg.style.cursor = 'grab';
+        });
+      }
+      
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = "none";
+        document.body.style.overflow = ""; 
+      });
+      
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal || event.target === modalContainer) {
+          modal.style.display = "none";
+          document.body.style.overflow = ""; 
+        }
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (modal.style.display === "flex") {
+          if (e.key === "Escape") {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+          } else if (e.key === "+" || e.key === "=") {
+            handleZoomIn();
+          } else if (e.key === "-") {
+            handleZoomOut();
+          } else if (e.key === "0") {
+            handleZoomReset();
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
