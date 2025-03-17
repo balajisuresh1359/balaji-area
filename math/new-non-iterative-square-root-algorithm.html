@@ -11,19 +11,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
-  <style>  
-    ul {
-      margin-top: 15px;
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      list-style-type: circle;
-    }
-
-  </style>
-  </head>
+</head>
 <body>
   <nav class="bg-gray-800 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
@@ -47,428 +35,183 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;">New Non-Iterative Square Root Algorithm</h2>
-    <hr>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji | Math</title>
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <main class="container mx-auto p-6">
+      <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">A New Algebraic Relation Between Sequential Natural Number Sums</h2>
+      <hr>
+      <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
 
-    <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
-
-    <div class="text-lg space-y-4">
-      <p>I've developed a mathematical formula that calculates square roots with unprecedented accuracy in a single step.</p>
+      <p class="text-content">We know how to calculate the sum of the first natural numbers. If our sequence doesn't start with 1, then we can use the arithmetic series formula to find any series' nth sum.</p>
       
-      <p>In this method, we need to find the sqaure root of any number using its nearest perfect square.</p>
+      <p class="text-content">By using these two formulas, we can find any even-length series sum with increment value d = 1 by just calculating its first half sum. Let's see how we can do this.</p>
       
-      <p>First, notice that there are \(2n+1\) parts between \(n^2\) and \((n+1)^2\).</p>
-      
-      <p>This means we can split the interval between \(n\) and \(n+1\) into \(2n+1\) equal parts.</p>
-      
-      <p><strong>Example:</strong> For numbers 4 & 5, \(4^2 = 16\) and \(5^2 = 25\). Between 4 and 5, consider one rectangle with the starting point at 4 and ending at 5. We can split this rectangle into 9 (\(2(4)+1\)) parts equally, each box having a width of \(\frac{1}{2n+1}\). This is a mathematical fact.</p>
-      
-      <p>Let's consider finding the square root of 18 that lies between 16 and 25. Can we use this logic?</p>
-      
-      <p>\(4^2 = 16\), and we can have \(2(4)+1 = 9\) parts between 4 and 5. For 18, which is 2 places after 16, would adding two parts give us the square root?</p>
-      
-      <p>There are 9 parts, and we need two box widths since \(18-16 = 2\), so:</p>
-      
-      <div class="math">
-        \[4 + \frac{1}{2(4)+1} + \frac{1}{2(4)+1} = 4 + \frac{2}{9} = 4.2222...\]
+      <div style="margin-top: 1em;" class="text-content">
+        Consider any series with r = 1.<br>
+        Let's take this: 7, 8, 9, 10, 11, 12, where N = 6.<br>
+        Let a be the first half sum of this series, i.e., 7+8+9.<br>
+        Let b be the second half sum of this series, i.e., 10+11+12.<br>
+        We can find b by just adding (N/2)² to the value a:
       </div>
       
-      <p>Squaring this result: \(4.2222...^2 = 17.827160492\), which is not 18.</p>
-      
-      <p>If a number is between 16 and 25, and we're trying to split the square roots of these numbers (4 & 5) equally, shouldn't the square roots of numbers in this range increase proportionally? Actually, no. This approach is incorrect as we'll see below.</p>
-      
-      <div class="image-container">
-        <img src="./images/between-4-and-5-eq-parts.png" alt="Equal parts between 4 and 5" class="article-image">
+      <div class="math-display">
+        \[b = a + (N/2)^2\]
       </div>
       
-      <p>In the image below, you can see the gaps between each square root of numbers from 16 to 25. They are not evenly spaced:</p>
-      
-      <div class="image-container">
-        <img src="./images/sq-roots-between-4-and-5.png" alt="Square roots between 4 and 5" class="article-image">
+      <div class="text-content">
+        Let's say n = N/2, then:
       </div>
       
-      <p>So, if we follow the previous approach, we can't get an accurate result. We need to find a way to make our approach more precise.</p>
-      
-      <p>However, we can notice that when we check larger numbers, the gaps appear more evenly distributed:</p>
-      
-      <div class="image-container">
-        <img src="./images/15-and-16.png" alt="Square roots between 15 and 16" class="article-image">
+      <div class="math-display">
+        \[b = a + n^2\]
       </div>
       
-      <p>If the line looks almost straight, then the distribution of square roots in this range is more evenly distributed. If you look at the image below, you can see that it doesn't look straight for smaller numbers but appears almost straight for larger numbers.</p>
-      
-      <p>Differences between consecutive square roots from \(\sqrt{16}\) to \(\sqrt{25}\):</p>
-      
-      <table class="w-full">
-        <tr>
-          <td>\(\sqrt{16} = 4.0000\)</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{17} = 4.1231\)</td>
-          <td>Difference: 0.1231</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{18} = 4.2426\)</td>
-          <td>Difference: 0.1195</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{19} = 4.3589\)</td>
-          <td>Difference: 0.1163</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{20} = 4.4721\)</td>
-          <td>Difference: 0.1132</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{21} = 4.5826\)</td>
-          <td>Difference: 0.1105</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{22} = 4.6904\)</td>
-          <td>Difference: 0.1078</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{23} = 4.7958\)</td>
-          <td>Difference: 0.1054</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{24} = 4.8990\)</td>
-          <td>Difference: 0.1032</td>
-        </tr>
-        <tr>
-          <td>\(\sqrt{25} = 5.0000\)</td>
-          <td>Difference: 0.1010</td>
-        </tr>
-      </table>
-      
-      <div class="image-container">
-        <img src="./images/line-4-9.png" alt="Line from 4 to 9" class="article-image">
+      <div class="text-content">
+        The sum of the series would be:
       </div>
       
-      <p>The same pattern can be observed between 100 and 121:</p>
-      
-      <div class="image-container">
-        <img src="./images/line-10-11.png" alt="Line from 10 to 11" class="article-image">
+      <div class="math-display">
+        \[T = a + b = 2a + n^2\]
       </div>
       
-      <p>We can't rely solely on these distributions, but we can use them for our calculations.</p>
+      <p class="text-content">For example: T = 2(24) + 3² = 48 + 9 = 57</p>
       
-      <p>To find the square root of any number, we need:</p>
+      <p style="margin-top: 1em;" class="text-content">We're not stopping here. Let's do the same for the square series as well.</p>
       
-      <ol class="list-decimal pl-5 space-y-2">
-        <li>The nearest perfect square number that is smaller than our target number. Let's call this \(b\).</li>
-        <li>We need to create a relationship between these numbers.</li>
-      </ol>
-      
-      <p>Let's call our number \(x\) and its nearest perfect square number \(b\).</p>
-      
-      <p>Our equation will look like:</p>
-      <p> \[b + one-number-in-decimal = \sqrt{b^2 + difference-between-b^2-and-x}\]</p>
-      <div class="math">
-        \[b + a = \sqrt{b^2 + (x - b^2)}\]
+      <div style="margin-top: 1em;" class="text-content">
+        Consider any series with r = 1.<br>
+        Let's take this: 7², 8², 9², 10², 11², 12², where N = 6.<br>
+        Let x be the first half sum of this series, i.e., 7² + 8² + 9².<br>
+        Let y be the second half sum of this series, i.e., 10² + 11² + 12².<br>
+        Then:
       </div>
       
-      <p>where \(a\) is some decimal number we need to find.</p>
-      
-      <p>If we solve this equation, we get \(b + a = \sqrt{x}\), which doesn't help us proceed further.</p>
-      
-      <p>So, let's replace \(x - b^2\) with \(m\) (the difference between \(x\) and \(b^2\)):</p>
-      
-      <div class="math">
-        \[b + a = \sqrt{b^2 + m}\]
+      <div class="math-display">
+        \[y = x + nT\]
       </div>
       
-      <p>Now we can manipulate this equation. First, let's square both sides:</p>
-      
-      <div class="math">
-        \[b^2 + a^2 + 2ab = b^2 + m\]
+      <div class="text-content">
+        Where T is the sum of the original sequence: 7+8+9+10+11+12.<br>
+        The sum of the squared series will be:
       </div>
       
-      <p>Simplifying:</p>
-      
-      <div class="math">
-        \[a^2 + 2ab = m\]
-        \[a(a + 2b) = m\]
-        \[a = \frac{m}{a + 2b}\]
+      <div class="math-display">
+        \[T_2 = x + y = 2x + nT\]
       </div>
       
-      <p>Here we can substitute the value of \(a\) on the right side infinitely:</p>
+      <p class="text-content">Let's expand this formula to make the calculation even easier:</p>
       
-      <div class="math">
-        \[a = \frac{m}{\frac{m}{\frac{m}{(...) + 2b} + 2b} + 2b}\]
+      <div class="math-display">
+        \[T = \frac{N}{2}(2A + (N-1)d) \text{ (arithmetic series formula)}\]
       </div>
       
-      <p>This would go on forever. To break this cycle and simplify our calculations, I'll substitute an approximation for \(a\), which is \(\frac{1}{2b+1}\). This isn't the exact value of \(a\), but it gives a close approximation.</p>
-      
-      <p>After substitution:</p>
-      
-      <div class="math">
-        \[a = \frac{m}{\frac{m}{\frac{m}{\frac{1}{2b+1} + 2b} + 2b} + 2b}\]
+      <div class="text-content">
+        Where A is the starting term, N = 2n, and d = 1.
       </div>
       
-      <p>This can be simplified to:</p>
-      
-      <div class="math">
-        \[a = \frac{m^2(4b+1) + 4mb^2(2b+1)}{m^2 + 4b(4b^3 + 2b^2 + 3bm + m)}\]
+      <div class="math-display">
+        \begin{align}
+        T_2 &= 2x + n\left(\frac{N}{2}(2A + N - 1)\right)\\
+        &= 2x + n(n(2A + 2n - 1))\\
+        &= 2x + 2An^2 + 2n^3 - n^2\\
+        &= 2(x + n^3) + n^2(2A-1)
+        \end{align}
       </div>
       
-      <p>This is our formula to find the value of \(a\) if \(x\) lies between \(b^2\) and \((b+1)^2\).</p>
+      <p class="text-content">Example:</p>
       
-      <p>Let's try an example to make this clear. What is the square root of 52?</p>
-      
-      <p>The nearest perfect square smaller than 52 is 49, with square root 7.</p>
-      
-      <p>So, \(b = 7\), \(b^2 = 49\), and \(m = 52 - 49 = 3\).</p>
-      
-      <p>Substituting these values into our equation:</p>
-      
-      <div class="math">
-        \[a = \frac{9(28+1) + 4 \cdot 3 \cdot 49 \cdot (14+1)}{9 + 4 \cdot 7(4 \cdot 343 + 2 \cdot 49 + 3 \cdot 7 \cdot 3 + 3)}\]
-        \[a = \frac{9 \cdot 29 + 12 \cdot 49 \cdot 15}{9 + 28(1372 + 98 + 63 + 3)}\]
-        \[a = \frac{261 + 8820}{9 + 28 \cdot 1536}\]
-        \[a = \frac{9081}{43017}\]
-        \[a \approx 0.211102587\]
+      <div class="text-content">
+        x = 7²+8²+9² = 194<br>
+        A = 7<br>
+        n = 3
       </div>
       
-      <p>Now, add \(a\) to \(b\) to find the square root of 52:</p>
-      
-      <div class="math">
-        \[b + a = \sqrt{x}\]
-        \[7 + 0.211102587 = \sqrt{52}\]
-        \[7.211102587 \approx \sqrt{52}\]
+      <div class="math-display">
+        \begin{align}
+        T_2 &= 2(194 + 27) + 9(13)\\
+        &= 2(221) + 117\\
+        &= 442 + 117\\
+        &= 559
+        \end{align}
       </div>
       
-      <p>Squaring this result: \(7.211102587^2 \approx 52.00000052\), which is remarkably close to 52!</p>
-      
-      <div class="image-container">
-        <img src="./images/52-sqr.png" alt="Square root of 52" class="article-image">
+      <div class="text-content" style="text-align: center;">
+        = 7²+8²+9²+10²+11²+12²
       </div>
-    </div>
-
-    <p style="margin-top: 3em;">
-      <strong>What Makes This Formula Special</strong>
-      <p>Unlike traditional approaches that require iteration or sacrifice accuracy, this formula delivers excellent precision to the decimal places instantly. </p>
-      <p>For example, calculating square root of 52 yields 7.211102587—virtually identical to the true value.</p>
-    </p>
-
-    <p style="margin-top: 3em;">
-      <strong>Key Advantages:</strong>
-      <ul>
-        <li>
-          Single-Step Calculation: No iteration required
-        </li>
-        <li>Exceptional Accuracy: Precision that rivals iterative methods</li>
-        <li>Universal Application: Works across the entire natural number system</li>
-        <li>Computational Efficiency: Ideal for systems where iterative methods are impractical</li>
-        <li>Mathematical Innovation: A fresh approach to one of the oldest mathematical operations!</li>
-      </ul>
-    </p>
-
-
-
-  </main>
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content-container" id="modalContainer">
-      <img class="modal-content" id="expandedImg">
-    </div>
-    <div class="zoom-controls">
-      <button class="zoom-btn" id="zoom-out">−</button>
-      <button class="zoom-btn" id="zoom-in">+</button>
-      <button class="zoom-btn" id="zoom-reset">⟲</button>
-    </div>
-  </div>
+      
+      <p class="text-content">Let's derive a formula for the first n natural numbers:</p>
+      <p class="text-content">For the first n natural numbers, A will be 1</p>
+      
+      <div class="math-display">
+        \[S_n = 2a + n^2 \quad \text{(from our first formula)}\]
+      </div>
+      
+      <div class="text-content">
+        Applying a value, we get:
+      </div>
+      
+      <div class="math-display">
+        \[S_n = 2n^2 + n\]
+      </div>
+      
+      <div class="text-content">
+        So:
+      </div>
+      
+      <div class="math-display">
+        \[a + b = 2n^2 + n\]
+      </div>
+      
+      <div class="text-content">
+        But we also know:
+      </div>
+      
+      <div class="math-display">
+        \[An^2 = \sqrt{b-a}\]
+      </div>
+      
+      <div class="text-content">
+        Since A = 1:
+      </div>
+      
+      <div class="math-display">
+        \begin{align}
+        a + b &= 2(b-a)+\sqrt{b-a}\\
+        3a - b &= \sqrt{b-a}
+        \end{align}
+      </div>
+      
+      <div class="text-content">
+        Squaring both sides:
+      </div>
+      
+      <div class="math-display">
+        \begin{align}
+        9a^2+b^2-2(3a)(b) &= b-a
+        \end{align}
+      </div>
+      
+      <div class="text-content">
+        After simplification:
+      </div>
+      
+      <div class="math-display">
+        \[\frac{9a+1}{6b} + \frac{b-1}{6a} = 1\]
+      </div>
+      
+      <p class="text-content">This equation holds true for all natural number series starting with 1.</p>
+    </main>
+  
   <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
     <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
   </footer>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("expandedImg");
-      const modalContainer = document.getElementById("modalContainer");
-      const closeBtn = document.getElementsByClassName("close")[0];
-      const images = document.getElementsByClassName("article-image");
-      const zoomIn = document.getElementById("zoom-in");
-      const zoomOut = document.getElementById("zoom-out");
-      const zoomReset = document.getElementById("zoom-reset");
-      
-      let currentZoom = 1;
-      const zoomStep = 0.25;
-      const maxZoom = 3;
-      const minZoom = 0.5;
-      
-      let isDragging = false;
-      let startX, startY;
-      let translateX = 0;
-      let translateY = 0;
-      
-      function handleZoomIn() {
-        if (currentZoom < maxZoom) {
-          currentZoom += zoomStep;
-          updateZoom();
-        }
-      }
-      
-      function handleZoomOut() {
-        if (currentZoom > minZoom) {
-          currentZoom -= zoomStep;
-          updateZoom();
-        }
-      }
-      
-      function handleZoomReset() {
-        currentZoom = 1;
-        translateX = 0;
-        translateY = 0;
-        updateZoom();
-      }
-      
-      function updateZoom() {
-        modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
-      }
-      
-      modalImg.addEventListener('mousedown', function(e) {
-        if (currentZoom > 1) {
-          isDragging = true;
-          startX = e.clientX - translateX;
-          startY = e.clientY - translateY;
-          modalImg.style.cursor = 'grabbing';
-        }
-      });
-      
-      document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-          translateX = e.clientX - startX;
-          translateY = e.clientY - startY;
-          updateZoom();
-        }
-      });
-      
-      document.addEventListener('mouseup', function() {
-        isDragging = false;
-        modalImg.style.cursor = 'grab';
-      });
-      
-      modalImg.addEventListener('touchstart', function(e) {
-        if (e.touches.length === 1 && currentZoom > 1) {
-          isDragging = true;
-          startX = e.touches[0].clientX - translateX;
-          startY = e.touches[0].clientY - translateY;
-        } else if (e.touches.length === 2) {
-          // Pinch zoom logic
-          initialDistance = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-          );
-        }
-      }, { passive: false });
-      
-      document.addEventListener('touchmove', function(e) {
-        if (isDragging && e.touches.length === 1) {
-          e.preventDefault();
-          translateX = e.touches[0].clientX - startX;
-          translateY = e.touches[0].clientY - startY;
-          updateZoom();
-        } else if (e.touches.length === 2) {
-          e.preventDefault();
-          
-          const currentDistance = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-          );
-          
-          if (initialDistance > 0) {
-            if (currentDistance > initialDistance + 10 && currentZoom < maxZoom) {
-              currentZoom += zoomStep;
-              updateZoom();
-              initialDistance = currentDistance;
-            } else if (currentDistance < initialDistance - 10 && currentZoom > minZoom) {
-              currentZoom -= zoomStep;
-              updateZoom();
-              initialDistance = currentDistance;
-            }
-          }
-        }
-      }, { passive: false });
-      
-      document.addEventListener('touchend', function() {
-        isDragging = false;
-      });
-      
-      zoomIn.addEventListener('click', handleZoomIn);
-      zoomOut.addEventListener('click', handleZoomOut);
-      zoomReset.addEventListener('click', handleZoomReset);
-      
-      modalImg.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        if (e.deltaY < 0) {
-          handleZoomIn();
-        } else {
-          handleZoomOut();
-        }
-      });
-      
-      let initialDistance = 0;
-      
-      let lastTap = 0;
-      modalImg.addEventListener('touchend', function(e) {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTap;
-        
-        if (tapLength < 300 && tapLength > 0) {
-          if (currentZoom > 1) {
-            handleZoomReset();
-          } else {
-            currentZoom = 2;
-            updateZoom();
-          }
-          e.preventDefault();
-        }
-        
-        lastTap = currentTime;
-      });
-      
-      for (let i = 0; i < images.length; i++) {
-        images[i].addEventListener('click', function() {
-          modal.style.display = "flex";
-          modalImg.src = this.src;
-          document.body.style.overflow = "hidden";
-          currentZoom = 1;
-          translateX = 0;
-          translateY = 0;
-          updateZoom();
-          modalImg.style.cursor = 'grab';
-        });
-      }
-      
-      closeBtn.addEventListener('click', function() {
-        modal.style.display = "none";
-        document.body.style.overflow = ""; 
-      });
-      
-      modal.addEventListener('click', function(event) {
-        if (event.target === modal || event.target === modalContainer) {
-          modal.style.display = "none";
-          document.body.style.overflow = ""; 
-        }
-      });
-      
-      document.addEventListener('keydown', function(e) {
-        if (modal.style.display === "flex") {
-          if (e.key === "Escape") {
-            modal.style.display = "none";
-            document.body.style.overflow = "";
-          } else if (e.key === "+" || e.key === "=") {
-            handleZoomIn();
-          } else if (e.key === "-") {
-            handleZoomOut();
-          } else if (e.key === "0") {
-            handleZoomReset();
-          }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
