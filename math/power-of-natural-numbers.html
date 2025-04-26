@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Powers of Natural Numbers</title>
+  <link href="../styles/index.css" rel="stylesheet">
+  <link href="./styles/index.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+</head>
+<body>
+  <nav class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+      <div class="flex items-center">
+        <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+        <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+      </div>      
+      <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="./index.html" class="px-4">Math</a>
+        <a href="../code/index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="py-2">Blog</a>
+      <a href="./index.html" class="py-2">Math</a>
+      <a href="../code/index.html" class="py-2">Code</a>
+      <a href="../contact.html" class="py-2">Contact</a>
+    </div>
+  </nav>
+  <main class="container mx-auto p-6">
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">New Formula for Powers of Natural Numbers</h2>
+    <hr>
+
+    <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
+    
+    <p>In this post, I present a new pattern for expressing \(n^p\) in terms of sums of powers of integers from 2 to 6.</p>
+
+    
+    <p>The following formulas express powers of n in terms of n and sums of powers:</p>
+
+    <div class="p-6 rounded-lg my-6">
+      <p style="margin-bottom: 1em;">\( n^2 = n + 2\sum_{k=1}^{n-1} k \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^3 = n + 3\left[\sum_{k=1}^{n-1} k + \sum_{k=1}^{n-1} k^2\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^4 = n + 4\left[\sum_{k=1}^{n-1} k + \frac{3}{2}\sum_{k=1}^{n-1} k^2 + \sum_{k=1}^{n-1} k^3\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^5 = n + 5\left[\sum_{k=1}^{n-1} k + \frac{1}{2}\sum_{k=1}^{n-1} k^2 + \frac{1}{2}\sum_{k=1}^{n-1} k^3 + \sum_{k=1}^{n-1} k^4\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^6 = n + 6\left[\sum_{k=1}^{n-1} k + \frac{5}{2}\sum_{k=1}^{n-1} k^2 + \frac{10}{3}\sum_{k=1}^{n-1} k^3 + \frac{5}{2}\sum_{k=1}^{n-1} k^4 + \sum_{k=1}^{n-1} k^5\right] \)</p>
+    </div>
+
+    
+    <p>Notice that all formulas begin with n and then add a multiple of various sums. This reveals a fascinating relationship between powers of n and the sums of powers of integers less than n.</p>
+  </main>
+  <footer class="bg-gray-700 text-white text-center p-4 mt-8">
+    <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
+  </footer>
+</body>
+</html>
