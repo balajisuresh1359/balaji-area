@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  </head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="../math/index.html" class="px-4">Math</a>
+        <a href="./index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="px-4">Blog</a>
+      <a href="../math/index.html" class="px-4">Math</a>
+      <a href="./index.html" class="px-4">Code</a>
+      <a href="../contact.html" class="px-4">Contact</a>
+  </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold my-6">Ruby on Rails Topics!</h2>
+      <hr class="border-gray-300 dark:border-gray-700">
+      <p class="text-gray-500 text-sm italic mb-6">Posted on: <span class="font-semibold">April 27, 2025</span></p>
+      <div class="flex justify-center my-8">
+        <iframe 
+        src="./files/ROR-TOPICS.pdf" 
+        class="w-full h-screen rounded-lg shadow-lg"
+        frameborder="0"
+        style="border: none;">
+      </iframe>
+      
+      </div>
+    
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('closeModal');
+            const zoomInBtn = document.getElementById('zoomIn');
+            const zoomOutBtn = document.getElementById('zoomOut');
+            const images = document.querySelectorAll('.image-container img');
+            
+            let currentScale = 1;
+            
+            images.forEach(img => {
+              img.addEventListener('click', function() {
+                modal.classList.remove('hidden');
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                currentScale = 1;
+                modalImg.style.transform = `scale(${currentScale})`;
+              });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+              modal.classList.add('hidden');
+            });
+            
+            zoomInBtn.addEventListener('click', function() {
+              currentScale += 0.2;
+              modalImg.style.transform = `scale(${currentScale})`;
+            });
+            
+            zoomOutBtn.addEventListener('click', function() {
+              if (currentScale > 0.4) {
+                currentScale -= 0.2;
+                modalImg.style.transform = `scale(${currentScale})`;
+              }
+            });
+            
+            modal.addEventListener('click', function(event) {
+              if (event.target === modal) {
+                modal.classList.add('hidden');
+              }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+              if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+              }
+            });
+          });
+        </script>
+      </main>
+
+
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+
+</body>
+</html>
