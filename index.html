@@ -10,7 +10,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script defer src="./script/common.js"></script>
-
 </head>
 <body class="dark:bg-gray-900 dark:text-white">
     <nav class="bg-gray-800 text-white p-4">
@@ -38,7 +37,9 @@
     <main class="container mx-auto p-6">
         <h1 class="text-4xl font-bold text-center">Welcome to My Site</h1>
         <p class="mt-2 text-lg text-center">Explore my blogs, mathematical derivations, and coding snippets.</p>
+        
 
+        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <a href="./blog/index.html" class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Blog</h2>
@@ -56,6 +57,50 @@
     </main>
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
         <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+        <!-- Hidden Visitor Counter - Only visible to admin -->
+        <div id="visitor-counter" class="mt-3 text-sm text-gray-300 hidden">
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=balajisuresh1359.balaji-area&style=flat-square&color=4a5568&label=visitors" alt="Visitor Count" class="inline-block opacity-75">
+        </div>
     </footer>
+    
+    <!-- Admin Toggle Script -->
+    <script>
+        // Show visitor counter with secret key combination
+        let keySequence = [];
+        const secretCode = ['KeyV', 'KeyI', 'KeyS']; // Type "vis" to show counter
+        
+        document.addEventListener('keydown', function(e) {
+            keySequence.push(e.code);
+            keySequence = keySequence.slice(-3); // Keep only last 3 keys
+            
+            if (keySequence.join('') === secretCode.join('')) {
+                const counter = document.getElementById('visitor-counter');
+                counter.classList.toggle('hidden');
+                
+                // Optional: Show notification
+                if (!counter.classList.contains('hidden')) {
+                    console.log('👁️ Visitor counter enabled');
+                } else {
+                    console.log('🔒 Visitor counter hidden');
+                }
+            }
+        });
+        
+        // Alternative: Show on triple-click of footer
+        document.querySelector('footer').addEventListener('click', function() {
+            let clickCount = parseInt(this.dataset.clicks || 0) + 1;
+            this.dataset.clicks = clickCount;
+            
+            if (clickCount === 3) {
+                document.getElementById('visitor-counter').classList.toggle('hidden');
+                this.dataset.clicks = 0; // Reset
+            }
+            
+            // Reset click count after 2 seconds
+            setTimeout(() => {
+                this.dataset.clicks = 0;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
