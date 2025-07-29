@@ -10,6 +10,167 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <style>
+    .audio-player {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+    }
+    
+    .dark .audio-player {
+      background: #1f2937;
+      border-color: #374151;
+    }
+    
+    .progress-container {
+      position: relative;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      margin: 1rem 0;
+      cursor: pointer;
+    }
+    
+    .dark .progress-container {
+      background: #4b5563;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: #3b82f6;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+    
+    .time-display {
+      font-family: monospace;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    
+    .dark .time-display {
+      color: #9ca3af;
+    }
+    
+    .control-button {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #374151;
+      font-size: 1rem;
+    }
+    
+    .dark .control-button {
+      background: #374151;
+      border-color: #4b5563;
+      color: #d1d5db;
+    }
+    
+    .control-button:hover {
+      background: #e5e7eb;
+    }
+    
+    .dark .control-button:hover {
+      background: #4b5563;
+    }
+    
+    .control-button.play-pause {
+      width: 48px;
+      height: 48px;
+      font-size: 1.25rem;
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+    
+    .control-button.play-pause:hover {
+      background: #2563eb;
+    }
+    
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .volume-slider {
+      width: 80px;
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    
+    .dark .volume-slider {
+      background: #4b5563;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #3b82f6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .speed-selector {
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      color: #374151;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    
+    .dark .speed-selector {
+      background: #374151;
+      border-color: #4b5563;
+      color: #d1d5db;
+    }
+    
+    .speed-selector:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    
+    .podcast-info {
+      margin-bottom: 1.25rem;
+    }
+    
+    .podcast-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.25rem;
+    }
+    
+    .dark .podcast-title {
+      color: #f9fafb;
+    }
+    
+    .podcast-description {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .dark .podcast-description {
+      color: #9ca3af;
+    }
+  </style>
   </head>
 <body>
     <nav class="bg-gray-800 text-white p-4">
@@ -49,8 +210,151 @@
       
       </div>
     
+      <!-- Podcast Player Section -->
+      <div class="audio-player">
+        <div class="podcast-info">
+          <div class="podcast-title">ROR Deep Dive Podcast</div>
+          <div class="podcast-description">Ruby on Rails Essentials</div>
+        </div>
+        
+        <audio id="podcastAudio" preload="metadata">
+          <source src="./files/Ruby on Rails Essentials_ A Quick Reference Guide.wav" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <button class="control-button" id="prevBtn" title="Skip back 10s">⏮</button>
+          <button class="control-button play-pause" id="playPauseBtn" title="Play/Pause">▶</button>
+          <button class="control-button" id="nextBtn" title="Skip forward 10s">⏭</button>
+        </div>
+        
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="flex justify-between items-center mb-4">
+          <span class="time-display" id="currentTime">00:00</span>
+          <span class="time-display" id="totalTime">00:00</span>
+        </div>
+        
+        <div class="flex justify-between items-center">
+          <div class="volume-container">
+            <span class="text-gray-600 dark:text-gray-400 text-sm">🔊</span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1" title="Volume">
+          </div>
+          
+          <select id="speedSelector" class="speed-selector" title="Playback speed">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+        </div>
+      </div>
+
+      
+    
         <script>
+          // Podcast Player Functionality
           document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('podcastAudio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const speedSelector = document.getElementById('speedSelector');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Format time helper function
+            function formatTime(seconds) {
+              const minutes = Math.floor(seconds / 60);
+              const remainingSeconds = Math.floor(seconds % 60);
+              return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+            
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function() {
+              if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = '⏸';
+              } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶';
+              }
+            });
+            
+            // Update progress bar and time
+            audio.addEventListener('timeupdate', function() {
+              const progress = (audio.currentTime / audio.duration) * 100;
+              progressBar.style.width = progress + '%';
+              currentTimeEl.textContent = formatTime(audio.currentTime);
+            });
+            
+            // Set total time when metadata loads
+            audio.addEventListener('loadedmetadata', function() {
+              totalTimeEl.textContent = formatTime(audio.duration);
+            });
+            
+            // Seek functionality
+            progressContainer.addEventListener('click', function(e) {
+              const rect = progressContainer.getBoundingClientRect();
+              const clickX = e.clientX - rect.left;
+              const width = rect.width;
+              const clickProgress = clickX / width;
+              audio.currentTime = clickProgress * audio.duration;
+            });
+            
+            // Volume control
+            volumeSlider.addEventListener('input', function() {
+              audio.volume = this.value;
+            });
+            
+            // Speed control
+            speedSelector.addEventListener('change', function() {
+              audio.playbackRate = parseFloat(this.value);
+            });
+            
+            // Skip backward 10 seconds
+            prevBtn.addEventListener('click', function() {
+              audio.currentTime = Math.max(0, audio.currentTime - 10);
+            });
+            
+            // Skip forward 10 seconds
+            nextBtn.addEventListener('click', function() {
+              audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+            });
+            
+            // Reset play button when audio ends
+            audio.addEventListener('ended', function() {
+              playPauseBtn.textContent = '▶';
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+              if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'select') {
+                switch(e.code) {
+                  case 'Space':
+                    e.preventDefault();
+                    playPauseBtn.click();
+                    break;
+                  case 'ArrowLeft':
+                    e.preventDefault();
+                    prevBtn.click();
+                    break;
+                  case 'ArrowRight':
+                    e.preventDefault();
+                    nextBtn.click();
+                    break;
+                }
+              }
+            });
+
+            // Original image modal functionality
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeBtn = document.getElementById('closeModal');
@@ -60,40 +364,50 @@
             
             let currentScale = 1;
             
-            images.forEach(img => {
-              img.addEventListener('click', function() {
-                modal.classList.remove('hidden');
-                modalImg.src = this.src;
-                modalImg.alt = this.alt;
-                currentScale = 1;
+            if (images.length > 0) {
+              images.forEach(img => {
+                img.addEventListener('click', function() {
+                  modal.classList.remove('hidden');
+                  modalImg.src = this.src;
+                  modalImg.alt = this.alt;
+                  currentScale = 1;
+                  modalImg.style.transform = `scale(${currentScale})`;
+                });
+              });
+            }
+            
+            if (closeBtn) {
+              closeBtn.addEventListener('click', function() {
+                modal.classList.add('hidden');
+              });
+            }
+            
+            if (zoomInBtn) {
+              zoomInBtn.addEventListener('click', function() {
+                currentScale += 0.2;
                 modalImg.style.transform = `scale(${currentScale})`;
               });
-            });
+            }
             
-            closeBtn.addEventListener('click', function() {
-              modal.classList.add('hidden');
-            });
+            if (zoomOutBtn) {
+              zoomOutBtn.addEventListener('click', function() {
+                if (currentScale > 0.4) {
+                  currentScale -= 0.2;
+                  modalImg.style.transform = `scale(${currentScale})`;
+                }
+              });
+            }
             
-            zoomInBtn.addEventListener('click', function() {
-              currentScale += 0.2;
-              modalImg.style.transform = `scale(${currentScale})`;
-            });
-            
-            zoomOutBtn.addEventListener('click', function() {
-              if (currentScale > 0.4) {
-                currentScale -= 0.2;
-                modalImg.style.transform = `scale(${currentScale})`;
-              }
-            });
-            
-            modal.addEventListener('click', function(event) {
-              if (event.target === modal) {
-                modal.classList.add('hidden');
-              }
-            });
+            if (modal) {
+              modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                  modal.classList.add('hidden');
+                }
+              });
+            }
             
             document.addEventListener('keydown', function(event) {
-              if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+              if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
                 modal.classList.add('hidden');
               }
             });
