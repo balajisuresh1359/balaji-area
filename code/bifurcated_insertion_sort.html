@@ -1,0 +1,728 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balaji | Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/index.css" rel="stylesheet">
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="../script/common.js"></script>
+    <style>
+      pre[class*="language-"] {
+          border-radius: 5px;
+          margin: 20px 0;
+      }
+      code[class*="language-"] {
+          font-size: 1em;
+      }
+      .video-container {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          max-width: 100%;
+          background: #000;
+          margin: 20px 0;
+      }
+      .video-container iframe,
+      .video-container video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .dark .bg-blue-50 {
+          background-color: #1e3a8a !important; 
+      }
+      
+      .dark .bg-green-50 {
+          background-color: #14532d !important; 
+      }
+      
+      .dark .bg-yellow-50 {
+          background-color: #713f12 !important; 
+      }
+      
+      .dark pre.bg-gray-100,
+      .dark pre.bg-white {
+          background-color: #1f2937 !important; 
+      }
+      
+      .dark pre,
+      .dark pre code,
+      .dark code,
+      .dark p,
+      .dark li,
+      .dark td,
+      .dark th,
+      .dark h1,
+      .dark h2,
+      .dark h3,
+      .dark h4,
+      .dark h5,
+      .dark h6,
+      .dark span,
+      .dark div {
+          color: #e5e7eb !important;
+      }
+      
+      .dark .bg-blue-50 *,
+      .dark .bg-green-50 *,
+      .dark .bg-yellow-50 *,
+      .dark .bg-blue-900 *,
+      .dark .bg-green-900 *,
+      .dark .bg-yellow-900 * {
+          color: #e5e7eb !important;
+      }
+</style>  
+</head>
+<body>
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <div class="flex items-center">
+            <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>        
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+        <a href="../blog/index.html" class="px-4">Blog</a>
+        <a href="../math/index.html" class="px-4">Math</a>
+        <a href="./index.html" class="px-4">Code</a>
+        <a href="../contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+      <a href="../blog/index.html" class="px-4">Blog</a>
+      <a href="../math/index.html" class="px-4">Math</a>
+      <a href="./index.html" class="px-4">Code</a>
+      <a href="../contact.html" class="px-4">Contact</a>
+  </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold my-6">Bifurcated Insertion Sort</h2>
+      <hr class="border-gray-300 dark:border-gray-700">
+      <p class="text-gray-500 text-sm italic mb-6">Updated on: <span class="font-semibold">November 22, 2025</span></p>
+    
+      <!-- Content Section -->
+      <section class="prose dark:prose-invert max-w-none">
+        
+        <p class="text-lg leading-relaxed mb-6">
+          This algorithm performs sorting by splitting the input into two linked lists: <code>asc_array</code> (ascending) and <code>dsc_array</code> (descending).
+        </p>
+
+        <h3 class="text-2xl font-semibold mt-8 mb-4">Background</h3>
+        <p class="leading-relaxed mb-6">
+            <p>I wanted to design sorting algorithm. Since I can't solve everything in one attempt, I allowed myself to ignore time and space complexity in this version, and I used a few known techniques inside the flow when needed. </p>
+            <br>
+        <p>At a high level, this algorithm takes a different approach from traditional sorts: it begins by identifying the smallest and largest values and builds two linked lists from opposite ends - one in ascending order and one in descending order. Values that don't fit directly into either list are collected in a pending buffer, which is later inserted using a BST-guided strategy. Finally, both lists are merged to form the fully sorted output.        </p>
+
+        <h3 class="text-2xl font-semibold mt-8 mb-4">How It Works</h3>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">1. Identify Min and Max</h4>
+        <p class="leading-relaxed mb-4">
+          The algorithm first finds the minimum and maximum values in the input array. These two values become the starting points of the two linked lists:
+        </p>
+        <ul class="list-disc list-inside mb-6 space-y-2">
+          <li><code>asc_array</code> starts with the minimum value.</li>
+          <li><code>dsc_array</code> starts with the maximum value.</li>
+        </ul>
+        <p class="leading-relaxed mb-6">
+          Then it loops through the remaining items. If the current index is the min or max index, it skips that item.
+        </p>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">2. Distributing Elements into the Two Lists</h4>
+        <p class="leading-relaxed mb-4">For each item:</p>
+        <ul class="list-disc list-inside mb-6 space-y-2">
+          <li>If the last item in <code>asc_array</code> is less than or equal to the current value, it belongs in the ascending list.</li>
+          <li>If the last item in <code>dsc_array</code> is greater than or equal to the current value, it belongs in the descending list.</li>
+        </ul>
+        <p class="leading-relaxed mb-4">
+          If the item fits both conditions, it is appended to the list that is currently smaller.
+          If both lists have the same size, it goes into <code>asc_array</code>.
+        </p>
+        <p class="leading-relaxed mb-6">
+          If the item fits neither list, it is placed into <code>pending_array</code>.
+        </p>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">3. The Pending Array</h4>
+        <p class="leading-relaxed mb-4">
+          <code>pending_array</code> holds items that cannot be directly inserted into either linked list.
+        </p>
+        <p class="leading-relaxed mb-4">
+          It uses a parameter called <code>pending_item_percentage</code>. This determines when the algorithm should process the pending items.
+        </p>
+        <p class="leading-relaxed mb-4">Formula:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded"><code>pending_item_size = max(int(input_arr_len × pending_item_percentage), 6)</code></pre>
+        <p class="leading-relaxed mb-6">
+          This ensures the pending list has a minimum size of 6, but can go up to a percentage of the total input size.
+          When <code>pending_array</code> reaches this size, the algorithm processes all those items.
+        </p>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">4. Processing Pending Items</h4>
+        <p class="leading-relaxed mb-4">When <code>pending_array</code> reaches the limit:</p>
+        <ol class="list-decimal list-inside mb-6 space-y-2">
+          <li>The algorithm selects the smaller of the two linked lists (<code>asc_array</code> or <code>dsc_array</code>).</li>
+          <li>It creates a temporary BST (binary search tree).</li>
+          <li>For each item in <code>pending_array</code>:
+            <ul class="list-disc list-inside ml-6 mt-2 space-y-1">
+              <li>It looks for the nearest value inside the BST.</li>
+              <li>If that is not available, it starts from the tail of the chosen linked list and moves backward until it reaches the correct insertion point.</li>
+              <li>The item is then inserted in order into the linked list.</li>
+              <li>The BST stores the value along with a reference to the inserted linked-list node so that consecutive items can start from a closer position.</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="leading-relaxed mb-6">
+          After all pending items are processed, the pending list becomes empty.
+          If there are still leftover items at the end of the full array scan, the same process repeats.
+        </p>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">5. Final Merge</h4>
+        <p class="leading-relaxed mb-4">Once all items are inserted, we have:</p>
+        <ul class="list-disc list-inside mb-4 space-y-2">
+          <li>One sorted list in ascending order</li>
+          <li>One sorted list in descending order</li>
+        </ul>
+        <p class="leading-relaxed mb-6">
+          The final step is similar to merge sort: Iterate through both lists simultaneously and merge them into one final sorted array.
+        </p>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+
+        <h3 class="text-2xl font-semibold mt-8 mb-4">Detailed Example: Step-by-Step Execution</h3>
+        
+        <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded mb-6">
+          <p class="font-semibold mb-2">Input Array:</p>
+          <pre class="bg-white dark:bg-gray-800 p-3 rounded"><code>[15, 3, 8, 1, 12, 6, 20, 4, 18, 2, 14, 10]</code></pre>
+          <p class="font-semibold mt-3 mb-2">Configuration:</p>
+          <pre class="bg-white dark:bg-gray-800 p-3 rounded"><code>pending_item_percentage = 0.55</code></pre>
+        </div>
+
+        <h4 class="text-xl font-semibold mt-6 mb-3">Phase 1: Initialization</h4>
+        
+        <h5 class="text-lg font-semibold mt-4 mb-2">Step 1.1 - Find Min and Max</h5>
+        <p class="leading-relaxed mb-4">Scanning the array:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-6"><code>min_value = 1   (index 3)
+max_value = 20  (index 6)</code></pre>
+
+        <h5 class="text-lg font-semibold mt-4 mb-2">Step 1.2 - Initialize Data Structures</h5>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-4"><code>asc_array = [1]        // ascending linked list
+dsc_array = [20]       // descending linked list
+pending_items = []
+pending_item_size = max(int(12 × 0.55), 6) = 6</code></pre>
+
+        <p class="font-semibold mt-4 mb-2">Initial State:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-6"><code>asc_array:      [1]
+dsc_array:      [20]
+pending_items:  []</code></pre>
+
+        <h4 class="text-xl font-semibold mt-8 mb-3">Phase 2: Three-Way Streaming Classification</h4>
+        <p class="leading-relaxed mb-6">
+          We iterate through the array, skipping indices of min (3) and max (6).
+        </p>
+
+        <div class="space-y-6">
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 0 → value = 15</h5>
+            <p class="mb-2">Checks:</p>
+            <ul class="list-disc list-inside mb-2 space-y-1">
+              <li>asc.last() = 1</li>
+              <li>dsc.last() = 20</li>
+              <li>1 ≤ 15 ≤ 20 → <span class="text-green-600 font-semibold">YES</span></li>
+            </ul>
+            <p class="mb-2"><strong>Decision:</strong> fits middle band → append to smaller list<br>
+            Sizes equal → append to asc_array</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>asc_array: [1, 15]
+dsc_array: [20]
+pending:   []</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 1 → value = 3</h5>
+            <p class="mb-2">Checks:</p>
+            <ul class="list-disc list-inside mb-2 space-y-1">
+              <li>1 ≤ 3 ≤ 20 → NO</li>
+              <li>1 ≤ 3 → NO</li>
+              <li>20 ≥ 3 → <span class="text-green-600 font-semibold">YES</span></li>
+            </ul>
+            <p class="mb-2"><strong>Decision:</strong> fits descending side only → append to dsc_array</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>asc_array: [1, 15]
+dsc_array: [20, 3]
+pending:   []</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 2 → value = 8</h5>
+            <p class="mb-2">Checks fail for both ends → add to pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 3 → value = 1 → <span class="text-red-600">SKIP (min)</span></h5>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 4 → value = 12</h5>
+            <p class="mb-2">Fails all checks → pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8, 12]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 5 → value = 6</h5>
+            <p class="mb-2">Fails all checks → pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8, 12, 6]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 6 → value = 20 → <span class="text-red-600">SKIP (max)</span></h5>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 7 → value = 4</h5>
+            <p class="mb-2">Fails all checks → pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8, 12, 6, 4]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 8 → value = 18</h5>
+            <p class="mb-2">Checks:</p>
+            <ul class="list-disc list-inside mb-2 space-y-1">
+              <li>15 ≤ 18 → <span class="text-green-600 font-semibold">YES</span></li>
+              <li>3 ≥ 18 → NO</li>
+            </ul>
+            <p class="mb-2"><strong>Decision:</strong> fits ascending → append to asc_array</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>asc_array: [1, 15, 18]
+pending:   [8, 12, 6, 4]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 9 → value = 2</h5>
+            <p class="mb-2">Fits descending only → append to dsc_array</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>dsc_array: [20, 3, 2]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 10 → value = 14</h5>
+            <p class="mb-2">Fails all checks → pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8, 12, 6, 4, 14]</code></pre>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h5 class="text-lg font-semibold mb-2">Index 11 → value = 10</h5>
+            <p class="mb-2">Fails all checks → pending</p>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm"><code>pending: [8, 12, 6, 4, 14, 10]</code></pre>
+          </div>
+        </div>
+
+        <div class="bg-yellow-50 dark:bg-yellow-900 p-4 rounded mt-6 mb-6">
+          <p class="font-bold text-yellow-800 dark:text-yellow-200">Threshold reached!</p>
+          <p class="mt-2"><code>len(pending) = 6 → processing required</code></p>
+        </div>
+
+        <h4 class="text-xl font-semibold mt-8 mb-3">Phase 3: BST-Accelerated Batch Insertion</h4>
+        
+        <h5 class="text-lg font-semibold mt-4 mb-2">Step 3.1 - Choose Target List</h5>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-6"><code>len(asc_array) = 3
+len(dsc_array) = 3
+→ equal → choose asc_array</code></pre>
+
+        <h5 class="text-lg font-semibold mt-4 mb-2">Step 3.2 - Process pending items: [8, 12, 6, 4, 14, 10]</h5>
+        <p class="leading-relaxed mb-4"><code>asc_array</code> currently:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-4"><code>[1, 15, 18]</code></pre>
+        
+        <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded mb-6">
+          <p class="font-semibold mb-2">Important:</p>
+          <p>The BST is built incrementally during insertion. It stores the DATA VALUE as the key and the LINKED LIST NODE REFERENCE as the value. This helps find good starting points for subsequent insertions.</p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 8</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST is currently empty
+→ No hint available, start from tail (node containing 18)
+
+Walk backward through linked list:
+  Node(18): Is 18 ≥ 8? YES → move to prev
+  Node(15): Is 15 ≥ 8? YES → move to prev
+  Node(1):  Is 1 ≥ 8? NO → STOP
+
+Insert 8 between Node(1) and Node(15)
+Add to BST: BST[8] = reference to Node(8)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 8, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {8: Node(8)}</p>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 12</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST.find_nearest(12, find_smaller=False)
+→ Searches BST for smallest value ≥ 12
+→ BST currently has: {8}
+→ 8 < 12, so no value ≥ 12 exists yet
+→ Returns None
+
+Since no hint, start from tail (node containing 18)
+
+Walk backward:
+  Node(18): Is 18 ≥ 12? YES → move to prev
+  Node(15): Is 15 ≥ 12? YES → move to prev
+  Node(8):  Is 8 ≥ 12? NO → STOP
+
+Insert 12 between Node(8) and Node(15)
+Add to BST: BST[12] = reference to Node(12)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 8, 12, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {8: Node(8), 12: Node(12)}</p>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 6</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST.find_nearest(6, find_smaller=False)
+→ Searches for smallest value ≥ 6
+→ BST has: {8, 12}
+→ Smallest value ≥ 6 is 8
+→ Returns Node(8) reference
+
+Start from Node(8) 
+
+Walk backward:
+  Node(8): Is 8 ≥ 6? YES → move to prev
+  Node(1): Is 1 ≥ 6? NO → STOP
+
+Insert 6 between Node(1) and Node(8)
+
+Add to BST: BST[6] = reference to Node(6)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 6, 8, 12, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {6: Node(6), 8: Node(8), 12: Node(12)}</p>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 4</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST.find_nearest(4, find_smaller=False)
+→ Smallest value ≥ 4 is 6
+→ Returns Node(6) reference
+
+Start from Node(6):
+  Node(6): Is 6 ≥ 4? YES → move to prev
+  Node(1): Is 1 ≥ 4? NO → STOP
+
+Insert 4 between Node(1) and Node(6)
+
+Add to BST: BST[4] = reference to Node(4)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 4, 6, 8, 12, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {4, 6, 8, 12: Node refs}</p>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 14</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST.find_nearest(14, find_smaller=False)
+→ Searches for smallest value ≥ 14
+→ BST has: {4, 6, 8, 12}
+→ All values < 14, no value ≥ 14 found
+→ Returns None
+
+Start from tail (Node 18):
+  Node(18): Is 18 ≥ 14? YES → move to prev
+  Node(15): Is 15 ≥ 14? YES → move to prev
+  Node(12): Is 12 ≥ 14? NO → STOP
+
+Insert 14 between Node(12) and Node(15)
+Add to BST: BST[14] = reference to Node(14)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 4, 6, 8, 12, 14, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {4, 6, 8, 12, 14: Node refs}</p>
+          </div>
+
+          <div class="border-l-4 border-gray-500 pl-4">
+            <h6 class="font-semibold mb-2">Insert 10</h6>
+            <pre class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm mb-2"><code>BST.find_nearest(10, find_smaller=False)
+→ Smallest value ≥ 10 is 12
+→ Returns Node(12) reference
+
+Start from Node(12) :
+  Node(12): Is 12 ≥ 10? YES → move to prev
+  Node(8):  Is 8 ≥ 10? NO → STOP
+
+Insert 10 between Node(8) and Node(12)
+
+Add to BST: BST[10] = reference to Node(10)</code></pre>
+            <p class="font-semibold">Result: <code>[1, 4, 6, 8, 10, 12, 14, 15, 18]</code></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">BST state: {4, 6, 8, 10, 12, 14: Node refs}</p>
+          </div>
+        </div>
+
+        <div class="bg-green-50 dark:bg-green-900 p-4 rounded mt-6 mb-6">
+          <p class="font-bold text-lg mb-3">How BST Optimization Helps:</p>
+          <table class="w-full text-sm">
+            <thead class="border-b-2 border-gray-300 dark:border-gray-600">
+              <tr>
+                <th class="text-left py-2">Insert</th>
+                <th class="text-left py-2">Without BST</th>
+                <th class="text-left py-2">With BST Hint</th>
+                <th class="text-left py-2">Savings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">8</td>
+                <td>Walk 3 nodes</td>
+                <td>Walk 3 nodes</td>
+                <td>0 (BST empty)</td>
+              </tr>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">12</td>
+                <td>Walk 3 nodes</td>
+                <td>Walk 3 nodes</td>
+                <td>0 (no hint ≥12)</td>
+              </tr>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">6</td>
+                <td>Walk 4 nodes</td>
+                <td><strong>Walk 1 node</strong></td>
+                <td><strong>Saved 3 walks</strong></td>
+              </tr>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">4</td>
+                <td>Walk 5 nodes</td>
+                <td><strong>Walk 1 node</strong></td>
+                <td><strong>Saved 4 walks</strong></td>
+              </tr>
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">14</td>
+                <td>Walk 2 nodes</td>
+                <td>Walk 2 nodes</td>
+                <td>0 (no hint ≥14)</td>
+              </tr>
+              <tr class="border-b border-gray-200 dark:border-gray-700">
+                <td class="py-2">10</td>
+                <td>Walk 5 nodes</td>
+                <td><strong>Walk 1 node</strong></td>
+                <td><strong>Saved 4 walks</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-4 font-semibold">Total walks: 22 nodes without BST → <span class="text-green-700 dark:text-green-300">11 nodes with BST</span> = <span class="text-green-700 dark:text-green-300">50% reduction!</span></p>
+        </div>
+
+        <h5 class="text-lg font-semibold mt-6 mb-2">Step 3.3 - Clear pending buffer</h5>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-4"><code>pending_items = []</code></pre>
+
+        <p class="font-semibold mb-2">State after batch insertion:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-6"><code>asc_array: [1, 4, 6, 8, 10, 12, 14, 15, 18]
+dsc_array: [20, 3, 2]</code></pre>
+
+        <h4 class="text-xl font-semibold mt-8 mb-3">Phase 4: Final Processing</h4>
+        <p class="leading-relaxed mb-6">No pending items left.</p>
+
+        <h4 class="text-xl font-semibold mt-8 mb-3">Phase 5: Bidirectional Merge</h4>
+        <p class="leading-relaxed mb-4">Iterators:</p>
+        <ul class="list-disc list-inside mb-4 space-y-2">
+          <li><code>asc_array</code> → 1, 4, 6, 8, 10, 12, 14, 15, 18</li>
+          <li><code>dsc_array</code> (reverse) → 2, 3, 20</li>
+        </ul>
+
+        <p class="font-semibold mb-2">Merge:</p>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded mb-6"><code>1 vs 2  → 1  
+4 vs 2  → 2  
+4 vs 3  → 3  
+4 vs 20 → 4  
+6 vs 20 → 6  
+8 vs 20 → 8  
+10 vs 20 → 10  
+12 vs 20 → 12  
+14 vs 20 → 14  
+15 vs 20 → 15  
+18 vs 20 → 18  
+ASC done → take 20</code></pre>
+
+        <div class="bg-green-50 dark:bg-green-900 p-6 rounded-lg mt-6 mb-8">
+          <p class="text-xl font-bold text-green-800 dark:text-green-200 mb-3">✓ Final Output</p>
+          <pre class="bg-white dark:bg-gray-800 p-4 rounded text-lg"><code>[1, 2, 3, 4, 6, 8, 10, 12, 14, 15, 18, 20]</code></pre>
+        </div>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+
+        <h3 class="text-2xl font-semibold mt-8 mb-4">Summary: What This Example Demonstrated</h3>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse border border-gray-300 dark:border-gray-700 mb-6">
+            <thead class="bg-border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+              <tr>
+                <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left">Phase</th>
+                <th class="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left">Example Showed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">Initialization</td>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Finding min=1, max=20 and creating dual sequences</td>
+              </tr>
+              <tr class="bg-border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold" rowspan="4">Classification</td>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Element 15 fitting middle zone (load balancing)</td>
+              </tr>
+              <tr class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Element 18 fitting ascending end only</td>
+              </tr>
+              <tr class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Element 2 fitting descending end only</td>
+              </tr>
+              <tr class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Elements 8,12,6,4,14,10 fitting neither (pending)</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold" rowspan="3">Batch Insertion</td>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">BST providing hints to reduce linked list walks</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Inserting 6 pending items into asc_array</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">BST optimization: Insert 10 started from node(12), not tail</td>
+              </tr>
+              <tr class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">Merge</td>
+                <td class="border border-gray-300 dark:border-gray-700 px-4 py-2">Bidirectional merge reading dsc_array backwards (2→3→20)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+
+        <section id="complexity">
+            <h3 class="text-2xl font-semibold mt-8 mb-4">Time & Space Complexity</h3>
+
+            <p class="font-semibold mb-2">Time Complexity</p>
+
+            <table class="w-full border-collapse border border-gray-300 dark:border-gray-700 mb-6">
+            <thead class="bg-border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Case</th>
+                    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Complexity</th>
+            </thead>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 8px;">Worst Case</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;"><strong>O(n²)</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 8px;">Average Case</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;"><strong>O(n log n)</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 8px;">Best Case</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;"><strong>O(n)</strong></td>
+                </tr>
+            </table>
+
+            <p class="font-semibold mb-2">Space Complexity</p>
+
+            <table class="w-full border-collapse border border-gray-300 dark:border-gray-700 mb-6">
+            <thead class="bg-border border-gray-300 dark:border-gray-700 px-4 py-2 font-semibold">
+                    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Metric</th>
+                    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Complexity</th>
+            </thead>
+                <tr>
+                    <td style="border: 1px solid #ccc; padding: 8px;">Space</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;"><strong>O(n)</strong></td>
+                </tr>
+            </table>
+
+        </section>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+
+
+        
+        <div class="video-container">
+          <video controls poster="./images/bifurcated_insertion_sort.jpeg" style="max-width: 100%; height: auto;">
+            <source src="./videos/bifurcated_insertion_sort.mp4" type="video/mp4">
+          </video>
+        </div>
+    
+
+        <a href="https://github.com/balajisuresh1359/my-algorithms/blob/main/sorting/mergeInsertionSort.py" 
+        target="_blank" 
+        style="
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:10px 16px;
+            background:#24292e;
+            color:white;
+            border-radius:6px;
+            text-decoration:none;
+            font-family:sans-serif;
+        ">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                alt="GitHub" 
+                width="20" 
+                height="20"
+                style="display:block;">
+        <strong>GitHub →</strong>
+        </a>
+
+
+
+      </section>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImage');
+          const closeBtn = document.getElementById('closeModal');
+          const zoomInBtn = document.getElementById('zoomIn');
+          const zoomOutBtn = document.getElementById('zoomOut');
+          const images = document.querySelectorAll('.image-container img');
+          
+          let currentScale = 1;
+          
+          images.forEach(img => {
+            img.addEventListener('click', function() {
+              modal.classList.remove('hidden');
+              modalImg.src = this.src;
+              modalImg.alt = this.alt;
+              currentScale = 1;
+              modalImg.style.transform = `scale(${currentScale})`;
+            });
+          });
+          
+          closeBtn.addEventListener('click', function() {
+            modal.classList.add('hidden');
+          });
+          
+          zoomInBtn.addEventListener('click', function() {
+            currentScale += 0.2;
+            modalImg.style.transform = `scale(${currentScale})`;
+          });
+          
+          zoomOutBtn.addEventListener('click', function() {
+            if (currentScale > 0.4) {
+              currentScale -= 0.2;
+              modalImg.style.transform = `scale(${currentScale})`;
+            }
+          });
+          
+          modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+              modal.classList.add('hidden');
+            }
+          });
+          
+          document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+              modal.classList.add('hidden');
+            }
+          });
+        });
+      </script>
+    </main>
+
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    </footer>
+
+</body>
+</html>
