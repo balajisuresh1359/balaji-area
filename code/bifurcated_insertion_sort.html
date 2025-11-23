@@ -644,7 +644,7 @@ ASC done → take 20</code></pre>
 
         
         <div class="video-container">
-          <video controls poster="./images/bifurcated_insertion_sort.jpeg" style="max-width: 100%; height: auto;">
+          <video controls playsinline webkit-playsinline poster="./images/bifurcated_insertion_sort.jpeg" style="max-width: 100%; height: auto;">
             <source src="./videos/bifurcated_insertion_sort.mp4" type="video/mp4">
           </video>
         </div>
@@ -743,6 +743,25 @@ ASC done → take 20</code></pre>
           });
         });
       </script>
+      <script>
+          document.addEventListener("fullscreenchange", () => {
+              if (!document.fullscreenElement) {
+                  const viewport = document.querySelector("meta[name=viewport]");
+                  viewport.setAttribute(
+                      "content",
+                      "width=device-width, initial-scale=1.0, maximum-scale=1.0"
+                  );
+
+                  setTimeout(() => {
+                      viewport.setAttribute(
+                          "content",
+                          "width=device-width, initial-scale=1.0"
+                      );
+                  }, 100);
+              }
+          });
+      </script>
+
     </main>
 
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
