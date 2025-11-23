@@ -760,7 +760,32 @@ ASC done → take 20</code></pre>
                   }, 100);
               }
           });
-      </script>
+        </script>
+
+        <script>
+        (function() {
+          let lastScale = 1;
+
+          function resetViewport() {
+            const viewport = document.querySelector("meta[name=viewport]");
+            viewport.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0");
+            setTimeout(() => {
+              viewport.setAttribute("content", "width=device-width, initial-scale=1.0");
+            }, 150);
+          }
+
+          ["scroll", "touchstart", "touchend"].forEach(evt => {
+            window.addEventListener(evt, () => {
+              const newScale = window.visualViewport.scale;
+              if (newScale !== lastScale) {
+                lastScale = newScale;
+                resetViewport();
+              }
+            });
+          });
+        })();
+        </script>
+
 
     </main>
 
