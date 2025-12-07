@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.A New Approach to Finding the Sum of the First N Natural Numbers">
-  <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio, A New Approach to Finding the Sum of the First N Natural Numbers">
+  <meta name="description"
+    content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.A New Approach to Finding the Sum of the First N Natural Numbers">
+  <meta name="keywords"
+    content="balaji suresh, balaji contacts, balaji suresh website, portfolio, A New Approach to Finding the Sum of the First N Natural Numbers">
   <meta name="author" content="Balaji">
   <meta name="google" content="notranslate">
   <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
@@ -18,7 +21,26 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
-  </head>
+  <style>
+    .MathJax {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      max-width: 100% !important;
+    }
+
+    mjx-container {
+      overflow-x: auto !important;
+      max-width: 100% !important;
+    }
+
+    p,
+    li {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
 <body>
   <nav class="bg-gray-800 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
@@ -26,7 +48,7 @@
       <div class="flex items-center">
         <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
         <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
-      </div>      
+      </div>
       <div id="nav-links" class="hidden md:flex space-x-4 items-center">
         <a href="../blog/index.html" class="px-4">Blog</a>
         <a href="./index.html" class="px-4">Math</a>
@@ -43,15 +65,17 @@
     </div>
   </nav>
   <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">A New Approach to Finding the Sum of the First \( n \) Natural Numbers</h2>
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">A New Approach to Finding the Sum of
+      the First \( n \) Natural Numbers</h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 9, 2025</span></p>
     <p>We all know that the sum of the first \( n \) natural numbers can be found using the formula:</p>
     <p class="math">\( S_n = \frac{n(n+1)}{2} \)</p>
 
-    <p style="margin-top: 3em !important;">Here, we are going to explore a different approach to finding the sum of the first \( n \) natural numbers, but this method applies only to even numbers.</p>
-    
+    <p style="margin-top: 3em !important;">Here, we are going to explore a different approach to finding the sum of the
+      first \( n \) natural numbers, but this method applies only to even numbers.</p>
+
     <p>We can rewrite the sum \( 1+2+3+4+\dots \) in the following pattern:</p>
     <p class="math">\( -1^2 + 2^2 - 3^2 + 4^2 - 5^2 + 6^2 \dots \)</p>
 
@@ -85,4 +109,5 @@
     <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
   </footer>
 </body>
+
 </html>
