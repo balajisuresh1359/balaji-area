@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="description"
-    content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.New Formula for Powers of Natural Numbers">
-  <meta name="keywords"
-    content="balaji suresh, balaji contacts, balaji suresh website, portfolio,New Formula for Powers of Natural Numbers">
+  <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.New Formula for Powers of Natural Numbers">
+  <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio,New Formula for Powers of Natural Numbers">
   <meta name="author" content="Balaji">
   <meta name="google" content="notranslate">
   <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
@@ -21,35 +18,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
-  <style>
-    mjx-container[display="true"] {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      max-width: 100% !important;
-      display: block !important;
-    }
-
-    mjx-container {
-      max-width: 100% !important;
-    }
-
-    .MathJax,
-    [class*="MathJax"],
-    [class*="mjx"] {
-      max-width: 100% !important;
-    }
-
-    main>*,
-    main p,
-    main div,
-    main li {
-      max-width: 100%;
-      overflow-x: auto;
-      overflow-y: visible;
-    }
-  </style>
 </head>
-
 <body>
   <nav class="bg-gray-800 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
@@ -57,7 +26,7 @@
       <div class="flex items-center">
         <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
         <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
-      </div>
+      </div>      
       <div id="nav-links" class="hidden md:flex space-x-4 items-center">
         <a href="../blog/index.html" class="px-4">Blog</a>
         <a href="./index.html" class="px-4">Math</a>
@@ -74,40 +43,33 @@
     </div>
   </nav>
   <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">New Formula for Powers of Natural
-      Numbers</h2>
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">New Formula for Powers of Natural Numbers</h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
+    
+    <p>In this post, I present a new pattern for expressing \(n^p\) in terms of sums of powers of integers from 2 to 6.</p>
 
-    <p>In this post, I present a new pattern for expressing \(n^p\) in terms of sums of powers of integers from 2 to 6.
-    </p>
-
-
+    
     <p>The following formulas express powers of n in terms of n and sums of powers:</p>
 
     <div class="p-6 rounded-lg my-6">
       <p style="margin-bottom: 1em;">\( n^2 = n + 2\sum_{k=1}^{n-1} k \)</p>
-
+      
       <p style="margin-bottom: 1em;">\( n^3 = n + 3\left[\sum_{k=1}^{n-1} k + \sum_{k=1}^{n-1} k^2\right] \)</p>
-
-      <p style="margin-bottom: 1em;">\( n^4 = n + 4\left[\sum_{k=1}^{n-1} k + \frac{3}{2}\sum_{k=1}^{n-1} k^2 +
-        \sum_{k=1}^{n-1} k^3\right] \)</p>
-
-      <p style="margin-bottom: 1em;">\( n^5 = n + 5\left[\sum_{k=1}^{n-1} k + \frac{1}{2}\sum_{k=1}^{n-1} k^2 +
-        \frac{1}{2}\sum_{k=1}^{n-1} k^3 + \sum_{k=1}^{n-1} k^4\right] \)</p>
-
-      <p style="margin-bottom: 1em;">\( n^6 = n + 6\left[\sum_{k=1}^{n-1} k + \frac{5}{2}\sum_{k=1}^{n-1} k^2 +
-        \frac{10}{3}\sum_{k=1}^{n-1} k^3 + \frac{5}{2}\sum_{k=1}^{n-1} k^4 + \sum_{k=1}^{n-1} k^5\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^4 = n + 4\left[\sum_{k=1}^{n-1} k + \frac{3}{2}\sum_{k=1}^{n-1} k^2 + \sum_{k=1}^{n-1} k^3\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^5 = n + 5\left[\sum_{k=1}^{n-1} k + \frac{1}{2}\sum_{k=1}^{n-1} k^2 + \frac{1}{2}\sum_{k=1}^{n-1} k^3 + \sum_{k=1}^{n-1} k^4\right] \)</p>
+      
+      <p style="margin-bottom: 1em;">\( n^6 = n + 6\left[\sum_{k=1}^{n-1} k + \frac{5}{2}\sum_{k=1}^{n-1} k^2 + \frac{10}{3}\sum_{k=1}^{n-1} k^3 + \frac{5}{2}\sum_{k=1}^{n-1} k^4 + \sum_{k=1}^{n-1} k^5\right] \)</p>
     </div>
 
-
-    <p>Notice that all formulas begin with n and then add a multiple of various sums. This reveals a fascinating
-      relationship between powers of n and the sums of powers of integers less than n.</p>
+    
+    <p>Notice that all formulas begin with n and then add a multiple of various sums. This reveals a fascinating relationship between powers of n and the sums of powers of integers less than n.</p>
   </main>
   <footer class="bg-gray-700 text-white text-center p-4 mt-8">
     <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
   </footer>
 </body>
-
 </html>
