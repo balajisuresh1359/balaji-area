@@ -16,7 +16,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
   <style>
     .audio-player {
       border: 1px solid #e5e7eb;
@@ -177,6 +178,64 @@
     .dark .podcast-description {
       color: #9ca3af;
     }
+
+     .outline-item {
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem 0;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: block;
+}
+
+  .outline-item:hover {
+    background-color: rgba(48, 47, 49, 0.3);
+  }
+
+  .outline-item.active {
+    background-color: rgba(48, 47, 49, 0.3);
+    border-left: 3px solid #2e2d2f;
+  }
+
+  .outline-level-1 {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .outline-level-2 {
+    padding-left: 1.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .outline-level-3 {
+    padding-left: 2.5rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+
+  .outline-expandable::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+    font-size: 0.625rem;
+  }
+
+  .outline-expandable.expanded::before {
+    transform: rotate(90deg);
+  }
+
+  /* Mobile sidebar shown */
+  #outlineSidebar.show {
+    transform: translateX(0);
+  }
+
+  @media (max-width: 768px) {
+    #outlineSidebar {
+      max-height: 100vh !important;
+    }
+  }
+
   </style>
 </head>
 <body>
@@ -203,18 +262,105 @@
   </div>
     </nav>
 
-    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
+    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl code-content">
       <h2 class="text-3xl md:text-4xl font-bold my-6">JavaScript Topics!</h2>
       <hr class="border-gray-300 dark:border-gray-700">
       <p class="text-gray-500 text-sm italic mb-6">Posted on: <span class="font-semibold">July 27, 2025</span></p>
-      <div class="flex justify-center my-8">
-        <iframe 
-        src="./files/Javascript Notes.pdf" 
-        class="w-full h-screen rounded-lg shadow-lg"
-        frameborder="0"
-        style="border: none;">
-      </iframe>
+      
+            <div class="pdf-section" style="margin: 2rem 0;">
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden">
+    
+    <div class="p-4 md:p-6 text-white sticky top-0 z-30" style="background: linear-gradient(135deg, #303032 0%, #414043 100%);">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-3">
+          <svg class="w-10 h-10 md:w-12 md:h-12" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+          </svg>
+          <div>
+            <h3 class="text-lg md:text-xl font-bold">JavaScript Topics</h3>
+            <p class="text-white text-opacity-90 text-xs md:text-sm">JavaScript Guide</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button id="toggleOutline" class="bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white font-semibold py-2 px-3 md:px-4 rounded-lg transition-colors inline-flex items-center gap-2 text-sm border border-white border-opacity-30">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <span class="hidden sm:inline">Outline</span>
+          </button>
+          <a href="./files/Javascript Notes.pdf" 
+             target="_blank"
+             class="bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white font-semibold py-2 px-3 md:px-4 rounded-lg transition-colors inline-flex items-center gap-2 text-sm border border-white border-opacity-30">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            <span class="hidden sm:inline">View</span>
+          </a>
+          <a href="./files/Javascript Notes.pdf" 
+             download="Javascript Notes.pdf"
+             class="bg-white text-black hover:bg-gray-100 font-semibold py-2 px-3 md:px-4 rounded-lg transition-colors inline-flex items-center gap-2 text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            <span class="hidden sm:inline">Save</span>
+          </a>
+        </div>
       </div>
+    </div>
+
+    <!-- PDF Viewer -->
+    <div class="bg-gray-50 dark:bg-gray-900">
+      
+      <!-- Controls -->
+      <div id="pdfControls" class="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600" style="display: none;">
+        <div class="flex items-center gap-2">
+          <span id="pageInfo" class="text-sm text-gray-700 dark:text-gray-300 px-2 font-medium">Page 1 of 1</span>
+        </div>
+        <div class="flex items-center gap-2">
+        </div>
+      </div>
+
+      <!-- Main Content Area with Sidebar -->
+      <div class="flex relative">
+        
+        <!-- Mobile Overlay Background -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" style="display: none;"></div>
+        
+<!-- Outline Sidebar -->
+        <div id="outlineSidebar" class="fixed md:relative top-0 left-0 h-full z-50 bg-gray-700 text-white overflow-y-auto border-r border-gray-700 transition-all duration-300" style="width: 280px; max-height: 100vh;">
+          <div class="p-4 relative">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-sm uppercase tracking-wide">Document Outline</h3>
+              <button id="closeOutline" class="text-gray-400 hover:text-white text-xl font-bold leading-none p-1">✕</button>
+            </div>
+            <div id="outlineContent" class="text-sm">
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Content -->
+        <div class="flex-1">
+          <!-- Loading -->
+          <div id="pdfLoading" class="flex items-center justify-center p-12" style="min-height: 400px;">
+            <div class="text-center">
+              <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+              <p class="text-gray-600 dark:text-gray-400">Loading PDF...</p>
+            </div>
+          </div>
+
+          <!-- Canvas Container -->
+          <div id="pdfContainer" class="overflow-auto bg-gray-200 dark:bg-gray-900" style="display: none; max-height: 85vh;">
+            <div id="pdfPages" class="flex flex-col items-center gap-4 p-4">
+              <!-- Pages will be inserted here -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+      </div>
+
 
       <!-- Podcast Player Section -->
       <div class="audio-player">
@@ -419,6 +565,332 @@
             });
           });
         </script>
+
+          <script>
+    (function() {
+    if (typeof pdfjsLib === 'undefined') {
+      console.error('PDF.js not loaded');
+      document.getElementById('pdfLoading').innerHTML = `
+        <div class="text-center p-6">
+          <p class="text-red-600 mb-4 font-semibold">PDF viewer not loaded</p>
+          <p class="text-gray-600 text-sm mb-4">Add PDF.js script to &lt;head&gt;</p>
+          <a href="./files/Javascript Notes.pdf" target="_blank" class="bg-purple-600 text-white px-4 py-2 rounded">Open PDF</a>
+        </div>
+      `;
+      return;
+    }
+
+    const pdfUrl = './files/Javascript Notes.pdf';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    
+    let pdfDoc = null;
+    let currentScale = 1.0;
+    let renderScale = 3.0;
+    let isRendering = false;
+    let pageElements = {};
+    let sidebarVisible = true; 
+    const container = document.getElementById('pdfContainer');
+    const pagesContainer = document.getElementById('pdfPages');
+    const loading = document.getElementById('pdfLoading');
+    const controls = document.getElementById('pdfControls');
+    const pageInfo = document.getElementById('pageInfo');
+    const outlineSidebar = document.getElementById('outlineSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const outlineContent = document.getElementById('outlineContent');
+    const toggleOutlineBtn = document.getElementById('toggleOutline');
+    const closeOutlineBtn = document.getElementById('closeOutline');
+    
+    // Initialize sidebar state
+    if (window.innerWidth < 768) {
+      outlineSidebar.style.transform = 'translateX(-100%)';
+      sidebarVisible = false;
+    } else {
+      outlineSidebar.style.transform = 'translateX(0)';
+      sidebarVisible = true;
+    }
+
+    // Close sidebar when clicking overlay (mobile)
+    sidebarOverlay.addEventListener('click', function() {
+      closeSidebar();
+    });
+
+    // Close button
+    closeOutlineBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSidebar();
+    });
+
+    // Toggle button
+    toggleOutlineBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isDesktop = window.innerWidth >= 768;
+      
+      if (outlineSidebar.style.transform === 'translateX(-100%)' || !sidebarVisible) {
+        openSidebar();
+      } else {
+        closeSidebar();
+      }
+    });
+
+    // Open sidebar helper
+    function openSidebar() {
+      const isDesktop = window.innerWidth >= 768;
+      outlineSidebar.style.transform = 'translateX(0)';
+      sidebarVisible = true;
+      
+      if (!isDesktop) {
+        sidebarOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Re-render PDF on desktop to adjust width
+        if (pdfDoc && !isRendering) {
+          setTimeout(function() {
+            renderAllPages();
+          }, 100);
+        }
+      }
+    }
+
+    // Close sidebar helper
+    function closeSidebar() {
+      const isDesktop = window.innerWidth >= 768;
+      outlineSidebar.style.transform = 'translateX(-100%)';
+      sidebarOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+      sidebarVisible = false;
+      
+      // Re-render PDF to fill freed space - force recalculation
+      if (isDesktop && pdfDoc && !isRendering) {
+        setTimeout(function() {
+          renderAllPages();
+        }, 100); // Faster for better UX
+      }
+    }
+    
+    // Prevent clicks inside sidebar from closing it
+    outlineSidebar.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    
+    // Scroll to specific page
+    function scrollToPage(pageNum) {
+      const pageElement = pageElements[pageNum];
+      if (pageElement) {
+        // Scroll with offset for better visibility
+        const containerRect = container.getBoundingClientRect();
+        const pageRect = pageElement.getBoundingClientRect();
+        const scrollTop = container.scrollTop + pageRect.top - containerRect.top - 20;
+        
+        container.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+    
+    // Render outline
+    function renderOutline(outline, containerEl, level = 1) {
+      if (!outline || outline.length === 0) {
+        containerEl.innerHTML = '<div class="text-gray-400 text-xs">No outline available in this PDF</div>';
+        return;
+      }
+      
+      outline.forEach((item) => {
+        const div = document.createElement('div');
+        div.className = `outline-item outline-level-${Math.min(level, 3)}`;
+        
+        if (item.items && item.items.length > 0) {
+          div.classList.add('outline-expandable');
+        }
+        
+        div.textContent = item.title;
+        
+        div.addEventListener('click', async function(e) {
+          e.stopPropagation();
+          
+          // Navigate to page
+          try {
+            let pageNum = null;
+            
+            if (item.dest) {
+              if (typeof item.dest === 'string') {
+                const dest = await pdfDoc.getDestination(item.dest);
+                if (dest && dest[0]) {
+                  const pageIndex = await pdfDoc.getPageIndex(dest[0]);
+                  pageNum = pageIndex + 1;
+                }
+              } else if (Array.isArray(item.dest) && item.dest[0]) {
+                const pageIndex = await pdfDoc.getPageIndex(item.dest[0]);
+                pageNum = pageIndex + 1;
+              }
+            }
+            
+            if (pageNum) {
+              scrollToPage(pageNum);
+              
+              // Close sidebar on mobile after navigation
+              if (window.innerWidth < 768) {
+                closeSidebar();
+              }
+            }
+          } catch (error) {
+            console.error('Navigation error:', error);
+          }
+          
+          // Toggle expand/collapse for items with children
+          if (item.items && item.items.length > 0) {
+            div.classList.toggle('expanded');
+            const childContainer = div.nextElementSibling;
+            if (childContainer && childContainer.classList.contains('outline-children')) {
+              childContainer.classList.toggle('hidden');
+            }
+          }
+          
+          // Highlight active item
+          document.querySelectorAll('.outline-item').forEach(el => el.classList.remove('active'));
+          div.classList.add('active');
+        });
+        
+        containerEl.appendChild(div);
+        
+        // Render children
+        if (item.items && item.items.length > 0) {
+          const childContainer = document.createElement('div');
+          childContainer.className = 'outline-children';
+          containerEl.appendChild(childContainer);
+          renderOutline(item.items, childContainer, level + 1);
+        }
+      });
+    }
+    
+    // Render a single page
+    function renderPage(pageNum) {
+      return pdfDoc.getPage(pageNum).then(function(page) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Calculate available width - check if sidebar is visible
+        const sidebarActuallyVisible = outlineSidebar.style.transform === 'translateX(0)' && window.innerWidth >= 768;
+        const containerWidth = container.clientWidth - 32;
+        
+        const viewport = page.getViewport({ scale: 1 });
+        const fitScale = containerWidth / viewport.width;
+        const displayScale = fitScale * currentScale;
+        const actualViewport = page.getViewport({ scale: displayScale * renderScale });
+        
+        canvas.height = actualViewport.height;
+        canvas.width = actualViewport.width;
+        canvas.style.width = Math.floor(actualViewport.width / renderScale) + 'px';
+        canvas.style.height = Math.floor(actualViewport.height / renderScale) + 'px';
+        canvas.className = 'shadow-2xl';
+        
+        const pageWrapper = document.createElement('div');
+        pageWrapper.className = 'relative';
+        pageWrapper.setAttribute('data-page', pageNum);
+        
+        const pageLabel = document.createElement('div');
+        pageLabel.className = 'text-center text-sm text-gray-500 dark:text-gray-400 mb-2 font-medium';
+        pageLabel.textContent = `Page ${pageNum}`;
+        
+        pageWrapper.appendChild(pageLabel);
+        pageWrapper.appendChild(canvas);
+        pagesContainer.appendChild(pageWrapper);
+        
+        // Store reference for navigation
+        pageElements[pageNum] = pageWrapper;
+        
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: actualViewport
+        };
+        
+        return page.render(renderContext).promise;
+      });
+    }
+    
+    // Render all pages
+    async function renderAllPages() {
+      if (isRendering) return;
+      isRendering = true;
+      
+      pagesContainer.innerHTML = '';
+      pageElements = {};
+      
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        await renderPage(i);
+      }
+      
+      isRendering = false;
+      updatePageInfo();
+    }
+    
+    // Update page info
+    function updatePageInfo() {
+      const scrollTop = container.scrollTop;
+      const pages = pagesContainer.querySelectorAll('[data-page]');
+      
+      let currentPage = 1;
+      pages.forEach((page, index) => {
+        const rect = page.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        
+        if (rect.top <= containerRect.top + 100) {
+          currentPage = index + 1;
+        }
+      });
+      
+      pageInfo.textContent = `Page ${currentPage} of ${pdfDoc.numPages}`;
+    }
+        
+    container.addEventListener('scroll', function() {
+      updatePageInfo();
+    });
+    
+    // Load PDF
+    pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+      pdfDoc = pdf;
+      loading.style.display = 'none';
+      container.style.display = 'block';
+      controls.style.display = 'flex';
+      
+      // Load outline
+      pdf.getOutline().then(function(outline) {
+        renderOutline(outline, outlineContent);
+      }).catch(function(error) {
+        console.error('Outline error:', error);
+        outlineContent.innerHTML = '<div class="text-gray-400 text-xs">No outline available</div>';
+      });
+      
+      renderAllPages();
+    }).catch(function(error) {
+      console.error('PDF error:', error);
+      loading.innerHTML = `
+        <div class="text-center p-6">
+          <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p class="text-gray-700 dark:text-gray-300 mb-4 font-semibold">Could not load PDF</p>
+          <div class="flex gap-2 justify-center flex-wrap">
+            <a href="${pdfUrl}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded font-semibold">Open in New Tab</a>
+            <a href="${pdfUrl}" download class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded font-semibold">Download PDF</a>
+          </div>
+        </div>
+      `;
+    });
+    
+    // Handle resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        if (pdfDoc && !isRendering) {
+          renderAllPages();
+        }
+      }, 300);
+    });
+  })();
+          </script>
       </main>
 
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">

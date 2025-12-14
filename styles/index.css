@@ -8,18 +8,27 @@
 
 }
 
+/* ============================================
+   GOOD-LOOKING FONT-FAMILY - APPLIED EVERYWHERE
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Standardized font-family - Inter with excellent fallbacks */
 * {
-  font-family: 'Inter', sans-serif !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
 }
 
 body {
   background-color: var(--bg-light);
   color: var(--text-light);
-  font-family: 'Georgia', serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   transition: background 0.3s, color 0.3s;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 main {
   flex: 1;
@@ -156,6 +165,9 @@ nav a:hover {
   transition: all 0.3s ease;
   margin-bottom: 1rem;
   background-color: rgba(255, 255, 255, 0.05);
+  border-width: 2px;
+  border-color: rgb(199, 191, 191);
+
 }
 
 .contact-link:hover {
@@ -313,24 +325,58 @@ hr.alt::before {
 
 nav.bg-gray-800 {
   background: linear-gradient(to right, #1a202c, #2d3748);
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
   z-index: 100;
   transition: all 0.3s ease;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
 }
 
+@media (max-width: 768px) {
+  nav.bg-gray-800 {
+    padding: 0.875rem 1rem;
+    min-height: 56px;
+  }
+}
+
+nav .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Header title - improved spacing */
 nav .font-bold {
-  font-size: 1.25rem;
+  font-size: var(--nav-title-size) !important;
   background: linear-gradient(to right, #f7fafc, #edf2f7);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   position: relative;
-  padding-bottom: 2px;
+  padding: 0.5rem 0;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  nav .font-bold {
+    font-size: var(--nav-title-size) !important;
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 nav .font-bold:hover {
@@ -365,6 +411,7 @@ nav .font-bold::after {
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  font-size: var(--p-size) !important;
 }
 
 #nav-links a::before {
@@ -404,17 +451,15 @@ nav .font-bold::after {
 }
 
 
-nav .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* Container already defined above in nav section */
 
 nav:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-#theme-toggle {
+/* Theme toggle button - improved for mobile */
+#theme-toggle,
+#theme-toggle-mobile {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   width: 2.5rem;
@@ -425,15 +470,63 @@ nav:hover {
   transition: all 0.3s ease;
   cursor: pointer;
   font-size: 1.25rem;
+  border: none;
+  flex-shrink: 0;
 }
 
-#theme-toggle:hover {
+#theme-toggle:hover,
+#theme-toggle-mobile:hover {
   background-color: rgba(255, 255, 255, 0.2);
   transform: rotate(45deg);
 }
 
+/* Mobile theme toggle - header height size */
+@media (max-width: 768px) {
+  #theme-toggle-mobile {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  #menu-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.375rem;
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  #menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Navigation links container */
+/* Header actions: row on desktop, column on mobile */
+nav .container > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  nav .container > div:last-child {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
 #mobile-menu a {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   background-color: #4b5563; /* bg-gray-600 */
   color: white;
   border-radius: 0.375rem; /* rounded-md */
@@ -443,8 +536,9 @@ nav:hover {
   align-items: center;
   justify-content: center;
   font-weight: 500; /* font-medium */
+  font-size: var(--p-size) !important;
   text-decoration: none;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5rem;
 }
 
 #mobile-menu a:hover {
@@ -457,4 +551,1073 @@ nav:hover {
 #mobile-menu a:active {
   transform: translateY(1px);
   box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+:root {
+  --base-font-size: 16px;
+  --h1-size: 2rem;
+  --h2-size: 1.75rem;
+  --h3-size: 1.5rem;
+  --h4-size: 1.25rem;
+  --h5-size: 1.125rem;
+  --h6-size: 1rem;
+  --p-size: 1rem;
+  --small-size: 0.875rem;
+  --nav-title-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --base-font-size: 15px;
+    --h1-size: 1.75rem;
+    --h2-size: 1.5rem;
+    --h3-size: 1.25rem;
+    --h4-size: 1.125rem;
+    --h5-size: 1rem;
+    --h6-size: 0.9375rem;
+    --p-size: 0.9375rem;
+    --small-size: 0.8125rem;
+    --nav-title-size: 1.125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --base-font-size: 15px;
+    --h1-size: 1.5rem;
+    --h2-size: 1.375rem;
+    --h3-size: 1.125rem;
+    --h4-size: 1rem;
+    --h5-size: 0.9375rem;
+    --h6-size: 0.875rem;
+    --p-size: 0.9375rem;
+    --small-size: 0.8125rem;
+    --nav-title-size: 1rem;
+  }
+}
+
+/* Base responsive typography - STANDARDIZED */
+body {
+  font-size: var(--base-font-size);
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: var(--h1-size) !important;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--h2-size) !important;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: var(--h3-size) !important;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--h4-size) !important;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: var(--h5-size) !important;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: var(--h6-size) !important;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+p {
+  font-size: var(--p-size) !important;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0.35em 0;
+}
+
+/* Reduce spacing between paragraphs in math and code sections */
+main p + p {
+  margin-top: 0.35em;
+}
+
+/* Further reduce spacing in math and code sections */
+main.math-content p,
+main.code-content p {
+  margin: 0.25em 0;
+}
+
+main.math-content p + p,
+main.code-content p + p {
+  margin-top: 0.25em;
+}
+
+/* ============================================
+   IMPROVED LAYOUT AND SPACING
+   ============================================ */
+
+/* Responsive container and main content - improved */
+main {
+  padding: 1.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Responsive navigation */
+nav {
+  padding: 0.75rem 1rem;
+}
+
+nav .font-bold {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  white-space: nowrap;
+}
+
+/* Desktop theme toggle (768px and up) */
+#theme-toggle { display: inline-flex; }
+#theme-toggle-mobile { display: none !important; }
+
+@media (max-width: 768px) {
+  #theme-toggle { display: none !important; }
+  #theme-toggle-mobile { display: inline-flex !important; }
+}
+
+/* Mobile nav: full-width menu below header */
+@media (max-width: 767px) {
+  nav.bg-gray-800 {
+    flex-wrap: wrap;
+  }
+
+  nav .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  /* Hide desktop links on mobile */
+  #nav-links { display: none !important; }
+  
+  /* Mobile menu: full-width below header */
+  #mobile-menu {
+    width: 100%;
+    order: 10;
+    padding: 0.5rem 1rem;
+    background-color: #1f2937;
+    display: none;
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+  
+  #mobile-menu.active {
+    display: flex !important;
+  }
+}
+
+/* Responsive grid layouts */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    gap: 2rem;
+  }
+}
+
+/* Responsive cards */
+.fancy-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .fancy-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fancy-card {
+    padding: 2rem;
+  }
+}
+
+.fancy-card h2 {
+  font-size: var(--h3-size) !important;
+  margin-bottom: 0.5rem;
+}
+
+.fancy-card p {
+  font-size: var(--p-size) !important;
+}
+
+/* Responsive contact card */
+.contact-card {
+  padding: 1.5rem;
+  margin: 1rem auto;
+}
+
+@media (max-width: 640px) {
+  .contact-card {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Make images clickable and zoomable */
+img:not(.no-zoom) {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+img:not(.no-zoom):hover {
+  transform: scale(1.02);
+}
+
+/* Responsive tables */
+table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+  border-collapse: collapse;
+}
+
+@media (min-width: 768px) {
+  table {
+    display: table;
+  }
+}
+
+th, td {
+  padding: 0.5rem;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  white-space: nowrap;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.dark th, .dark td {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  th, td {
+    padding: 0.75rem;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 640px) {
+  th, td {
+    padding: 0.4rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Responsive code blocks - hide scrollbar unless content overflows */
+pre, code {
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
+  overflow-x: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+pre::-webkit-scrollbar,
+code::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  pre {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* PDF Embed Container - inline display */
+.pdf-embed-container {
+  width: 100%;
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+  display: block;
+}
+
+.dark .pdf-embed-container {
+  background-color: #1f2937;
+}
+
+.pdf-embed-container embed {
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  border: none;
+  display: block;
+}
+
+/* Responsive blog cards - standardized */
+.blog-card {
+  margin-bottom: 1.5rem;
+}
+
+.blog-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.blog-card h2 {
+  font-size: var(--h4-size) !important;
+}
+
+.blog-card p {
+  font-size: var(--p-size) !important;
+}
+
+@media (max-width: 640px) {
+  .blog-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Responsive video containers */
+.video-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem 0;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+}
+
+/* PDF embed styling - responsive */
+embed[type="application/pdf"] {
+  width: 100%;
+  min-height: 600px;
+  height: 80vh;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: #f3f4f6;
+}
+
+.dark embed[type="application/pdf"] {
+  background: #1f2937;
+}
+
+@media (max-width: 768px) {
+  embed[type="application/pdf"] {
+    min-height: 500px;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 640px) {
+  embed[type="application/pdf"] {
+    min-height: 400px;
+    height: 60vh;
+  }
+}
+
+/* Ensure text is always visible */
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Responsive footer - standardized */
+footer {
+  padding: 1.5rem;
+  font-size: var(--p-size) !important;
+}
+
+footer p {
+  margin: 0.5rem 0;
+  font-size: var(--p-size) !important;
+}
+
+@media (max-width: 640px) {
+  footer {
+    padding: 1rem;
+  }
+}
+
+/* ============================================
+   IMAGE ZOOM MODAL
+   ============================================ */
+
+.image-zoom-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  cursor: zoom-out;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.image-zoom-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-zoom-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+.image-zoom-modal img:active {
+  cursor: grabbing;
+}
+
+/* Touch-friendly close indicator */
+.image-zoom-modal::before {
+  content: '×';
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s;
+}
+
+@media (max-width: 640px) {
+  .image-zoom-modal::before {
+    top: 10px;
+    right: 15px;
+    font-size: 2.5rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.image-zoom-modal::before:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Responsive text adjustments - STANDARDIZED */
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: var(--h1-size) !important;
+  }
+  
+  .text-3xl {
+    font-size: var(--h2-size) !important;
+  }
+  
+  .text-2xl {
+    font-size: var(--h3-size) !important;
+  }
+  
+  .text-xl {
+    font-size: var(--h4-size) !important;
+  }
+  
+  .text-lg {
+    font-size: var(--h5-size) !important;
+  }
+  
+  .text-base {
+    font-size: var(--p-size) !important;
+  }
+  
+  .text-sm {
+    font-size: var(--small-size) !important;
+  }
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 640px) {
+  main > * {
+    margin-bottom: 1rem;
+  }
+  
+  section {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Responsive prose content */
+.prose {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.prose p,
+.prose li,
+.prose td,
+.prose th {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.95rem;
+  }
+  
+  .prose h1 {
+    font-size: 1.5rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.25rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================
+   MATHJAX FORMULA STYLING FOR MOBILE
+   ============================================ */
+
+/* Ensure MathJax formulas are visible and responsive */
+.MathJax,
+.MJX-TEX,
+mjx-container,
+mjx-math {
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  font-size: inherit !important;
+}
+
+/* ============================================
+   MATHJAX FORMULAS - FULLY VISIBLE WITH PROPER SPACING
+   ============================================ */
+
+/* MathJax display formulas - Reduced spacing, smart scrolling */
+.MathJax_Display,
+mjx-container[jax="CHTML"][display="true"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  overflow-wrap: break-word !important;
+  margin: 0.5rem 0 !important;
+  padding: 0.25rem 0.5rem !important;
+  text-align: center !important;
+  -webkit-overflow-scrolling: touch !important;
+  min-height: fit-content !important;
+  line-height: 1.5 !important;
+  font-size: var(--p-size) !important;
+  /* Hide scrollbar by default */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.MathJax_Display::-webkit-scrollbar,
+mjx-container[jax="CHTML"][display="true"]::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Only show scrollbar when content actually overflows */
+.MathJax_Display:not(:has(> *[style*="width"])):not(:has(> *[style*="min-width"])) {
+  overflow-x: visible !important;
+}
+
+/* Ensure formulas don't overflow - Reduced spacing, no scrollbar for inline */
+mjx-container {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  min-height: fit-content !important;
+  display: inline-block !important;
+  line-height: 1.5 !important;
+  vertical-align: middle !important;
+  padding: 0 !important;
+  font-size: var(--p-size) !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+mjx-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Formula containers - Reduced spacing, scroll only when content actually overflows */
+.equation,
+.math-display,
+.math {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  overflow-wrap: break-word !important;
+  margin: 0.5rem 0 !important;
+  padding: 0.25rem 0.5rem !important;
+  text-align: center !important;
+  min-height: fit-content !important;
+  display: block !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  font-size: var(--p-size) !important;
+  /* Hide scrollbar by default, only show when content overflows */
+  scrollbar-width: none; /* Firefox - hide by default */
+  -ms-overflow-style: none; /* IE and Edge - hide by default */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.equation::-webkit-scrollbar,
+.math-display::-webkit-scrollbar,
+.math::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Only show scrollbar when content actually overflows (using JavaScript or CSS trick) */
+.equation:has(> *[style*="width"]),
+.math-display:has(> *[style*="width"]),
+.math:has(> *[style*="width"]) {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.equation:has(> *[style*="width"])::-webkit-scrollbar,
+.math-display:has(> *[style*="width"])::-webkit-scrollbar,
+.math:has(> *[style*="width"])::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.equation:has(> *[style*="width"])::-webkit-scrollbar-track,
+.math-display:has(> *[style*="width"])::-webkit-scrollbar-track,
+.math:has(> *[style*="width"])::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.equation:has(> *[style*="width"])::-webkit-scrollbar-thumb,
+.math-display:has(> *[style*="width"])::-webkit-scrollbar-thumb,
+.math:has(> *[style*="width"])::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.dark .equation:has(> *[style*="width"])::-webkit-scrollbar-thumb,
+.dark .math-display:has(> *[style*="width"])::-webkit-scrollbar-thumb,
+.dark .math:has(> *[style*="width"])::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Only enable scrolling for formulas that actually overflow */
+.equation > *,
+.math-display > *,
+.math > * {
+  display: inline-block !important;
+  max-width: 100% !important;
+}
+
+/* Short formulas - no scrolling needed */
+.equation:not(:has(*[style*="width"])):not(:has(*[style*="min-width"])) {
+  overflow-x: visible !important;
+}
+
+/* MathJax containers - only scroll if content is wider than container */
+mjx-container {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Smart scrolling - only when formula is actually long */
+mjx-container[overflow="scroll"],
+mjx-container[style*="overflow"] {
+  overflow-x: auto !important;
+}
+
+/* Short inline formulas - no scroll */
+mjx-container:not([display="true"]) {
+  overflow-x: visible !important;
+  display: inline-block !important;
+}
+
+/* Ensure MathJax inline formulas are fully visible - Reduced spacing */
+.MathJax,
+.MJX-TEX,
+mjx-math {
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  font-size: inherit !important;
+  line-height: 1.5 !important;
+  vertical-align: baseline !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .equation,
+  .math-display,
+  .math {
+    margin: 0.75rem 0 !important;
+    padding: 0.5rem 0.5rem !important;
+    font-size: 0.95rem !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    line-height: 1.45 !important;
+  }
+  
+  /* Make MathJax responsive on mobile but show full height with proper spacing */
+  .MathJax,
+  mjx-container {
+    font-size: 0.95rem !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    line-height: 1.45 !important;
+    padding: 0.25rem 0 !important;
+  }
+  
+  /* Ensure formulas can scroll horizontally and show full height */
+  .MathJax_Display,
+  mjx-container[jax="CHTML"][display="true"] {
+    font-size: 0.95rem !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    padding: 0.5rem 0.5rem !important;
+    margin: 0.75rem 0 !important;
+    line-height: 1.45 !important;
+  }
+}
+
+/* Prevent formula text from being cut off */
+.MathJax_SVG,
+.MathJax_CHTML {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure formula text is visible in both themes */
+.MathJax,
+.MJX-TEX,
+mjx-container {
+  color: inherit !important;
+}
+
+.dark .MathJax,
+.dark .MJX-TEX,
+.dark mjx-container {
+  color: var(--text-dark) !important;
+}
+
+/* Additional mobile fixes for MathJax rendering - FIXED: Full height visibility */
+@media (max-width: 640px) {
+  /* Ensure MathJax doesn't break layout and shows full height */
+  .MathJax_Display {
+    margin: 1.25rem 0 !important;
+    padding: 0.75rem 0.5rem !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    line-height: 1.8 !important;
+  }
+  
+  /* Prevent formula overflow but allow full height */
+  mjx-container[jax="CHTML"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    line-height: 1.8 !important;
+    padding: 0.25rem 0 !important;
+  }
+  
+  /* Formula text sizing - standardized */
+  .MathJax {
+    font-size: var(--p-size) !important;
+    overflow-y: visible !important;
+    line-height: 1.8 !important;
+  }
+  
+  /* Ensure inline math doesn't break and shows full height */
+  mjx-container[jax="CHTML"][display="false"] {
+    display: inline-block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    min-height: fit-content !important;
+    line-height: 1.8 !important;
+  }
+}
+
+/* Fix for very long formulas - allow horizontal scroll and full height */
+.equation,
+.math-display,
+.math,
+.MathJax_Display,
+mjx-container[jax="CHTML"][display="true"] {
+  min-width: min-content;
+  overflow-y: visible !important;
+  min-height: fit-content !important;
+}
+
+@media (max-width: 640px) {
+  .equation,
+  .math-display,
+  .math {
+    min-width: 100%;
+    overflow-y: visible !important;
+  }
+}
+
+/* Ensure images in cards are zoomable */
+.blog-card img,
+.fancy-card img {
+  cursor: zoom-in;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 640px) {
+  button,
+  a,
+  .fancy-card,
+  .blog-card {
+    min-height: 44px; /* Apple's recommended touch target size */
+  }
+  
+  #menu-toggle,
+  #theme-toggle,
+  #theme-toggle-mobile {
+    min-width: 44px;
+    min-height: 44px;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Better spacing for mobile */
+@media (max-width: 640px) {
+  main.container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Ensure proper text wrapping */
+p, li, td, th, span, div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Ensure text is always visible - prevent clipping */
+p, li, h1, h2, h3, h4, h5, h6 {
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* Abstract and special content areas - standardized */
+.abstract {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  box-sizing: border-box !important;
+  overflow-wrap: break-word !important;
+  font-size: var(--p-size) !important;
+  line-height: 1.6 !important;
+}
+
+@media (max-width: 640px) {
+  .abstract {
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    font-size: var(--p-size) !important;
+    text-align: left !important;
+  }
+}
+
+/* Algorithm blocks - standardized */
+.algorithm {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  font-size: var(--p-size) !important;
+}
+
+.algorithm li {
+  font-size: var(--p-size) !important;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .algorithm {
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    font-size: var(--p-size) !important;
+  }
+  
+  .algorithm li {
+    font-size: var(--p-size) !important;
+  }
+}
+
+/* Improve readability on small screens - STANDARDIZED */
+@media (max-width: 640px) {
+  body {
+    font-size: var(--base-font-size);
+  }
+  
+  code {
+    font-size: var(--small-size);
+    padding: 0.2em 0.4em;
+  }
+  
+  pre code {
+    font-size: var(--small-size);
+  }
+  
+  /* Ensure all text elements are visible */
+  main {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+  
+  main > * {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+  }
+  
+  /* Caption text - standardized */
+  .caption {
+    font-size: var(--small-size) !important;
+    padding: 0.5rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }

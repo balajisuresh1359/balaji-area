@@ -51,81 +51,76 @@
   </div>
     </nav>
 
-    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl">
-      <h2 class="text-3xl md:text-4xl font-bold my-6">Alpha Beta Matrix Multiplication!</h2>
+    <main class="container mx-auto p-4 md:p-6 lg:max-w-4xl code-content">
+      <h2 class="text-3xl md:text-4xl font-bold my-4">Alpha Beta Matrix Multiplication!</h2>
       <hr class="border-gray-300 dark:border-gray-700">
-      <p class="text-gray-500 text-sm italic mb-6">Updated on: <span class="font-semibold">March 13, 2025</span></p>
+      <p class="text-gray-500 text-sm italic mb-4">Updated on: <span class="font-semibold">March 13, 2025</span></p>
     
       <div class="prose prose-lg max-w-none">
         <p>We have many methods to find matrix multiplication. Now, we will see the new one for square matrices.</p>
         <p>We know what matrix multiplication is:</p>
     
-        \[
-        \begin{bmatrix} a & b & c \\ . & . & . \\ . & . & . \end{bmatrix} 
-        \times 
-        \begin{bmatrix} x & . & . \\ y & . & . \\ z & . & . \end{bmatrix} 
-        = 
-        \begin{bmatrix} ax+by+cz & . & . \\ . & . & . \\ . & . & . \end{bmatrix}
-        \]
+        <div class="math-display">
+          \[
+          \begin{bmatrix} a & b & c \\ . & . & . \\ . & . & . \end{bmatrix} 
+          \times 
+          \begin{bmatrix} x & . & . \\ y & . & . \\ z & . & . \end{bmatrix} 
+          = 
+          \begin{bmatrix} ax+by+cz & . & . \\ . & . & . \\ . & . & . \end{bmatrix}
+          \]
+        </div>
     
         <p>Here, if you see, we need to find a new sum every time, with no way to reuse previously computed values. We will try to reuse computations in our algorithm.</p>
     
         <p>First, consider:</p>
-        \[
-        ax + by + cz = \alpha \cdot (a+b+c) \cdot (x+y+z)
-        ->Eq. 1\]
+        <div class="math-display">
+          \[ ax + by + cz = \alpha \cdot (a+b+c) \cdot (x+y+z) \quad \text{(Eq. 1)} \]
+        </div>
         <p>Where \( \alpha \) is a function that satisfies this equation.</p>
     
         <p>We know that we can express any two-number product in the summation format:</p>
-        \[
-        n \cdot m = n + (m-1) \cdot n
-        ->Eq. 2\]
+        <div class="math-display">
+          \[ n \cdot m = n + (m-1) \cdot n \quad \text{(Eq. 2)} \]
+        </div>
     
         <p>Apply Eq.2 in Eq.1:</p>
-        Here, n = x, y & z and m = a,b & c
-        \[
-        S_x + (a-1)x + (b-1)y + (c-1)z = \alpha \cdot S_a \cdot S_x
-        \]
-        <p>Where \( S_a \) is the sum of \( a, b, c \) and \( S_x \) is the sum of \( x, y, z \).</p>
+        <p>Here, n = x, y & z and m = a,b & c</p>
+        <div class="math-display">
+          \[ S_x + (a-1)x + (b-1)y + (c-1)z = \alpha \cdot S_a \cdot S_x \]
+        </div>
+        <p>Where \( S_a \) is the sum of a, b, c and \( S_x \) is the sum of  x, y, z.</p>
         <p>Apply Eq.2 in Eq.1 for 'a' times:</p>
-        \[
-        aS_x + (b-a)y + (c-a)z = \alpha \cdot S_a \cdot S_x
-        \]
+        <div class="math-display">
+          \[ aS_x + (b-a)y + (c-a)z = \alpha \cdot S_a \cdot S_x \]
+        </div>
     
         <p>Solving for \( \alpha \):</p>
-        \[
-        \alpha = \frac{a}{S_a} + \frac{(b-a)y + (c-a)z}{S_a S_x}
-        \]
+        <div class="math-display">
+          \[ \alpha = \frac{a}{S_a} + \frac{(b-a)y + (c-a)z}{S_a S_x} \]
+        </div>
     
         <p>Let \( \beta = (b-a)y + (c-a)z \), then:</p>
-        \[
-        \alpha = \frac{a}{S_a} + \frac{\beta}{S_a S_x}
-        \]
+        <div class="math-display">
+          \[ \alpha = \frac{a}{S_a} + \frac{\beta}{S_a S_x} \]
+        </div>
     
         <p>Now, we can reuse \( S_a \) and \( S_x \) in our calculations instead of performing full array multiplication every time.</p>
       </div>
-      <br>
       <p>This approach is really helpful when we use the same matrices repeatedly to calculate a new matrix with an existing matrix.</p>
-      <br>
     
       <p>In the standard approach, we need to run O(n³) operations every time.</p>
-      <br>
       
       <p>However, if we precompute constant values of our matrices, such as a/Sa, 1/Sa, and 1/Sx, we can reuse these values for consecutive matrix calculations.</p>
       
       <p>With this method, precomputing values requires O(n²), and the main algorithm runs in O(n * n * (n - 1)).</p>
-      <br>
       
       <p>For example, let's say we have matrices A, B, C, and D, and we need to perform multiple matrix multiplications. We assume that the same matrices will be used with different matrices, such as A*C, C*D, A*D, and C*B needed to calculate.</p>
-      <br>
       
       <p>To run this in alpha beta algorithm, we calculate the constant values for each matrix, such as a/Sa, 1/Sa, and 1/Sx (if the matrix is on the right side of the multiplication). This allows us to reuse these values and perform matrix multiplication in O(n * n * (n - 1)).</p>
-      <br>
       
       <p>For example, consider 5×5 matrices A, B, C, and D. We need to compute:</p>
       
       <p>A*C, A*D, B*C, C*D, B*D, A*B</p>
-      <br>
       
       <p>If we use the standard matrix multiplication approach:</p>
       <ul>
@@ -137,7 +132,6 @@
           <li>A*B = 125</li>
       </ul>
       <p>Total operations required: 750.</p>
-      <br>
   
       <p>Using the optimized alpha-beta approach:</p>
       <ul>
@@ -153,23 +147,24 @@
   
       <p>Even for a small 5×5 matrix set, we saved 50 operations! As the number of matrices increases, the reduction in operations also increases.</p>
   
-      <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">Algorithm</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mt-4 mb-3">Algorithm</h2>
       <div class="p-4 rounded-lg mb-6">
-          1. Precompute for Left Matrix A:
-             a. Compute row-wise sums and store their inverses.
-             b. Compute first item fraction of each row.
-             c. Compute first item subtractions for all rows.
+          1. Precompute for Left Matrix A:<br/>
+             a. Compute row-wise sums and store their inverses.<br/>
+             b. Compute first item fraction of each row.<br/>
+             c. Compute first item subtractions for all rows.<br/>
+          <br>
+          2. Precompute for Right Matrix B:<br/>
+             a. Compute column-wise sums and store their inverses.<br/>
+          <br>
           
-          2. Precompute for Right Matrix B:
-             a. Compute column-wise sums and store their inverses.
-          
-          3. Perform Alpha-Beta Matrix Multiplication:
-             a. For each row index in A:
-                i. Retrieve precomputed values.
-             b. For each column index in B:
-                i. Compute β using precomputed first-item subtractions.
-                ii. Compute α using β and precomputed values.
-                iii. Compute and store final matrix value in C.
+          3. Perform Alpha-Beta Matrix Multiplication:<br/>
+             a. For each row index in A:<br/>
+                i. Retrieve precomputed values.<br/>
+             b. For each column index in B:<br/>
+                i. Compute β using precomputed first-item subtractions.<br/>
+                ii. Compute α using β and precomputed values.<br/>
+                iii. Compute and store final matrix value in C.<br/>
         </div>
 
         <h3 class="text-xl md:text-2xl font-bold mb-4">
@@ -177,71 +172,24 @@
           <a href="https://github.com/balajisuresh1359/my-algorithms/blob/main/matrix/c-implementation-and-analysis.c" 
              target="_blank" 
              class="text-[#00DDFF] font-semibold underline decoration-dashed hover:text-[#00BBCC] hover:decoration-solid transition-all duration-300 ease-in-out">
-             View the full file here generated using ChatGPT & Claude
+             View the full file here generated
           </a> 🔗
       </h3>
-      
-      <div class="p-4 rounded-lg overflow-x-auto mb-6">
-        <pre><code class="language-c">void precompute_for_left_matrix(int **A, int n, int *sumArows, double *firstItemOfRowBarSumArows, double *inverseOfEachSumArows, int **first_item_sub_all) {
-    for (int i = 0; i < n; i++) {
-        sumArows[i] = 0;
-        for (int j = 0; j < n; j++) {
-            sumArows[i] += A[i][j];
-        }
-        inverseOfEachSumArows[i] = (sumArows[i] != 0) ? 1.0 / sumArows[i] : 0;
-        firstItemOfRowBarSumArows[i] = (sumArows[i] != 0) ? (double)A[i][0] / sumArows[i] : 0;
-    }
-    for (int i = 0; i < n; i++) {
-        for (int j = 1; j < n; j++) {
-            first_item_sub_all[i][j - 1] = A[i][j] - A[i][0];
-        }
-    }
-}
 
-void precompute_for_right_matrix(int **B, int n, int *sumBcols, double *inverseOfEachSumBcols) {
-    for (int i = 0; i < n; i++) {
-        sumBcols[i] = 0;
-        for (int j = 0; j < n; j++) {
-            sumBcols[i] += B[j][i];
-        }
-        inverseOfEachSumBcols[i] = (sumBcols[i] != 0) ? 1.0 / sumBcols[i] : 0;
-    }
-}
-
-void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n,
-                                      int *sumArows, int *sumBcols,
-                                      double *firstItemOfRowBarSumArows,
-                                      double *inverseOfEachSumArows, double *inverseOfEachSumBcols,
-                                      int **first_item_sub_all) {
-    for (int a_idx = 0; a_idx < n; a_idx++) {
-        double sa_a_idx = sumArows[a_idx];
-        double fiorbsa_a_idx = firstItemOfRowBarSumArows[a_idx];
-        double ioesa_a_idx = inverseOfEachSumArows[a_idx];
-        for (int b_idx = 0; b_idx < n; b_idx++) {
-            double beta = 0;
-            for (int i = 1; i < n; i++) {
-                beta += B[i][b_idx] * first_item_sub_all[a_idx][i - 1];
-            }
-            double alpha = fiorbsa_a_idx + (beta * ioesa_a_idx * inverseOfEachSumBcols[b_idx]);
-            C[a_idx][b_idx] = (int)round(sa_a_idx * sumBcols[b_idx] * alpha);
-        }
-    }
-}</code></pre>
-      </div>
     
       <h2 class="text-2xl md:text-3xl font-bold mt-8 mb-4">Algorithm Performance Analysis</h2>
       <div class="space-y-4">
         <p>This reuse operation significantly helps my algorithm to beat the standard 3-loop algorithm.</p>
         <p>I tested my code on one type of CPU architecture only. I need to check more about this.</p>
-        <p>When I completed my testing on my machine, I noticed that my algorithm performed at an average speed of <span class="font-bold text-red-600 dark:text-red-400">1.28x</span> compared to the standard 3-loop implementation in <span class="font-bold text-red-600 dark:text-red-400">C</span> (Thanks to ChatGPT & Claude AI for converting my Python code to C).</p>
-        <p>The next step is to test on different systems and environments. I also need to think about how I can format the <span class="font-bold text-red-600 dark:text-red-400">beta value</span> and separate the its multiplicative terms and memory consumption.</p>
+        <p>When I completed my testing on my machine, I noticed that my algorithm performed at an average speed of <span class="font-bold text-black-600 dark:text-black-400">1.28x</span> compared to the standard 3-loop implementation in <span class="font-bold text-black-600 dark:text-black-400">C</span> (Thanks to ChatGPT & Claude AI for converting my Python code to C).</p>
+        <p>The next step is to test on different systems and environments. I also need to think about how I can format the <span class="font-bold text-black-600 dark:text-black-400">beta value</span> and separate the its multiplicative terms and memory consumption.</p>
         <p>I am definitely using extra space, so I need to check how to reduce that.</p>
-        <p>When you simplify my equation, you will get <span class="font-bold text-red-600 dark:text-red-400">ax + by + cz</span>, the original equation. But instead of solving it directly, what I did was:</p>
+        <p>When you simplify my equation, you will get <span class="font-bold text-black-600 dark:text-black-400">ax + by + cz</span>, the original equation. But instead of solving it directly, what I did was:</p>
       </div>
     
       <ul class="list-disc list-inside space-y-2 my-6 ml-4">
-        <li>First, I looked for a way to <span class="font-bold text-red-600 dark:text-red-400">reuse computed values</span>.</li>
-        <li>For that, I created a <span class="font-bold text-red-600 dark:text-red-400">dummy equation</span> and started finding a <span class="font-bold text-red-600 dark:text-red-400">balancer</span> to make my dummy equation true.</li>
+        <li>First, I looked for a way to <span class="font-bold text-black-600 dark:text-black-400">reuse computed values</span>.</li>
+        <li>For that, I created a <span class="font-bold text-black-600 dark:text-black-400">dummy equation</span> and started finding a <span class="font-bold text-black-600 dark:text-black-400">balancer</span> to make my dummy equation true.</li>
         <li>This separation helps me reuse computed values and modify the existing standard algorithm.</li>
       </ul>
     
@@ -275,12 +223,12 @@ void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n,
       </div>
 
         <div class="space-y-4 my-6">
-          <p>When you closely compare my algorithm and the standard one in <span class="font-bold text-red-600 dark:text-red-400">C implementation</span>, you will notice there is <span class="font-bold text-red-600 dark:text-red-400">only one change</span>:</p>
-          <p>In the innermost loop, I iterate only <span class="font-bold text-red-600 dark:text-red-400">n-1</span> times. We calculate all the reusable values at the beginning of the calculations, and during multiplication, we use those values to achieve O(n * n * (n - 1)).</p>
+          <p>When you closely compare my algorithm and the standard one in <span class="font-bold text-black-600 dark:text-black-400">C implementation</span>, you will notice there is <span class="font-bold text-black-600 dark:text-black-400">only one change</span>:</p>
+          <p>In the innermost loop, I iterate only <span class="font-bold text-black-600 dark:text-black-400">n-1</span> times. We calculate all the reusable values at the beginning of the calculations, and during multiplication, we use those values to achieve O(n * n * (n - 1)).</p>
           <p>This algorithm has some limitations</p>
           <ul>
-            <li>This method applies only to <span class="font-bold text-red-600 dark:text-red-400">two identical n × n matrices</span>.</li>
-            <li>It will not give accurate results for <span class="font-bold text-red-600 dark:text-red-400">decimal</span> values.</li>
+            <li>This method applies only to <span class="font-bold text-black-600 dark:text-black-400">two identical n × n matrices</span>.</li>
+            <li>It will not give accurate results for <span class="font-bold text-black-600 dark:text-black-400">decimal</span> values.</li>
           </ul>        
         </div>
 
@@ -294,7 +242,7 @@ void alpha_beta_matrix_multiplication(int **A, int **B, int **C, int n,
         </ul>
               
 
-        <p style="margin-top: 2em;margin-bottom: 1em; text-align: center;font-weight: bold;">For full detail explanation: <a style="color: blue;" target="_blank" href="https://zenodo.org/records/15065128?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImUzNjU1ZDIzLTNhMWMtNDg4My04NTIyLThhZDAyZmE2NjE0MCIsImRhdGEiOnt9LCJyYW5kb20iOiJhZWQzOTY1MGU4MzRkNWVkMmJiYzhiNWRhODJhNjE4MyJ9.AowsHUSR5_RpuNn9S9L0F3ecvARIAgEh3zTVeEKWW11xIr6MXfl8EJ_aVqs9F9dDOs6aJFYtNkhAgggmc7Xj4w">Click here</a></p>
+        <p style="margin-top: 2em;margin-bottom: 1em; text-align: center;font-weight: bold;">For full detail explanation: <a style="text-decoration: underline;" target="_blank" href="https://zenodo.org/records/15065128?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImUzNjU1ZDIzLTNhMWMtNDg4My04NTIyLThhZDAyZmE2NjE0MCIsImRhdGEiOnt9LCJyYW5kb20iOiJhZWQzOTY1MGU4MzRkNWVkMmJiYzhiNWRhODJhNjE4MyJ9.AowsHUSR5_RpuNn9S9L0F3ecvARIAgEh3zTVeEKWW11xIr6MXfl8EJ_aVqs9F9dDOs6aJFYtNkhAgggmc7Xj4w">Click here</a></p>
         <h3 class="text-xl md:text-2xl font-bold mt-8 mb-4">Execution Time Comparison in C Implementation</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">

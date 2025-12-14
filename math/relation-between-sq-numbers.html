@@ -42,45 +42,48 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">Relationships Between Squares</h2>
+  <main class="container mx-auto p-6 math-content">
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">Relationships Between Squares</h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
-    <div class="mt-12">
-      
-      <p style="margin-bottom: 1em;">Interesting relationships between squares based on the relative size of the numbers:</p>
+    
+    <p style="margin-bottom: 0.75em;">Interesting relationships between squares based on the relative size of the numbers:</p>
 
-      <div >
-        <h4 class="text-xl font-semibold mb-3" style="text-align: left;">Case 1: When \(x > n\)</h4>
-        <p class="math">\( n^2 = x^2 + (x-n) - 2\left[(n+1) + (n+2) + \ldots + x\right] \)</p>
-        
-        
-        <h4 class="text-xl font-semibold mt-6 mb-3" style="text-align: left;">Case 2: When \(x < n\)</h4>
-        <p class="math">\( n^2 = x^2 + (x-n) + 2\left[n + (n-1) + \ldots + (x+1)\right] \)</p>
-        
+    <div>
+      <h4 class="text-xl font-semibold mb-2" style="text-align: left; margin-top: 0.75em;">Case 1: When x > n</h4>
+      <div class="math-display">
+        \[ n^2 = x^2 + (x-n) - 2\left[(n+1) + (n+2) + \ldots + x\right] \]
       </div>
       
+      <h4 class="text-xl font-semibold mb-2" style="text-align: left; margin-top: 0.75em;">Case 2: When x < n</h4>
+      <div class="math-display">
+        \[ n^2 = x^2 + (x-n) + 2\left[n + (n-1) + \ldots + (x+1)\right] \]
+      </div>
+    </div>
+    
+    <p class="text-xl font-semibold mb-2" style="margin-top: 1em;">Let's verify these formulas with some examples:</p>
+    
+    <div>
+      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 1:</strong> Let n = 3 and x = 5 (Case 1: x > n)</p>
+      <div class="math-display">
+        \begin{align}
+        3^2 &= 5^2 + (5-3) - 2\left[(3+1) + (3+2) + 5\right] \\
+        9 &= 25 + 2 - 2\left[4 + 5 + 5\right] \\
+        9 &= 27 - 2 \cdot 14 \\
+        9 &= 27 - 28 \\
+        9 &= 9
+        \end{align}
+      </div>
       
-      <p class="text-xl font-semibold mb-3" style="margin-top: 1em;">Let's verify these formulas with some examples:</p>
-      
-      <div>
-        <p class="text-xl font-semibold mb-3"><strong>Example 1:</strong> Let \(n = 3\) and \(x = 5\) (Case 1: \(x > n\))</p>
-        <p class="math">\begin{align}
-          3^2 &= 5^2 + (5-3) - 2\left[(3+1) + (3+2) + 5\right] \\
-          9 &= 25 + 2 - 2\left[4 + 5 + 5\right] \\
-          9 &= 27 - 2 \cdot 14 \\
-          9 &= 27 - 28 \\
-          9 &= 9
-          \end{align}</p>
-        
-        <p class="text-xl font-semibold mb-3"><strong>Example 2:</strong> Let \(n = 5\) and \(x = 2\) (Case 2: \(x < n\))</p>
-        <p class="math">\begin{align}
+      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 2:</strong> Let n = 5 and x = 2 (Case 2: x < n)</p>
+      <div class="math-display">
+        \begin{align}
         5^2 &= 2^2 + (2-5) + 2\left[5 + 4 + 3\right] \\
         25 &= 4 - 3 + 2\left[12\right] \\
         25 &= 1 + 24 \\
         25 &= 25
-        \end{align}</p>
+        \end{align}
       </div>
     </div>
 

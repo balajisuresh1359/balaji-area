@@ -42,9 +42,9 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 1em;">
-      The first two decimal digits of the \((n+1)^{\text{th}}\) number square root using \(\sqrt{n}\)
+  <main class="container mx-auto p-6 math-content">
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">
+      The first two decimal digits of the(n+1)th number square root using sqrt of n
     </h2>
     <hr>
 
@@ -52,7 +52,7 @@
     <p>Everything follows a pattern, we just need to observe it.</p>
     <p>First let's see some numbers here:</p>
     
-    <div class="math">
+    <div class="math-display">
       \[
       \begin{aligned}
         (\sqrt{3} + \sqrt{4})^2 &= 13.9 \\
@@ -63,21 +63,19 @@
       \]
     </div>
     
-    <p>It is in arithmetic progression with common difference \( d = 4 \)!</p>
+    <p>It is in arithmetic progression with common difference d = 4</p>
   
-    <div class="math">
-      \[
-      a_n = a_1 + (m-1)d
-      \]
+    <div class="math-display">
+      \[ a_n = a_1 + (m-1)d \]
     </div>
   
-    <p>I started the sequence with \( 3 \), so to map accordingly, \( m \) will be \( n-2 \).</p>
-    <p>For this sequence: \( a_1 = 13.9 \), \( d = 4 \)</p>
+    <p>I started the sequence with 3 so to map accordingly, m will be n-2.</p>
+    <p>For this sequence: a_1 = 13.9, d = 4</p>
   
     <p>Okay, what next?</p>
     <p>Let's define the series in one equation:</p>
   
-    <div class="math">
+    <div class="math-display">
       \[
       \begin{aligned}
         (\sqrt{n+1} + \sqrt{n})^2 &= X \\
@@ -88,15 +86,13 @@
   
     <p>Rearranging for the term with the square root:</p>
   
-    <div class="math">
-      \[
-      \sqrt{n^2+n} = \frac{X - 2n - 1}{2}
-      \]
+    <div class="math-display">
+      \[ \sqrt{n^2+n} = \frac{X - 2n - 1}{2} \]
     </div>
   
-    <p>We know what \( X \) is, and it follows an arithmetic progression, so let's substitute that:</p>
+    <p>We know what X is, and it follows an arithmetic progression, so let's substitute that:</p>
   
-    <div class="math">
+    <div class="math-display">
       \[
       \begin{aligned}
         \sqrt{n^2+n} &= \frac{13.9 + (n-3)(4) - 2n - 1}{2} \\
@@ -107,9 +103,9 @@
       \]
     </div>
   
-    <p>After performing calculations with many numbers using this equation, adding an extra \( 0.04 \) gives more accuracy, so I'm adding it too:</p>
+    <p>After performing calculations with many numbers using this equation, adding an extra 0.04 gives more accuracy, so I'm adding it too:</p>
   
-    <div class="math">
+    <div class="math-display">
       \[
       \begin{aligned}
         \sqrt{n^2+n} &\approx n + 0.49 \\
@@ -120,16 +116,14 @@
   
     <p>From this, we can derive:</p>
   
-    <div class="math">
-      \[
-      \sqrt{n+1} \approx \sqrt{n} + \frac{0.49}{\sqrt{n}}
-      \]
+    <div class="math-display">
+      \[ \sqrt{n+1} \approx \sqrt{n} + \frac{0.49}{\sqrt{n}} \]
     </div>
   
     <p>Let's try with one number:</p>
-    <p>\( n = 1234 \)</p>
+    <p>n = 1234</p>
   
-    <div class="math">
+    <div class="math-display">
       \[
       \begin{aligned}
         \sqrt{n+1} &= \sqrt{1234+1} \\
@@ -142,14 +136,12 @@
       \]
     </div>
   
-    <p>Our interest is in the first 2 decimal digits, so: **35.14**</p>
+    <p>Our interest is in the first 2 decimal digits, so: 35.14</p>
   
-    <p>What is the actual \( (n+1) \) square root value?</p>
+    <p>What is the actual (n+1) square root value?</p>
   
-    <div class="math">
-      \[
-      \sqrt{1234+1} = \sqrt{1235} = 35.142566782
-      \]
+    <div class="math-display">
+      \[ \sqrt{1234+1} = \sqrt{1235} = 35.142566782 \]
     </div>
   
     <p>We got those 2 digits!</p>

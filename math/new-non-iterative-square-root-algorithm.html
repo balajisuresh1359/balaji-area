@@ -95,8 +95,8 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
-    <h1 style="margin-top: 2em;" class="text-4xl font-bold mb-4" style="margin-top: 1em;">New Non-Iterative Square Root Algorithm: MXB</h1 style="margin-top: 2em;">
+  <main class="container mx-auto p-6 math-content">
+    <h1 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">New Non-Iterative Square Root Algorithm: MXB</h1>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">March 17, 2025</span></p>
@@ -105,7 +105,7 @@
         <p>The computation of square roots has been a fundamental mathematical operation for thousands of years, with numerous algorithms developed throughout history. From the Babylonian method to Newton-Raphson iteration and modern hardware implementations, mathematicians and computer scientists have continually sought faster and more accurate approaches. Despite this rich history, most square root algorithms share a common limitation: they require iterative processes to achieve high precision. This paper introduces a new non-iterative formula that calculates square roots with remarkable accuracy in a single computational step, offering potential advantages for applications where computational efficiency is paramount.</p>
     </div>
     
-    <h1 style="margin-top: 2em;">Introduction</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Introduction</h1>
     <p>In this MXB square root method, we need to find the nearest perfect square to the number. First, notice that there are 2n+1 parts between n² and (n+1)². This means we can split the interval between n and n+1 into 2n+1 equal parts.</p>
     
     <p><strong>Example:</strong> For numbers 4 &amp; 5, 4² = 16 and 5² = 25. Between 4 and 5, consider one rectangle with the starting point at 4 and ending at 5. We can split this rectangle into 9 (2(4)+1) parts equally, each box having a width of 1/(2n+1). This is a mathematical fact.</p>
@@ -144,7 +144,7 @@
     <div class="caption">Figure 3: Square roots between 15 and 16</div>
 
     
-    <h1 style="margin-top: 2em;">Analysis of Differences</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Analysis of Differences</h1>
     <p>Differences between consecutive square roots from √16 to √25:</p>
     
     <table>
@@ -207,7 +207,7 @@
     
     <p>We can't rely solely on these distributions, but we can use them for our calculations.</p>
     
-    <h1 style="margin-top: 2em;">Derivation of the Formula</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Derivation of the Formula</h1>
     <p>To find the square root of any number, we need:</p>
     <ol>
         <li>The nearest perfect square number that is smaller than our target number. Let's call this b.</li>
@@ -268,17 +268,17 @@
     
     <p>This is MXB Square Root formula to find the value of a if x lies between b² and (b+1)².</p>
     
-    <h1 style="margin-top: 2em;">Theoretical Foundation</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Theoretical Foundation</h1>
     <p>The choice of 1/(2b+1) as an approximation for a in MXB formula has a solid theoretical foundation. When we analyze the interval between consecutive integers n and n+1, we observe that there are exactly 2n+1 distinct perfect squares between n² and (n+1)². This mathematical property allows us to divide the interval between √(n²) and √((n+1)²) (or simply between n and n+1) into 2n+1 equal parts.</p>
     
     <p>Each part has a width of 1/(2n+1). In MXB formula, b represents the integer square root of our target number (equivalent to n in this explanation), so the width of each part becomes 1/(2b+1). This value serves as our initial approximation to stop the infinite substitution chain in our recursive formula.</p>
     
     <p>While this approximation alone is not sufficient for high precision (as demonstrated in our earlier example with the square root of 18), it provides a critical starting point for our non-iterative approach. By incorporating this value into our more sophisticated formula, we achieve the remarkable accuracy demonstrated in our results.</p>
     
-    <h1 style="margin-top: 2em;">Complexity Analysis</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Complexity Analysis</h1>
     <p>One of the primary advantages of our non-iterative square root algorithm is its computational efficiency. Let's analyze its complexity and compare it with traditional approaches.</p>
     
-    <h1 style="margin-top: 2em;">Time Complexity</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Time Complexity</h1>
     <p>MXB algorithm has a time complexity of O(1) (constant time) because it performs a fixed number of arithmetic operations regardless of the input size. The operations include:</p>
     <ul>
         <li>Finding the largest perfect square less than the input (O(1) using built-in square root functions)</li>
@@ -287,10 +287,10 @@
     
     <p>In contrast, iterative methods like Newton-Raphson or the Babylonian method have a time complexity of O(log n) where n represents the required precision. This is because they need multiple iterations to converge to the desired accuracy.</p>
     
-    <h1 style="margin-top: 2em;">Space Complexity</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Space Complexity</h1>
     <p>MXB algorithm has a space complexity of O(1) since it requires only a constant amount of memory regardless of the input size.</p>
     
-    <h1 style="margin-top: 2em;">Performance Considerations</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Performance Considerations</h1>
     <p>While traditional iterative methods may require 5-10 iterations to achieve high precision, our formula delivers comparable precision in a single step. This makes our approach particularly valuable for:</p>
     <ul>
         <li>Real-time applications where computational latency is critical</li>
@@ -298,7 +298,7 @@
         <li>High-throughput scenarios requiring numerous square root calculations</li>
     </ul>
     
-    <h1 style="margin-top: 2em;">Comparison with Existing Methods</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Comparison with Existing Methods</h1>
     <p>To understand the advantages and potential limitations of our non-iterative approach, let's compare it with traditional square root algorithms.</p>
     
     <table>
@@ -360,7 +360,7 @@
         </tr>
     </table>
     
-    <h1 style="margin-top: 2em;">Accuracy Comparison</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Accuracy Comparison</h1>
     <p>The MXB formula demonstrates remarkable accuracy with a mean absolute error of 2.28 × 10<sup>-7</sup>, which is approximately 1.35 × 10<sup>8</sup> times more accurate than Newton's method with 5 iterations. Similarly, the maximum error observed for the MXB formula (1.28 × 10<sup>-3</sup>) is approximately 6 × 10<sup>4</sup> times smaller than Newton's method's maximum error.</p>
     
     <table>
@@ -382,20 +382,20 @@
         </tr>
     </table>
     
-    <h1 style="margin-top: 2em;">Key Advantages</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Key Advantages</h1>
     <ul>
         <li><strong>Computational Efficiency:</strong> Our method requires only one computational step versus multiple iterations.</li>
         <li><strong>Predictable Performance:</strong> Unlike iterative methods whose convergence speed can vary, our formula delivers consistent results in constant time.</li>
         <li><strong>Simplicity:</strong> The implementation is straightforward, requiring only basic arithmetic operations.</li>
     </ul>
     
-    <h1 style="margin-top: 2em;">Potential Limitations</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Potential Limitations</h1>
     <ul>
         <li><strong>Small Numbers:</strong> As demonstrated in our analysis, the formula shows slightly higher error rates for smaller numbers compared to very large numbers.</li>
         <li><strong>Special Cases:</strong> Edge cases like perfect squares or numbers very close to perfect squares might benefit from special handling for optimal performance.</li>
     </ul>
     
-    <h1 style="margin-top: 2em;">Example Calculation</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Example Calculation</h1>
     <p>Let's try an example to make this clear. What is the square root of 52?
     The nearest perfect square smaller than 52 is 49, with square root 7.
     So, b = 7, b² = 49, and m = 52 - 49 = 3.
@@ -424,7 +424,7 @@
     </div>
     <div class="caption">Figure 6: Square root of 52</div>
     
-    <h1 style="margin-top: 2em;">Verification with Large Numbers</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Verification with Large Numbers</h1>
     <p>To demonstrate the exceptional accuracy of our formula, I tested it with 10 randomly generated large numbers ranging from 100,000 to 1,000,000,000. The results confirm the formula's precision and efficiency.</p>
     
     <table>
@@ -511,7 +511,7 @@
     <p><strong>Average absolute error:</strong> 5.82 × 10<sup>-12</sup><br>
     <strong>Average relative error:</strong> 2.05 × 10<sup>-14</sup> %</p>
     
-    <h1 style="margin-top: 2em;">Validation by Squaring Results</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Validation by Squaring Results</h1>
     <p>To further verify the accuracy, I squared each calculated square root to check how closely the result matches the original number:</p>
     
     <table>
@@ -573,7 +573,7 @@
         </tr>
     </table>
     
-    <h1 style="margin-top: 2em;">Analysis of Results</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Analysis of Results</h1>
     <p>The formula performs exceptionally well:</p>
     <ol>
         <li><strong>Accuracy:</strong> The absolute errors are extremely small, on the order of 10<sup>-11</sup> or smaller. For 8 out of 10 numbers, the formula produces results numerically identical to traditional square root functions (to the precision shown).</li>
@@ -583,11 +583,11 @@
     
     <p>This verification confirms that the formula works particularly well for large numbers, aligning with our earlier observation that the distribution of square roots appears more evenly spaced at larger values. This non-iterative formula provides square root calculations with precision comparable to traditional methods but without requiring iterations, demonstrating its practical value for computational applications.</p>
     
-    <h1 style="margin-top: 2em;">Algorithm Implementation</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Algorithm Implementation</h1>
     <p>The algorithm can be formalized in pseudocode as follows:</p>
     
     <div class="algorithm">
-        <h1 style="margin-top: 2em;">Algorithm: MXB Non-Iterative Square Root</h1 style="margin-top: 2em;">
+        <h1 style="margin-top: 0.75em; margin-bottom: 0.5em;">Algorithm: MXB Non-Iterative Square Root</h1>
         <ol>
             <li>Function NonIterativeSqrt(x):
                 <ul>
@@ -603,11 +603,11 @@
         </ol>
     </div>
     
-    <h1 style="margin-top: 2em;">What Makes This Formula Special</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">What Makes This Formula Special</h1>
     <p>Unlike traditional approaches that require iteration or sacrifice accuracy, this formula delivers excellent precision to the decimal places instantly.
     For example, calculating square root of 52 yields 7.211102587—virtually identical to the true value.</p>
     
-    <h1 style="margin-top: 2em;">Key Advantages</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Key Advantages</h1>
     <ul><li>Single-Step Calculation: No iteration required</li>
         <li>Exceptional Accuracy: Precision that rivals iterative methods</li>
         <li>Universal Application: Works across the entire natural number system</li>
@@ -615,7 +615,7 @@
         <li>Mathematical Innovation: A fresh approach to one of the oldest mathematical operations!</li>
     </ul>
     
-    <h1 style="margin-top: 2em;">Conclusion</h1 style="margin-top: 2em;">
+    <h1 style="margin-top: 1em; margin-bottom: 0.5em;">Conclusion</h1>
     <p>This paper presents a new non-iterative approach to square root computation that achieves high precision without the need for iterative refinement. The formula leverages mathematical properties of square roots and their distribution to provide accurate results in a single calculation step. As demonstrated through extensive testing with large numbers, the method produces results with negligible error rates, often matching traditional methods to machine precision. In computational environments where iterative methods are impractical or inefficient, such as certain embedded systems or real-time applications, this formula offers a viable alternative.</p>
     <p>Future work could explore potential optimizations of the formula for specific number ranges, applications to other root calculations, and hardware implementations that could further leverage the non-iterative nature of this approach.</p>
 

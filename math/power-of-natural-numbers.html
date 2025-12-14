@@ -42,31 +42,39 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em;margin-bottom: 1em;">New Formula for Powers of Natural Numbers</h2>
+  <main class="container mx-auto p-6 math-content">
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">New Formula for Powers of Natural Numbers</h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
     
     <p>In this post, I present a new pattern for expressing \(n^p\) in terms of sums of powers of integers from 2 to 6.</p>
 
-    
-    <p>The following formulas express powers of n in terms of n and sums of powers:</p>
+    <p style="margin-top: 0.75em;">The following formulas express powers of n in terms of n and sums of powers:</p>
 
-    <div class="p-6 rounded-lg my-6">
-      <p style="margin-bottom: 1em;">\( n^2 = n + 2\sum_{k=1}^{n-1} k \)</p>
+    <div style="margin: 0.75em 0;">
+      <div class="math-display">
+        \[ n^2 = n + 2\sum_{k=1}^{n-1} k \]
+      </div>
       
-      <p style="margin-bottom: 1em;">\( n^3 = n + 3\left[\sum_{k=1}^{n-1} k + \sum_{k=1}^{n-1} k^2\right] \)</p>
+      <div class="math-display">
+        \[ n^3 = n + 3\left[\sum_{k=1}^{n-1} k + \sum_{k=1}^{n-1} k^2\right] \]
+      </div>
       
-      <p style="margin-bottom: 1em;">\( n^4 = n + 4\left[\sum_{k=1}^{n-1} k + \frac{3}{2}\sum_{k=1}^{n-1} k^2 + \sum_{k=1}^{n-1} k^3\right] \)</p>
+      <div class="math-display">
+        \[ n^4 = n + 4\left[\sum_{k=1}^{n-1} k + \frac{3}{2}\sum_{k=1}^{n-1} k^2 + \sum_{k=1}^{n-1} k^3\right] \]
+      </div>
       
-      <p style="margin-bottom: 1em;">\( n^5 = n + 5\left[\sum_{k=1}^{n-1} k + \frac{1}{2}\sum_{k=1}^{n-1} k^2 + \frac{1}{2}\sum_{k=1}^{n-1} k^3 + \sum_{k=1}^{n-1} k^4\right] \)</p>
+      <div class="math-display">
+        \[ n^5 = n + 5\left[\sum_{k=1}^{n-1} k + \frac{1}{2}\sum_{k=1}^{n-1} k^2 + \frac{1}{2}\sum_{k=1}^{n-1} k^3 + \sum_{k=1}^{n-1} k^4\right] \]
+      </div>
       
-      <p style="margin-bottom: 1em;">\( n^6 = n + 6\left[\sum_{k=1}^{n-1} k + \frac{5}{2}\sum_{k=1}^{n-1} k^2 + \frac{10}{3}\sum_{k=1}^{n-1} k^3 + \frac{5}{2}\sum_{k=1}^{n-1} k^4 + \sum_{k=1}^{n-1} k^5\right] \)</p>
+      <div class="math-display">
+        \[ n^6 = n + 6\left[\sum_{k=1}^{n-1} k + \frac{5}{2}\sum_{k=1}^{n-1} k^2 + \frac{10}{3}\sum_{k=1}^{n-1} k^3 + \frac{5}{2}\sum_{k=1}^{n-1} k^4 + \sum_{k=1}^{n-1} k^5\right] \]
+      </div>
     </div>
 
-    
-    <p>Notice that all formulas begin with n and then add a multiple of various sums. This reveals a fascinating relationship between powers of n and the sums of powers of integers less than n.</p>
+    <p style="margin-top: 0.75em;">Notice that all formulas begin with n and then add a multiple of various sums. This reveals a fascinating relationship between powers of n and the sums of powers of integers less than n.</p>
   </main>
   <footer class="bg-gray-700 text-white text-center p-4 mt-8">
     <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>

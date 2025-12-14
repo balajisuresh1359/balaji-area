@@ -42,58 +42,58 @@
       <a href="../contact.html" class="py-2">Contact</a>
     </div>
   </nav>
-  <main class="container mx-auto p-6">
+  <main class="container mx-auto p-6 math-content">
     <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 1em;">New way to find the Sum of natural numbers</h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
 
-    <p style="margin-bottom: 1em;">For any positive integers \( a, b, c, d, e \):</p>
-    <p style="font-weight: bold;margin-top: 1em;margin-bottom: 1em;font-size: larger;">
+    <p>For any positive integers a, b, c, d, e:</p>
+    <p style="font-weight: 600; margin: 0.5em 0; font-size: var(--p-size); line-height: 1.5;">
       S(a + b + c + d + e ... ) = {Sum of the all combination product of the given variables} + S(a) + S(b) + S(c) + S(d) + S(e) + ..
     </p>
 
-    <p>For 3 variable equation:</p>
-  \[
-    S(x + y + z) = xy + yz + zx + S(x) + S(y) + S(z)
-  \]
+    <p style="margin-top: 0.75em;">For 3 variable equation:</p>
+    <div class="math-display">
+      S(x + y + z) = xy + yz + zx + S(x) + S(y) + S(z) 
+    </div>
 
-    <p>where \( S(n) \):</p>
-    \[
-      S(n) = \frac{n(n+1)}{2}
-    \]
+    <p style="margin-top: 0.75em;">where S(n):</p>
+    <div class="math-display">
+      \[ S(n) = \frac{n(n+1)}{2} \]
+    </div>
   
-    <p style="margin-bottom: 1em;">Example:</p>
-    <p style="margin-bottom: 1em;">Let \( x = 5 \), \( y = 4 \), and \( z = 8 \):</p>
-    <ul>
-      <li>
-        \[
-          (5 \times 4) + (5 \times 8) + (4 \times 8) = 20 + 40 + 32 = 92
-        \]
+    <p style="margin-top: 1em;">Example:</p>
+    <p>Let  x = 5 ,  y = 4 , and  z = 8 :</p>
+    <ul style="padding-left: 1.5em; margin: 0.5em 0;">
+      <li style="margin: 0.25em 0;">
+        <div class="math-display">
+          \[ (5 \times 4) + (5 \times 8) + (4 \times 8) = 20 + 40 + 32 = 92 \]
+        </div>
       </li>
-      <li>
-        \[
-          S(5) = 15,\quad S(4) = 10,\quad S(8) = 36
-        \]
+      <li style="margin: 0.25em 0;">
+        <div class="math-display">
+          S(5) = 15, S(4) = 10, S(8) = 36 
+        </div>
       </li>
-      <li>
-        \[
+      <li style="margin: 0.25em 0;">
+        <div class="math-display">
           15 + 10 + 36 = 61
-        \]
+        </div>
       </li>
-      <li>Total:
-        \[
+      <li style="margin: 0.25em 0;">Total:
+        <div class="math-display">
           92 + 61 = 153
-        \]
+        </div>
       </li>
-      <li>Also:
-        \[
-          S(5+4+8) = S(17) = \frac{17\times18}{2} = 153
-        \]
+      <li style="margin: 0.25em 0;">Also:
+        <div class="math-display">
+          \[ S(5+4+8) = S(17) = \frac{17\times18}{2} = 153 \]
+        </div>
       </li>
     </ul>
 
-    <p style="margin-bottom: 1em;">We can use any number of variables in any order.</p>
+    <p>We can use any number of variables in any order.</p>
 
   
   </main>
