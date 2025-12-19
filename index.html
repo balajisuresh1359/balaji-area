@@ -1,118 +1,113 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google" content="notranslate">
-  <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.balaji-blog">
-  <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio, blogs">
-  <meta name="author" content="Balaji">
-  <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
-  <link rel="canonical" href="https://balajisuresh1359.github.io/balaji-area/blog/index.html">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Balaji | Blog</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="../styles/index.css" rel="stylesheet">
-  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script defer src="../script/common.js"></script>
-  <style>
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    }
-    .blog-card img {
-      transition: transform 0.3s ease-in-out;
-    }
-    .blog-card:hover img {
-      transform: scale(1.05);
-    }
-    .blog-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    @media (max-width: 640px) {
-      .blog-card {
-        margin-bottom: 1rem;
-      }
-    }
-  </style>
-  </head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.">
+    <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio">
+    <meta name="author" content="Balaji">
+    <meta name="google" content="notranslate">
+    <meta property="og:title" content="Balaji Suresh — Portfolio and Notes">
+    <meta property="og:description" content="Personal website for projects, tech notes, math ideas and blog updates.">
+    <meta property="og:url" content="https://balajisuresh1359.github.io/balaji-area/">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
+    <link rel="canonical" href="https://balajisuresh1359.github.io/balaji-area/index.html">
+    <meta name="google-site-verification" content="wmCgxhNJfd7LGZIkt53jKtVMquzXvEWSTbwm42DRhis" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./styles/index.css" rel="stylesheet">
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script defer src="./script/common.js"></script>
+</head>
 <body class="dark:bg-gray-900 dark:text-white">
     <nav class="bg-gray-800 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-        <a href="../index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
+        <a href="./index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
         <div class="flex items-center">
             <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
             <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
-        </div>        
+        </div>
         <div id="nav-links" class="hidden md:flex space-x-4 items-center">
-        <a href="./index.html" class="px-4">Blog</a>
-        <a href="../math/index.html" class="px-4">Math</a>
-        <a href="../code/index.html" class="px-4">Code</a>
-        <a href="../contact.html" class="px-4">Contact</a>
+        <a href="./blog/index.html" class="px-4">Blog</a>
+        <a href="./math/index.html" class="px-4">Math</a>
+        <a href="./code/index.html" class="px-4">Code</a>
+        <a href="./contact.html" class="px-4">Contact</a>
         <button id="theme-toggle" class="ml-4">🌙</button>
         </div>
     </div>
     <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
-      <a href="./index.html" class="px-4">Blog</a>
-      <a href="../math/index.html" class="px-4">Math</a>
-      <a href="../code/index.html" class="px-4">Code</a>
-      <a href="../contact.html" class="px-4">Contact</a>
+        <a href="./blog/index.html" class="py-2">Blog</a>
+        <a href="./math/index.html" class="py-2">Math</a>
+        <a href="./code/index.html" class="py-2">Code</a>
+        <a href="./contact.html" class="py-2">Contact</a>
     </div>
     </nav>
-    <main class="container mx-auto p-4 md:p-6">
-      <h1 class="text-4xl font-bold text-center mb-6 md:mb-8" style="text-align: left;">Blog</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
-          <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
-              <img src="./images/crypto-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
-              <div class="p-4 flex flex-col flex-1">
-                  <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">When the Old Guard Can No Longer Protect Us ⛓️‍💥</h2>
-                  <p class="text-gray-600 dark:text-gray-400 mt-2">Exploring the Evolution of Cryptography Techniques</p>
-                  <a href="https://inside.caratlane.com/when-the-old-guard-can-no-longer-protect-us-%EF%B8%8F-the-future-of-security-part-1-3d6bec98a529" class="text-black dark:text-white-400 font-semibold mt-auto inline-block" target="_blank">Continue Reading →</a>
-              </div>
-          </div>
+    <main class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center">Welcome to My Site</h1>
+        <p class="mt-2 text-lg text-center">Explore my blogs, mathematical derivations, and coding snippets.</p>
+        
 
-          <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
-            <img src="./images/help-harry-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
-            <div class="p-4 flex flex-col flex-1">
-                <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">Help Harry Finish His Project</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">A Design Pattern Game</p>
-                <a href="https://inside.caratlane.com/help-harry-finish-his-project-4f0a10134476" class="text-black dark:text-white-400 font-semibold mt-auto inline-block" target="_blank">Continue Reading →</a>
-            </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <a href="./blog/index.html" class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Blog</h2>
+                <p class="text-gray-600 dark:text-gray-400">Read my latest thoughts and insights.</p>
+            </a>
+            <a href="./math/index.html" class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Math</h2>
+                <p class="text-gray-600 dark:text-gray-400">Explore my mathematical derivations and methods.</p>
+            </a>
+            <a href="./code/index.html" class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Code</h2>
+                <p class="text-gray-600 dark:text-gray-400">Discover my coding projects and snippets.</p>
+            </a>
         </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
-          <img src="./images/pds-2-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
-          <div class="p-4 flex flex-col flex-1">
-              <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">The Power of Probabilistic Data Structures</h2>
-              <p class="text-gray-600 dark:text-gray-400 mt-2">Chapter 2 — Beyond Bloom: The Cuckoo Filter Saga</p>
-              <a href="https://inside.caratlane.com/the-power-of-probabilistic-data-structures-in-web-technology-a39545f9cdb2" class="text-black dark:text-white-400 font-semibold mt-auto inline-block" target="_blank">Continue Reading →</a>
-          </div>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
-          <img src="./images/pds-1-blog-ci.webp" alt="Blog 3" class="w-full h-48 object-cover">
-          <div class="p-4 flex flex-col flex-1">
-              <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">The Power of Probabilistic Data Structures</h2>
-              <p class="text-gray-600 dark:text-gray-400 mt-2">Chapter 1 — In the Land of Hashing: Bloom Filter Tales</p>
-              <a href="https://inside.caratlane.com/the-power-of-probabilistic-data-structures-in-web-technology-62464ed3317d" class="text-black dark:text-white-400 font-semibold mt-auto inline-block" target="_blank">Continue Reading →</a>
-          </div>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
-          <img src="./images/google-appsscript.webp" alt="Blog 3" class="w-full h-48 object-cover">
-          <div class="p-4 flex flex-col flex-1">
-              <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">Quick and Easy: Automate Email Reminders and Get Notified in Google Hangouts</h2>
-              <p class="text-gray-600 dark:text-gray-400 mt-2">Automate Email Monitoring and Notify Your Team with Google Apps Script</p>
-              <a href="https://medium.com/@balajisuresh1359/quick-and-easy-automate-email-reminders-and-get-notified-in-google-hangouts-4d9a80925cf3" class="text-black dark:text-white-400 font-semibold mt-auto inline-block" target="_blank">Continue Reading →</a>
-          </div>
-        </div>
-
-    </div>
     </main>
-
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
         <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+        <!-- Hidden Visitor Counter - Only visible to admin -->
+        <div id="visitor-counter" class="mt-3 text-sm text-gray-300 hidden">
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=balajisuresh1359.balaji-area&style=flat-square&color=4a5568&label=visitors" alt="Visitor Count" class="inline-block opacity-75">
+        </div>
     </footer>
+    
+    <script>
+        let keySequence = [];
+        const secretCode = ['KeyV', 'KeyI', 'KeyS']; // Type "vis" to show counter
+        
+        document.addEventListener('keydown', function(e) {
+            keySequence.push(e.code);
+            keySequence = keySequence.slice(-3); // Keep only last 3 keys
+            
+            if (keySequence.join('') === secretCode.join('')) {
+                const counter = document.getElementById('visitor-counter');
+                counter.classList.toggle('hidden');
+                
+                // Optional: Show notification
+                if (!counter.classList.contains('hidden')) {
+                    console.log('👁️ Visitor counter enabled');
+                } else {
+                    console.log('🔒 Visitor counter hidden');
+                }
+            }
+        });
+        
+        document.querySelector('footer').addEventListener('click', function() {
+            let clickCount = parseInt(this.dataset.clicks || 0) + 1;
+            this.dataset.clicks = clickCount;
+            
+            if (clickCount === 3) {
+                document.getElementById('visitor-counter').classList.toggle('hidden');
+                this.dataset.clicks = 0; // Reset
+            }
+            
+            setTimeout(() => {
+                this.dataset.clicks = 0;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
