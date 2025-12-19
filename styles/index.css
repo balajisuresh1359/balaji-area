@@ -33,6 +33,11 @@ body {
 main {
   flex: 1;
 }
+nav, footer { flex-shrink: 0; }
+body > section,
+body > .page,
+body > .content,
+body > .container { flex: 1 0 auto; }
 .dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
