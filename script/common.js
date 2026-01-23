@@ -310,57 +310,46 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyBrandNameWithLogo(options = {}) {
     const {
       targetText = 'BALAJI',
-      logoSrc = '/balaji-area/favicon.png',
       logoSize = 18,
       gap = 8
     } = options;
+
+    const siteRoot = (() => {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      return parts.length > 0 ? `/${parts[0]}/` : '/';
+    })();
 
     if (!document.getElementById('brand-name-style')) {
       const style = document.createElement('style');
       style.id = 'brand-name-style';
       style.textContent = `
         .brand-name {
-          font-size: 1.6rem;
-          font-weight: 800;
-          text-transform: uppercase;
-
-          color: #fff !important;
-          text-decoration: none !important;
-          text-shadow: none;
-
           display: inline-flex;
           align-items: center;
           gap: ${gap}px;
 
-          cursor: pointer;
-          -webkit-tap-highlight-color: transparent;
-          outline: none;
+          font-weight: 800;
+          text-transform: uppercase;
+          color: #fff !important;
+          text-decoration: none !important;
         }
 
         .brand-name img {
           width: ${logoSize}px;
           height: ${logoSize}px;
           object-fit: contain;
-          display: inline-block;
 
-          /* 👇 subtle rotation */
+          background: #fff;
+          padding: 2px;
+          border-radius: 4px;
+
+          /* subtle life */
           animation: slowSpin 14s linear infinite;
-          opacity: 0.9;
         }
 
         @keyframes slowSpin {
           from { transform: rotate(0deg); }
           to   { transform: rotate(360deg); }
-        }
-
-        .brand-name:visited,
-        .brand-name:hover,
-        .brand-name:active,
-        .brand-name:focus,
-        .brand-name:focus-visible {
-          color: #fff !important;
-          text-decoration: none !important;
-          outline: none;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -369,28 +358,28 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       `;
-
       document.head.appendChild(style);
     }
 
     document.querySelectorAll('a').forEach(a => {
-      if (a.textContent.trim() === targetText && !a.classList.contains('brand-name')) {
+      const text = a.textContent.replace(/\s+/g, ' ').trim().toUpperCase();
+
+      if (text === targetText && !a.classList.contains('brand-name')) {
         a.classList.add('brand-name');
 
         const img = document.createElement('img');
-        img.src = logoSrc;
+        img.src = siteRoot + 'favicon.png';
         img.alt = 'logo';
 
         a.append(img);
       }
     });
   }
-
   applyBrandNameWithLogo({
-  targetText: 'BALAJI',
-  logoSrc: '/balaji-area/favicon.png',
-  logoSize: 18
-  );
+    targetText: 'BALAJI',
+    logoSize: 18
+  });
+
 
 
 });
