@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.Relationships Between Squares">
-  <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio,Relationships Between Squares">
+  <meta name="description"
+    content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.Relationships Between Squares">
+  <meta name="keywords"
+    content="balaji suresh, balaji contacts, balaji suresh website, portfolio,Relationships Between Squares">
   <meta name="author" content="Balaji">
   <meta name="google" content="notranslate">
   <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
@@ -19,6 +22,7 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="../script/common.js"></script>
 </head>
+
 <body>
   <nav class="bg-gray-800 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
@@ -26,7 +30,7 @@
       <div class="flex items-center">
         <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
         <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
-      </div>      
+      </div>
       <div id="nav-links" class="hidden md:flex space-x-4 items-center">
         <a href="../blog/index.html" class="px-4">Blog</a>
         <a href="./index.html" class="px-4">Math</a>
@@ -43,29 +47,32 @@
     </div>
   </nav>
   <main class="container mx-auto p-6 math-content">
-    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">Relationships Between Squares</h2>
+    <h2 class="text-4xl font-bold mb-4" style="margin-top: 1em; margin-bottom: 0.75em;">Relationships Between Squares
+    </h2>
     <hr>
 
     <p class="text-gray-500 text-sm italic mb-4">Posted on: <span class="font-semibold">April 26, 2025</span></p>
-    
-    <p style="margin-bottom: 0.75em;">Interesting relationships between squares based on the relative size of the numbers:</p>
+
+    <p style="margin-bottom: 0.75em;">Interesting relationships between squares based on the relative size of the
+      numbers:</p>
 
     <div>
       <h4 class="text-xl font-semibold mb-2" style="text-align: left; margin-top: 0.75em;">Case 1: When x > n</h4>
       <div class="math-display">
         \[ n^2 = x^2 + (x-n) - 2\left[(n+1) + (n+2) + \ldots + x\right] \]
       </div>
-      
+
       <h4 class="text-xl font-semibold mb-2" style="text-align: left; margin-top: 0.75em;">Case 2: When x < n</h4>
-      <div class="math-display">
-        \[ n^2 = x^2 + (x-n) + 2\left[n + (n-1) + \ldots + (x+1)\right] \]
-      </div>
+          <div class="math-display">
+            \[ n^2 = x^2 + (x-n) + 2\left[n + (n-1) + \ldots + (x+1)\right] \]
+          </div>
     </div>
-    
+
     <p class="text-xl font-semibold mb-2" style="margin-top: 1em;">Let's verify these formulas with some examples:</p>
-    
+
     <div>
-      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 1:</strong> Let n = 3 and x = 5 (Case 1: x > n)</p>
+      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 1:</strong> Let n = 3 and x = 5
+        (Case 1: x > n)</p>
       <div class="math-display">
         \begin{align}
         3^2 &= 5^2 + (5-3) - 2\left[(3+1) + (3+2) + 5\right] \\
@@ -75,23 +82,25 @@
         9 &= 9
         \end{align}
       </div>
-      
-      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 2:</strong> Let n = 5 and x = 2 (Case 2: x < n)</p>
-      <div class="math-display">
-        \begin{align}
-        5^2 &= 2^2 + (2-5) + 2\left[5 + 4 + 3\right] \\
-        25 &= 4 - 3 + 2\left[12\right] \\
-        25 &= 1 + 24 \\
-        25 &= 25
-        \end{align}
-      </div>
+
+      <p class="text-xl font-semibold mb-2" style="margin-top: 0.75em;"><strong>Example 2:</strong> Let n = 5 and x = 2
+        (Case 2: x < n)</p>
+          <div class="math-display">
+            \begin{align}
+            5^2 &= 2^2 + (2-5) + 2\left[5 + 4 + 3\right] \\
+            25 &= 4 - 3 + 2\left[12\right] \\
+            25 &= 1 + 24 \\
+            25 &= 25
+            \end{align}
+          </div>
     </div>
 
 
   </main>
   <footer class="bg-gray-700 text-white text-center p-4 mt-8">
-    <p>© 2025 Content licensed under <a href="LICENSE" class="underline">MIT License</a>.</p>
+    <a href="/">Hercules</a>
   </footer>
 
 </body>
+
 </html>

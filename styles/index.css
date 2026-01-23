@@ -30,14 +30,65 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+footer {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+footer a {
+  display: inline-block;
+  animation: drift 8s ease-in-out infinite;
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+footer a,
+footer a:visited,
+footer a:hover,
+footer a:active,
+footer a:focus {
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: inherit;
+  text-shadow: 0.5px 0 0 currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  footer,
+  footer a {
+    animation: none;
+  }
+}
+
+
 main {
   flex: 1;
 }
-nav, footer { flex-shrink: 0; }
-body > section,
-body > .page,
-body > .content,
-body > .container { flex: 1 0 auto; }
+
+nav,
+footer {
+  flex-shrink: 0;
+}
+
+body>section,
+body>.page,
+body>.content,
+body>.container {
+  flex: 1 0 auto;
+}
+
 .dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
@@ -128,12 +179,10 @@ nav a:hover {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: rotate(30deg);
   transition: transform 0.7s ease-in-out;
   opacity: 0;
@@ -239,7 +288,8 @@ nav a:hover {
 
 /* GitHub icon specific styling for both themes */
 .contact-link.github .contact-icon i {
-  color: inherit; /* This will inherit from parent which changes based on theme */
+  color: inherit;
+  /* This will inherit from parent which changes based on theme */
 }
 
 .contact-link:hover .contact-icon {
@@ -271,12 +321,10 @@ hr {
   height: 2px;
   margin-bottom: 0.5em !important;
   margin: 2.5rem 0;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0)
-  );
+  background-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0));
   position: relative;
 }
 
@@ -296,12 +344,10 @@ hr::after {
 
 /* Dark mode styles */
 .dark hr {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0)
-  );
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0));
 }
 
 .dark hr::after {
@@ -401,6 +447,7 @@ nav .font-bold::after {
   background: linear-gradient(to right, #4299e1, #7f9cf5);
   transition: width 0.3s ease;
 }
+
 #nav-links a:hover {
   text-decoration: none !important;
   border-bottom: none !important;
@@ -426,11 +473,9 @@ nav .font-bold::after {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0));
   transition: left 0.3s ease;
 }
 
@@ -493,7 +538,7 @@ nav:hover {
     font-size: 1.5rem;
     margin-right: 0.5rem;
   }
-  
+
   #menu-toggle {
     width: 48px;
     height: 48px;
@@ -507,7 +552,7 @@ nav:hover {
     color: white;
     transition: all 0.3s ease;
   }
-  
+
   #menu-toggle:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
@@ -515,7 +560,7 @@ nav:hover {
 
 /* Navigation links container */
 /* Header actions: row on desktop, column on mobile */
-nav .container > div:last-child {
+nav .container>div:last-child {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -524,7 +569,7 @@ nav .container > div:last-child {
 }
 
 @media (max-width: 768px) {
-  nav .container > div:last-child {
+  nav .container>div:last-child {
     align-items: stretch;
     flex-direction: column;
   }
@@ -532,22 +577,27 @@ nav .container > div:last-child {
 
 #mobile-menu a {
   padding: 0.75rem 1rem;
-  background-color: #4b5563; /* bg-gray-600 */
+  background-color: #4b5563;
+  /* bg-gray-600 */
   color: white;
-  border-radius: 0.375rem; /* rounded-md */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  border-radius: 0.375rem;
+  /* rounded-md */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* shadow-md */
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500; /* font-medium */
+  font-weight: 500;
+  /* font-medium */
   font-size: var(--p-size) !important;
   text-decoration: none;
   margin-bottom: 0.5rem;
 }
 
 #mobile-menu a:hover {
-  background-color: #6b7280; /* bg-gray-500 */
+  background-color: #6b7280;
+  /* bg-gray-500 */
   transform: translateY(-1px);
   box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 5px -1px rgba(0, 0, 0, 0.06);
   text-decoration: none !important;
@@ -655,7 +705,7 @@ p {
 }
 
 /* Reduce spacing between paragraphs in math and code sections */
-main p + p {
+main p+p {
   margin-top: 0.35em;
 }
 
@@ -665,8 +715,8 @@ main.code-content p {
   margin: 0.25em 0;
 }
 
-main.math-content p + p,
-main.code-content p + p {
+main.math-content p+p,
+main.code-content p+p {
   margin-top: 0.25em;
 }
 
@@ -724,12 +774,22 @@ nav .font-bold {
 }
 
 /* Desktop theme toggle (768px and up) */
-#theme-toggle { display: inline-flex; }
-#theme-toggle-mobile { display: none !important; }
+#theme-toggle {
+  display: inline-flex;
+}
+
+#theme-toggle-mobile {
+  display: none !important;
+}
 
 @media (max-width: 768px) {
-  #theme-toggle { display: none !important; }
-  #theme-toggle-mobile { display: inline-flex !important; }
+  #theme-toggle {
+    display: none !important;
+  }
+
+  #theme-toggle-mobile {
+    display: inline-flex !important;
+  }
 }
 
 /* Mobile nav: full-width menu below header */
@@ -744,10 +804,12 @@ nav .font-bold {
     width: 100%;
     flex-wrap: wrap;
   }
-  
+
   /* Hide desktop links on mobile */
-  #nav-links { display: none !important; }
-  
+  #nav-links {
+    display: none !important;
+  }
+
   /* Mobile menu: full-width below header */
   #mobile-menu {
     width: 100%;
@@ -758,7 +820,7 @@ nav .font-bold {
     flex-direction: column;
     flex-basis: 100%;
   }
-  
+
   #mobile-menu.active {
     display: flex !important;
   }
@@ -855,7 +917,8 @@ table {
   }
 }
 
-th, td {
+th,
+td {
   padding: 0.5rem;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   white-space: nowrap;
@@ -863,26 +926,32 @@ th, td {
   text-align: left;
 }
 
-.dark th, .dark td {
+.dark th,
+.dark td {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (min-width: 768px) {
-  th, td {
+
+  th,
+  td {
     padding: 0.75rem;
     white-space: normal;
   }
 }
 
 @media (max-width: 640px) {
-  th, td {
+
+  th,
+  td {
     padding: 0.4rem;
     font-size: 0.875rem;
   }
 }
 
 /* Responsive code blocks - hide scrollbar unless content overflows */
-pre, code {
+pre,
+code {
   font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   overflow-x: auto;
   word-wrap: break-word;
@@ -1006,7 +1075,8 @@ embed[type="application/pdf"] {
 }
 
 /* Prevent horizontal scroll */
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }
@@ -1117,27 +1187,27 @@ body.modal-open {
   .text-4xl {
     font-size: var(--h1-size) !important;
   }
-  
+
   .text-3xl {
     font-size: var(--h2-size) !important;
   }
-  
+
   .text-2xl {
     font-size: var(--h3-size) !important;
   }
-  
+
   .text-xl {
     font-size: var(--h4-size) !important;
   }
-  
+
   .text-lg {
     font-size: var(--h5-size) !important;
   }
-  
+
   .text-base {
     font-size: var(--p-size) !important;
   }
-  
+
   .text-sm {
     font-size: var(--small-size) !important;
   }
@@ -1145,10 +1215,10 @@ body.modal-open {
 
 /* Ensure proper spacing on mobile */
 @media (max-width: 640px) {
-  main > * {
+  main>* {
     margin-bottom: 1rem;
   }
-  
+
   section {
     margin-bottom: 1.5rem;
   }
@@ -1174,15 +1244,15 @@ body.modal-open {
   .prose {
     font-size: 0.95rem;
   }
-  
+
   .prose h1 {
     font-size: 1.5rem;
   }
-  
+
   .prose h2 {
     font-size: 1.25rem;
   }
-  
+
   .prose h3 {
     font-size: 1.1rem;
   }
@@ -1280,8 +1350,10 @@ mjx-container::-webkit-scrollbar {
   box-sizing: border-box !important;
   font-size: var(--p-size) !important;
   /* Hide scrollbar by default, only show when content overflows */
-  scrollbar-width: none; /* Firefox - hide by default */
-  -ms-overflow-style: none; /* IE and Edge - hide by default */
+  scrollbar-width: none;
+  /* Firefox - hide by default */
+  -ms-overflow-style: none;
+  /* IE and Edge - hide by default */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -1328,9 +1400,9 @@ mjx-container::-webkit-scrollbar {
 }
 
 /* Only enable scrolling for formulas that actually overflow */
-.equation > *,
-.math-display > *,
-.math > * {
+.equation>*,
+.math-display>*,
+.math>* {
   display: inline-block !important;
   max-width: 100% !important;
 }
@@ -1375,6 +1447,7 @@ mjx-math {
 }
 
 @media (max-width: 640px) {
+
   .equation,
   .math-display,
   .math {
@@ -1386,7 +1459,7 @@ mjx-math {
     min-height: fit-content !important;
     line-height: 1.45 !important;
   }
-  
+
   /* Make MathJax responsive on mobile but show full height with proper spacing */
   .MathJax,
   mjx-container {
@@ -1396,7 +1469,7 @@ mjx-math {
     line-height: 1.45 !important;
     padding: 0.25rem 0 !important;
   }
-  
+
   /* Ensure formulas can scroll horizontally and show full height */
   .MathJax_Display,
   mjx-container[jax="CHTML"][display="true"] {
@@ -1431,6 +1504,7 @@ mjx-container {
 
 /* Additional mobile fixes for MathJax rendering - FIXED: Full height visibility */
 @media (max-width: 640px) {
+
   /* Ensure MathJax doesn't break layout and shows full height */
   .MathJax_Display {
     margin: 1.25rem 0 !important;
@@ -1439,7 +1513,7 @@ mjx-container {
     min-height: fit-content !important;
     line-height: 1.8 !important;
   }
-  
+
   /* Prevent formula overflow but allow full height */
   mjx-container[jax="CHTML"] {
     min-width: 0 !important;
@@ -1449,14 +1523,14 @@ mjx-container {
     line-height: 1.8 !important;
     padding: 0.25rem 0 !important;
   }
-  
+
   /* Formula text sizing - standardized */
   .MathJax {
     font-size: var(--p-size) !important;
     overflow-y: visible !important;
     line-height: 1.8 !important;
   }
-  
+
   /* Ensure inline math doesn't break and shows full height */
   mjx-container[jax="CHTML"][display="false"] {
     display: inline-block !important;
@@ -1480,6 +1554,7 @@ mjx-container[jax="CHTML"][display="true"] {
 }
 
 @media (max-width: 640px) {
+
   .equation,
   .math-display,
   .math {
@@ -1496,19 +1571,21 @@ mjx-container[jax="CHTML"][display="true"] {
 
 /* Improve touch targets on mobile */
 @media (max-width: 640px) {
+
   button,
   a,
   .fancy-card,
   .blog-card {
-    min-height: 44px; /* Apple's recommended touch target size */
+    min-height: 44px;
+    /* Apple's recommended touch target size */
   }
-  
+
   #menu-toggle,
   #theme-toggle,
   #theme-toggle-mobile {
     min-width: 44px;
     min-height: 44px;
-  display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -1520,7 +1597,7 @@ mjx-container[jax="CHTML"][display="true"] {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-  
+
   .container {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -1528,14 +1605,26 @@ mjx-container[jax="CHTML"][display="true"] {
 }
 
 /* Ensure proper text wrapping */
-p, li, td, th, span, div {
+p,
+li,
+td,
+th,
+span,
+div {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
 /* Ensure text is always visible - prevent clipping */
-p, li, h1, h2, h3, h4, h5, h6 {
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow: visible !important;
   text-overflow: clip !important;
 }
@@ -1584,7 +1673,7 @@ p, li, h1, h2, h3, h4, h5, h6 {
     margin: 1rem 0 !important;
     font-size: var(--p-size) !important;
   }
-  
+
   .algorithm li {
     font-size: var(--p-size) !important;
   }
@@ -1595,28 +1684,28 @@ p, li, h1, h2, h3, h4, h5, h6 {
   body {
     font-size: var(--base-font-size);
   }
-  
+
   code {
     font-size: var(--small-size);
     padding: 0.2em 0.4em;
   }
-  
+
   pre code {
     font-size: var(--small-size);
   }
-  
+
   /* Ensure all text elements are visible */
   main {
     overflow-x: hidden !important;
     overflow-y: visible !important;
   }
-  
-  main > * {
+
+  main>* {
     max-width: 100% !important;
     overflow-x: auto !important;
     overflow-y: visible !important;
   }
-  
+
   /* Caption text - standardized */
   .caption {
     font-size: var(--small-size) !important;

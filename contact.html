@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.">
@@ -26,7 +27,7 @@
     }
 
     .icon-linkedin:before {
-      content: "\f08c"; 
+      content: "\f08c";
       font-family: "Font Awesome 6 Brands";
       font-weight: 400;
     }
@@ -36,7 +37,7 @@
       font-family: "Font Awesome 6 Brands";
       font-weight: 400;
     }
-    
+
     .icon-book:before {
       content: "\f02d";
       font-family: "Font Awesome 6 Free";
@@ -49,103 +50,144 @@
       font-weight: 900;
     }
 
+    .dots::after {
+      content: '...';
+      animation: blink 2.5s infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .dots::after {
+      content: '';
+      animation: dots 1.6s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0% {
+        content: '';
+      }
+
+      25% {
+        content: '.';
+      }
+
+      50% {
+        content: '..';
+      }
+
+      75% {
+        content: '...';
+      }
+    }
   </style>
 </head>
+
 <body class="dark:bg-gray-900 dark:text-white flex flex-col min-h-screen">
   <nav class="bg-gray-800 text-white p-4">
-      <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex justify-between items-center">
       <a href="./index.html" class="font-bold text-xl">Balaji Suresh Babu</a>
       <div class="flex items-center">
         <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
         <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
       </div>
       <div id="nav-links" class="hidden md:flex space-x-4 items-center">
-      <a href="./blog/index.html" class="px-4">Blog</a>
-      <a href="./math/index.html" class="px-4">Math</a>
-      <a href="./code/index.html" class="px-4">Code</a>
-      <a href="./contact.html" class="px-4">Contact</a>
-      <button id="theme-toggle" class="ml-4">🌙</button>
+        <a href="./blog/index.html" class="px-4">Blog</a>
+        <a href="./math/index.html" class="px-4">Math</a>
+        <a href="./code/index.html" class="px-4">Code</a>
+        <a href="./contact.html" class="px-4">Contact</a>
+        <button id="theme-toggle" class="ml-4">🌙</button>
       </div>
-  </div>
-  <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+    </div>
+    <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
       <a href="./blog/index.html" class="py-2">Blog</a>
       <a href="./math/index.html" class="py-2">Math</a>
       <a href="./code/index.html" class="py-2">Code</a>
       <a href="./contact.html" class="py-2">Contact</a>
-  </div>
+    </div>
   </nav>
 
   <main class="container mx-auto p-6 flex flex-col items-center justify-center text-center flex-grow">
-    <h1 class="text-4xl font-bold mb-8">Contact Me</h1>
-    
     <div class="text-center mt-8">
-      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark">
-        Hey all,  
-        Thanks for visiting my site.  
-        I'm a software developer passionate about problem-solving and coding.  
+      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark"
+        style="font-weight: bolder;font-size: 1.5em !important;">
+        Notes, stories, and work in progress<span class="dots">.</span>
       </p>
-    </div>
-    
-    
-    <div class="contact-card" style="font-weight: bolder;">
-        <a href="mailto:balajisuresh1359@gmail.com" class="contact-link email" target="_blank" >
-          <div class="contact-icon">
-            <span class="icon-email"></span>
-          </div>
-          <span>Email</span>
-        </a>
 
-        <a href="https://www.linkedin.com/in/balaji-s-739a231a9/" target="_blank" class="contact-link linkedin">
-            <div class="contact-icon">
-              <span class="icon-linkedin"></span>
-            </div>
-            <span>LinkedIn Profile</span>
-        </a>
     </div>
-    
+
+
+    <div class="contact-card" style="font-weight: bolder;">
+      <a href="mailto:balajisuresh1359@gmail.com" class="contact-link email" target="_blank">
+        <div class="contact-icon">
+          <span class="icon-email"></span>
+        </div>
+        <span>Email</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/balaji-s-739a231a9/" target="_blank" class="contact-link linkedin">
+        <div class="contact-icon">
+          <span class="icon-linkedin"></span>
+        </div>
+        <span>LinkedIn Profile</span>
+      </a>
+    </div>
+
     <h2 class="text-2xl font-bold mt-8 mb-4">Other Links</h2>
-    
+
     <div class="contact-card" style="font-weight: bolder;">
-        <a href="https://github.com/balajisuresh1359" target="_blank" class="contact-link github">
-            <div class="contact-icon">
-              <span class="icon-github"></span>
-            </div>
-            <span>GitHub Repositories</span>
-        </a>
-        
-        <a href="https://www.royalroad.com/profile/719896" target="_blank" class="contact-link">
-            <div class="contact-icon">
-              <span class="icon-book"></span>
-            </div>
-            <span>Read My Stories on Royal Road</span>
-        </a>
+      <a href="https://www.royalroad.com/profile/719896" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <span class="icon-book"></span>
+        </div>
+        <span>Read My Stories on Royal Road</span>
+      </a>
 
-        <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Suresh%20Babu%2C%20Balaji%22&l=list&p=1&s=10&sort=bestmatch" target="_blank" class="contact-link">
-          <div class="contact-icon">
-            <span class="icon-book"></span>
-          </div>
-          <span>Read My Papers</span>
-        </a>
+      <a href="https://github.com/balajisuresh1359" target="_blank" class="contact-link github">
+        <div class="contact-icon">
+          <span class="icon-github"></span>
+        </div>
+        <span>GitHub Repositories</span>
+      </a>
 
-        <a href="https://pypi.org/user/Hercules_003/" target="_blank" class="contact-link">
-          <div class="contact-icon">
-            <span class="icon-pypi"></span>
-          </div>
-          <span>PyPI Profile</span>
-        </a>
+      <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Suresh%20Babu%2C%20Balaji%22&l=list&p=1&s=10&sort=bestmatch"
+        target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <span class="icon-book"></span>
+        </div>
+        <span>Read My Papers</span>
+      </a>
 
-      </div>
-    
+      <a href="https://pypi.org/user/Hercules_003/" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <span class="icon-pypi"></span>
+        </div>
+        <span>PyPI Profile</span>
+      </a>
+
+    </div>
+
     <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark">
-      <p class="text-gray-400 text-sm md:text-base font-semibold tracking-wide">
-        📍 Based in <span class="text-blue-400 hover:text-blue-300">Chennai, India</span>
-      </p>
+    <p class="text-gray-400 text-sm md:text-base font-semibold tracking-wide">
+      📍 Based in <span class="text-blue-400 hover:text-blue-300">Chennai, India</span>
+    </p>
     </div>
   </main>
 
   <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
-    <p>© 2025 Content licensed under <a href="LICENSE">MIT License</a>.</p>
+    <p><a href="/">Hercules</a></p>
   </footer>
 
 </body>
+
 </html>
