@@ -23,6 +23,68 @@
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script defer src="./script/common.js"></script>
+    <style>
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-8px) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-8px) rotate(3deg);
+            }
+        }
+
+        .spin-last {
+            display: inline-block;
+            position: relative;
+            top: 2px;
+            left: 2px;
+            animation: wave 1s ease-in-out;
+        }
+
+        .spin-last::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: radial-gradient(ellipse, rgba(235, 43, 78, 0.5) 0%, transparent 100%);
+            box-shadow: 0 0 10px rgba(235, 43, 78, 0.);
+            border-radius: 50%;
+            animation: groundBreak 1s ease-out 1s forwards;
+            opacity: 0;
+            max-width: 100vw;
+        }
+
+        @keyframes groundBreak {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) scale(1.5);
+            }
+        }
+    </style>
 </head>
 
 <body class="dark:bg-gray-900 dark:text-white">
@@ -49,8 +111,10 @@
         </div>
     </nav>
     <main class="container mx-auto p-6">
-        <h1 class="text-4xl font-bold text-center">Welcome to My Site</h1>
-        <p class="mt-2 text-lg text-center">Explore my blogs, mathematical derivations, and coding snippets.</p>
+        <div style="overflow-x: hidden;">
+            <h1 class="text-4xl font-bold text-center">Welcome to My <span class="spin-last">Site</span></h1>
+        </div>
+        <p class="mt-2 text-lg text-center" style="font-size: 1.2rem !important;">Explore my blogs, mathematical derivations, and coding snippets!</p>
 
 
 

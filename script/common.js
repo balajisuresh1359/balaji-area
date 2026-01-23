@@ -346,17 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
           /* subtle life */
           animation: slowSpin 14s linear infinite;
         }
-
-        @keyframes slowSpin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .brand-name img {
-            animation: none;
-          }
-        }
       `;
       document.head.appendChild(style);
     }
