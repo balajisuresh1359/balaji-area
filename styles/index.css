@@ -31,14 +31,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-footer {
+footer a {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.12em;
+  color: #fff;
+
+  text-decoration: none;
+  text-shadow: none;
+
+  cursor: pointer;
+  animation: drift 8s ease-in-out infinite;
+
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+footer a,
+footer a:visited,
+footer a:hover,
+footer a:active,
+footer a:focus,
+footer a:focus-visible {
+  color: #fff !important;
+  text-decoration: none !important;
+  outline: none;
+}
+
+
+footer a {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 footer a {
-  display: inline-block;
-  animation: drift 8s ease-in-out infinite;
+  border-radius: 4px;
+  padding: 0.2em 0.1em;
+  /* very light */
 }
 
 @keyframes drift {
@@ -53,16 +85,14 @@ footer a {
   }
 }
 
-footer a,
-footer a:visited,
-footer a:hover,
-footer a:active,
-footer a:focus {
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  color: inherit;
-  text-shadow: 0.5px 0 0 currentColor;
+@media (prefers-reduced-motion: reduce) {
+  footer a {
+    animation: none;
+  }
 }
+
+
+
 
 @media (prefers-reduced-motion: reduce) {
 
