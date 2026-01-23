@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyBrandNameWithLogo(options = {}) {
     const {
       targetText = 'BALAJI',
-      logoSrc = 'favicon.png',
+      logoSrc = '/balaji-area/favicon.png',
       logoSize = 20,
       gap = 8
     } = options;
