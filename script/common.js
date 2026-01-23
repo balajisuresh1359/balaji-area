@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const {
       targetText = 'BALAJI',
       logoSrc = '/balaji-area/favicon.png',
-      logoSize = 20,
+      logoSize = 18,
       gap = 8
     } = options;
 
@@ -319,41 +319,57 @@ document.addEventListener("DOMContentLoaded", () => {
       const style = document.createElement('style');
       style.id = 'brand-name-style';
       style.textContent = `
-      .brand-name {
-        font-size: 1.6rem;
-        font-weight: 800;
-        text-transform: uppercase;
+        .brand-name {
+          font-size: 1.6rem;
+          font-weight: 800;
+          text-transform: uppercase;
 
-        color: #fff !important;
-        text-decoration: none !important;
-        text-shadow: none;
+          color: #fff !important;
+          text-decoration: none !important;
+          text-shadow: none;
 
-        display: inline-flex;
-        align-items: center;
-        gap: ${gap}px;
+          display: inline-flex;
+          align-items: center;
+          gap: ${gap}px;
 
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-      }
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          outline: none;
+        }
 
-      .brand-name img {
-        width: ${logoSize}px;
-        height: ${logoSize}px;
-        object-fit: contain;
-        display: inline-block;
-      }
+        .brand-name img {
+          width: ${logoSize}px;
+          height: ${logoSize}px;
+          object-fit: contain;
+          display: inline-block;
 
-      .brand-name:visited,
-      .brand-name:hover,
-      .brand-name:active,
-      .brand-name:focus,
-      .brand-name:focus-visible {
-        color: #fff !important;
-        text-decoration: none !important;
-        outline: none;
-      }
-    `;
+          /* 👇 subtle rotation */
+          animation: slowSpin 14s linear infinite;
+          opacity: 0.9;
+        }
+
+        @keyframes slowSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
+        .brand-name:visited,
+        .brand-name:hover,
+        .brand-name:active,
+        .brand-name:focus,
+        .brand-name:focus-visible {
+          color: #fff !important;
+          text-decoration: none !important;
+          outline: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .brand-name img {
+            animation: none;
+          }
+        }
+      `;
+
       document.head.appendChild(style);
     }
 
@@ -371,8 +387,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   applyBrandNameWithLogo({
-    logoSrc: '/favicon.png',
-    logoSize: 18
-  });
+  targetText: 'BALAJI',
+  logoSrc: '/balaji-area/favicon.png',
+  logoSize: 18
+  );
+
 
 });
