@@ -54,26 +54,312 @@
 
 
 
+        <!-- Main Navigation Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <a href="./blog/index.html"
-                class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                class="nav-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <div class="nav-card-icon">📝</div>
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Blog</h2>
                 <p class="text-gray-600 dark:text-gray-400">Read my latest thoughts and insights.</p>
             </a>
             <a href="./math/index.html"
-                class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                class="nav-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <div class="nav-card-icon">📐</div>
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Math</h2>
                 <p class="text-gray-600 dark:text-gray-400">Explore my mathematical derivations and methods.</p>
             </a>
             <a href="./code/index.html"
-                class="block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                class="nav-card block p-6 bg-white shadow-lg rounded-lg hover:shadow-xl dark:bg-gray-800">
+                <div class="nav-card-icon">💻</div>
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-200">Code</h2>
                 <p class="text-gray-600 dark:text-gray-400">Discover my coding projects and snippets.</p>
             </a>
         </div>
+
+        <!-- Featured / Recently Added Section -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Recently Added</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Add or remove featured items here -->
+
+                <a href="./code/from-jvm-internals-to-spring-boot.html" class="featured-card group">
+                    <div class="featured-card-border"></div>
+                    <div class="featured-card-content">
+                        <div class="featured-card-emoji">☕</div>
+                        <h3>JVM Internals to Spring Boot</h3>
+                        <p>Deep dive into JVM internals and Spring Boot startup process</p>
+                    </div>
+                </a>
+
+                <a href="./code/bifurcated_insertion_sort.html" class="featured-card group">
+                    <div class="featured-card-border"></div>
+                    <div class="featured-card-content">
+                        <div class="featured-card-emoji">🔀</div>
+                        <h3>Bifurcated Insertion Sort</h3>
+                        <p>A novel sorting technique with improved performance</p>
+                    </div>
+                </a>
+
+                <!-- Template for adding new items:
+                <a href="./path/to/page.html"
+                    class="featured-card group">
+                    <div class="featured-card-border"></div>
+                    <div class="featured-card-content">
+                        <div class="featured-card-emoji">🎯</div>
+                        <h3>Title</h3>
+                        <p>Description goes here</p>
+                    </div>
+                </a>
+                -->
+            </div>
+        </div>
+
+        <style>
+            /* Main Navigation Card Styles */
+            .nav-card {
+                position: relative;
+                border: 2px solid transparent;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                text-decoration: none;
+                overflow: hidden;
+            }
+
+            .nav-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s ease;
+            }
+
+            .nav-card:hover {
+                transform: translateY(-6px);
+                border-color: rgba(99, 102, 241, 0.3);
+            }
+
+            .nav-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .dark .nav-card:hover {
+                border-color: rgba(129, 140, 248, 0.4);
+            }
+
+            .nav-card-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                display: inline-block;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-card:hover .nav-card-icon {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            .nav-card h2 {
+                transition: color 0.3s ease;
+            }
+
+            .nav-card:hover h2 {
+                color: #6366f1;
+            }
+
+            .dark .nav-card:hover h2 {
+                color: #818cf8;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .nav-card-icon {
+                    animation: none;
+                }
+
+                .nav-card:hover .nav-card-icon {
+                    transform: none;
+                }
+            }
+
+            /* Featured Card Modern Styles */
+            .featured-card {
+                position: relative;
+                display: block;
+                text-decoration: none;
+                border-radius: 16px;
+                background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+
+            .dark .featured-card {
+                background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Hover effect */
+            .featured-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+                border-color: rgba(99, 102, 241, 0.2);
+            }
+
+            .dark .featured-card:hover {
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+                border-color: rgba(139, 92, 246, 0.3);
+            }
+
+            /* Subtle accent bar on left */
+            .featured-card::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+                opacity: 0.6;
+                transition: opacity 0.3s ease;
+            }
+
+            .featured-card:hover::before {
+                opacity: 1;
+            }
+
+            .featured-card-border {
+                display: none;
+            }
+
+            .featured-card-content {
+                position: relative;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            .featured-card-emoji {
+                font-size: 1.75rem;
+                margin-bottom: 0.5rem;
+                display: inline-block;
+            }
+
+            .featured-card-content h3 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+                margin-bottom: 0.375rem;
+                color: #1a202c !important;
+                font-weight: 700;
+            }
+
+            .dark .featured-card-content h3 {
+                color: #f7fafc !important;
+            }
+
+            .featured-card-content p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                color: #4b5563 !important;
+                opacity: 1 !important;
+                margin: 0;
+            }
+
+            .dark .featured-card-content p {
+                color: #cbd5e0 !important;
+                opacity: 1 !important;
+            }
+
+            /* Mobile adjustments */
+            @media (max-width: 768px) {
+                .featured-card-content {
+                    padding: 0.875rem 1rem;
+                }
+
+                .featured-card-emoji {
+                    font-size: 1.5rem;
+                    margin-bottom: 0.375rem;
+                }
+
+                .featured-card-content h3 {
+                    font-size: 1rem;
+                    margin-bottom: 0.25rem;
+                }
+
+                .featured-card-content p {
+                    font-size: 0.8125rem;
+                }
+            }
+
+            @keyframes float {
+
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .featured-card:hover .featured-card-emoji {
+                animation: bounce 0.6s ease;
+            }
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-15px);
+                }
+            }
+
+            /* Mobile styles for featured cards */
+            @media (max-width: 768px) {
+                .featured-card-content {
+                    padding: 0.875rem;
+                }
+
+                .featured-card-emoji {
+                    font-size: 1.5rem;
+                    margin-bottom: 0.375rem;
+                }
+
+                .featured-card-content h3 {
+                    font-size: 1rem;
+                    margin-bottom: 0.375rem;
+                }
+
+                .featured-card-content p {
+                    font-size: 0.8125rem;
+                    line-height: 1.4;
+                }
+
+                .featured-card:hover {
+                    transform: translateY(-4px) scale(1.01);
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .featured-card-emoji {
+                    animation: none;
+                }
+
+                .featured-card:hover .featured-card-emoji {
+                    animation: none;
+                }
+            }
+        </style>
     </main>
     <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
-        <p><a href="/">Hercules</a></p>
+        <p><a href="/balaji-area/">Hercules</a></p>
         <!-- Hidden Visitor Counter - Only visible to admin -->
         <div id="visitor-counter" class="mt-3 text-sm text-gray-300 hidden">
             <img src="https://visitor-badge.laobi.icu/badge?page_id=balajisuresh1359.balaji-area&style=flat-square&color=4a5568&label=visitors"
