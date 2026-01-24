@@ -20,6 +20,11 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script defer src="./script/common.js"></script>
   <style>
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
     .icon-email:before {
       content: "\f0e0";
       font-family: "Font Awesome 6 Free";
@@ -50,12 +55,15 @@
       font-weight: 900;
     }
 
-    .contact-text {
-      position: relative;
+    .contact-text-wrapper {
+      overflow: hidden;
       display: inline-block;
+      max-width: 100%;
     }
 
     .contact-text {
+      position: relative;
+      display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 600;
@@ -89,7 +97,6 @@
       animation: wave-hand 2.2s ease-in-out 1;
       animation-fill-mode: both;
     }
-
 
     @keyframes wave-hand {
       0% {
@@ -153,11 +160,12 @@
 
   <main class="container mx-auto p-6 flex flex-col items-center justify-center text-center flex-grow">
     <div class="text-center mt-8">
-      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark contact-text"
-        style="font-weight: bolder;font-size: 1.5em !important;">
-        Say hello <span class="wave">👋</span>
-      </p>
-
+      <div class="contact-text-wrapper">
+        <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark contact-text"
+          style="font-weight: bolder;font-size: 1.5em !important;">
+          Say hello <span class="wave">👋</span>
+        </p>
+      </div>
     </div>
 
 
