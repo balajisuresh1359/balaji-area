@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.">
+    <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio">
+    <meta name="author" content="Balaji">
+    <meta name="google" content="notranslate">
+    <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
+    <link rel="canonical" href="https://balajisuresh1359.github.io/balaji-area/fictional_story/index.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji | Fictional Story</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../styles/index.css" rel="stylesheet">
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script defer src="../script/common.js"></script>
+    <style>
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @media (max-width: 640px) {
+            .blog-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark:bg-gray-900 dark:text-white">
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="font-bold text-xl">BALAJI</a>
+            <div class="flex items-center">
+                <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+                <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+            </div>
+            <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+                <a href="../blog/index.html" class="px-4">Blog</a>
+                <a href="../math/index.html" class="px-4">Math</a>
+                <a href="../code/index.html" class="px-4">Code</a>
+                <a href="../contact.html" class="px-4">Contact</a>
+                <button id="theme-toggle" class="ml-4">🌙</button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+            <a href="../blog/index.html" class="py-2">Blog</a>
+            <a href="../math/index.html" class="py-2">Math</a>
+            <a href="../code/index.html" class="py-2">Code</a>
+            <a href="../contact.html" class="py-2">Contact</a>
+        </div>
+    </nav>
+    <main class="container mx-auto p-4 md:p-6">
+        <h1 class="text-4xl font-bold mb-4 md:mb-6">Fictional Story</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
+            <div
+                class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden blog-card transition duration-300 h-full flex flex-col">
+                <img src="./images/eclipsia-the-world-without-a-sun.png" alt="Blog 3" class="w-full h-48 object-cover">
+                <div class="p-4 flex flex-col flex-1">
+                    <a href="./eclipsia-the-world-without-a-sun.html"
+                        class="text-black dark:text-white-400 font-semibold mt-auto inline-block">
+                        <h2 class="text-gray-700 dark:text-gray-200 font-semibold text-lg">Eclipsia: The World Without a
+                            Sun
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">In a world without a sun, light is sacred. But
+                            when
+                            light divides society into gods and <strong>darkness</strong>, one boy decides to break the
+                            rules,
+                            and light the entire world - literally!</p>
+                        <p>Read →</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src="../script/navigate_to_top.js"></script>
+    </main>
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p><a href="/balaji-area/">Hercules</a></p>
+    </footer>
+</body>
+
+</html>

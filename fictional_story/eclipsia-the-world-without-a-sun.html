@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Balaji Suresh — personal website for projects, contact, tech notes and portfolio.">
+    <meta name="keywords" content="balaji suresh, balaji contacts, balaji suresh website, portfolio">
+    <meta name="author" content="Balaji">
+    <meta name="google" content="notranslate">
+    <link rel="icon" href="/balaji-area/favicon.png" type="image/png">
+    <link rel="canonical"
+        href="https://balajisuresh1359.github.io/balaji-area/fictional_story/eclipsia-the-world-without-a-sun.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji | Fictional Story</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../styles/index.css" rel="stylesheet">
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script defer src="../script/common.js"></script>
+    <style>
+        .story-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .story-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-family: Georgia, 'Times New Roman', serif !important;
+            font-size: 1.3rem !important;
+            line-height: 1.8 !important;
+        }
+
+        .story-content p {
+            margin-bottom: 1.75rem;
+        }
+
+        /* Dialog styling */
+        .story-content .dialog {
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 3px solid #666;
+            margin: 1.5rem 0;
+            color: #1A1A1A;
+        }
+
+        .dark .story-content {
+            color: #E0E0E0;
+        }
+
+        .dark .story-content .dialog {
+            border-left-color: #999;
+            color: #F0F0F0;
+        }
+
+        /* Light particles animation */
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .light-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .light-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            animation: float-up linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .light-particle {
+            background: radial-gradient(circle, rgba(255, 255, 200, 1) 0%, rgba(255, 255, 200, 0) 70%);
+            box-shadow: 0 0 15px rgba(255, 255, 200, 0.6);
+        }
+
+        /* Ensure content stays above animation */
+        body>nav,
+        body>main,
+        body>footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .story-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .story-content {
+                font-size: 1.125rem;
+                line-height: 1.7;
+            }
+
+            .story-content p {
+                margin-bottom: 1.5rem;
+            }
+
+            .story-content .dialog {
+                padding-left: 1rem;
+                margin: 1.25rem 0;
+            }
+
+            .story-container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark:bg-gray-900 dark:text-white">
+    <div class="light-container" id="lightContainer"></div>
+
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="font-bold text-xl">BALAJI</a>
+            <div class="flex items-center">
+                <button id="theme-toggle-mobile" class="md:hidden mr-4 flex items-center justify-center">🌙</button>
+                <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+            </div>
+            <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+                <a href="../blog/index.html" class="px-4">Blog</a>
+                <a href="../math/index.html" class="px-4">Math</a>
+                <a href="../code/index.html" class="px-4">Code</a>
+                <a href="../contact.html" class="px-4">Contact</a>
+                <button id="theme-toggle" class="ml-4">🌙</button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden bg-gray-700 flex flex-col text-center py-2">
+            <a href="../blog/index.html" class="py-2">Blog</a>
+            <a href="../math/index.html" class="py-2">Math</a>
+            <a href="../code/index.html" class="py-2">Code</a>
+            <a href="../contact.html" class="py-2">Contact</a>
+        </div>
+    </nav>
+    <main class="container mx-auto p-4 md:p-6">
+        <div class="story-container">
+            <h1 class="story-title" style="font-size: 2.3em !important;">Eclipsia: The World Without a Sun</h1>
+            <div
+                style="width: 50%; height: 2px; background: linear-gradient(to right, currentColor, transparent); margin: 1.5rem 0;">
+            </div>
+            <img src="./images/eclipsia-the-world-without-a-sun.png"
+                style="width: 100%; height: auto; max-height: 400px; object-fit: contain; margin-bottom: 2rem;">
+            <div class="story-content">
+                <p>This is a world - Eclipsia.</p>
+
+                <p>Eclipsia has no sun, no stars. It is always dark. Yet, the plants there don't need light to grow.</p>
+
+                <p>People can survive for several days without food. Still, they have powerful, strong bodies.</p>
+
+                <p>Like Edison in our world, a man in Eclipsia once discovered a glowing bulb - not powered by
+                    electricity, no wires, no stand. Just a small box-like structure that could attach to anything and
+                    glow 💡.</p>
+
+                <p>People of Eclipsia believe they are the only beings in existence and that the world was created only
+                    for them. They live in societies, just like us.</p>
+
+                <p>But they see fire and light as gods - the only truth, the only divine force meant only for the chosen
+                    ones.</p>
+
+                <p>Every bulb they create is seen as a gift from their god, and it is sacred. These bulbs define social
+                    status.</p>
+
+                <p>Those who own large bulbs are considered highly blessed, while those with small bulbs or none are
+                    seen as cursed, undeserving of god's kindness. They are forced to live separately. Society calls
+                    them "Darkness."</p>
+
+                <p>Among them is a boy Awin - from the "Darkness" society, who dreams big.</p>
+
+                <p>He faces daily discrimination. He begins to hate his world, and the god they worship.</p>
+
+                <p>People in Eclipsia believe the world ends far away in all directions, a place their god forbade them
+                    from reaching. So, they never dared to explore. Awin believed the same.</p>
+
+                <p>During a festival, people from the higher society made sure those from Darkness couldn't participate.
+                    The privileged had access to tools and knowledge, thanks to the lights in their regions. Sometimes,
+                    the people of Darkness received discarded bulbs as a "reward."</p>
+
+                <p>One day, Awin told his mother,</p>
+
+                <p class="dialog">I'm going to steal all the bulbs from the higher society and give them to our people.
+                </p>
+
+                <p>His mother replied,</p>
+
+                <p class="dialog">That's not the right way. Every time I look up, I wonder—why doesn't god give light to
+                    the whole world at once? If that happens, everyone will be equal. No more higher or lower.</p>
+
+                <p>That thought lit a spark in his heart.</p>
+
+                <p>Awin decided to fulfill his mother's dream. He believed - if the world has an end, he could go there,
+                    climb to the top, place a giant bulb, and bring light to everyone.</p>
+
+                <p>He didn't tell anyone. He stole a large bulb from a temple of the higher society and began his
+                    journey.</p>
+
+                <p>He walked endlessly, never letting go of his dream.</p>
+
+                <p>Using the bulb for navigation, he pushed through pain and bleeding feet. He refused to give up.</p>
+
+                <p>At one point, he paused.</p>
+
+                <p class="dialog">What if I'm wrong? What if there is no end to this world? Will I ever see my mom
+                    again?</p>
+
+                <p>A small voice inside told him to return. But another voice told him to keep going. He chose to run,
+                    faster than ever even with broken feet until he hit something hard.</p>
+
+                <p>It was a wall.</p>
+
+                <p>He looked up. It went on forever.</p>
+
+                <p class="dialog">Is this it? </p>
+
+                <p>he thought. </p>
+
+                <p class="dialog">Everything they believed was true. I reached the edge of
+                    the world.</p>
+
+                <p>Tears filled his eyes.</p>
+
+                <p>After resting, he began to climb with the bulb.</p>
+
+                <p>The wall stretched endlessly, but he now had belief. That belief gave him strength.</p>
+
+                <p>After several days, his head bumped into a ceiling. It was the roof of their world.</p>
+
+                <p>Overwhelmed, he crawled into the ceiling.</p>
+
+                <p>After many more days, he reached a point where he could see Eclipsia below.</p>
+
+                <p>He couldn't see his home clearly, but the line dividing the rich and poor was clearly visible.</p>
+
+                <p>He took the bulb from his bag and placed it on the ceiling.</p>
+
+                <p>The bulb began to glow.</p>
+
+                <p>As the light spread, memories flooded back. Silently, he cried. He wanted his people to know. But he
+                    didn't want to walk all those miles again. Without hesitation, he jumped.</p>
+
+                <p>As he fell, he shouted:</p>
+
+                <p class="dialog">I did it! Everyone is the same! No bulb decides my worth!</p>
+
+                <p>He landed without injury. But he had no time to process, he saw a crowd gathered. Many people from
+                    his society were being punished, hanged, beaten.</p>
+
+                <p>He ran toward them. He saw his mother, near the execution site, begging for mercy.</p>
+
+                <p>Without a word, they threw her into the fire.</p>
+
+                <p>Awin froze.</p>
+
+                <p>A voice shouted from the crowd:</p>
+
+                <p class="dialog">If no one tells us who stole the temple bulb, we'll burn everyone!</p>
+
+                <p>Awin stood up, eyes burning with rage.</p>
+
+                <p class="dialog">I did it. I stole it!</p>
+
+                <p>The crowd turned toward him. A mob attacked him, punching and kicking.</p>
+
+                <p class="dialog">Where's the bulb?</p>
+
+                <p class="dialog">How dare you steal god's light?</p>
+
+                <p>Awin began to laugh.</p>
+
+                <p class="dialog">That bulb is now in a place you can never reach. Not even your god can touch it.</p>
+
+                <p>They hit him harder.</p>
+
+                <p>He looked up.</p>
+
+                <p class="dialog">Look closely. You'll see your god's bulb.</p>
+
+                <p>The crowd looked up.</p>
+
+                <p>A small glow faint, but visible shone from above.</p>
+
+                <p>They stared in disbelief.</p>
+
+                <p>Awin said,</p>
+
+                <p class="dialog">Now everyone has one common bulb. And it's not given by your god. It was given by me.
+                    You see bulbs as gods. Then now I am your god.</p>
+
+                <p>The people were stunned.</p>
+
+                <p>He continued:</p>
+
+                <p class="dialog">This place is not worthy of such people. Even your god regrets creating this world.
+                    That's why he stopped afraid he'd create more like you. I can hear his voice. He says: 'I will burn
+                    this place.'</p>
+
+                <p>Suddenly, fire started raining down from all directions.</p>
+
+                <p>Panic spread.</p>
+
+                <p>People ran everywhere but the fire was in every corner. No escape.</p>
+
+                <p>Awin didn't run. He closed his eyes.</p>
+
+                <p>He waited.</p>
+
+                <p>And then</p>
+
+                <p>A strange voice echoed…</p>
+
+                <p class="dialog">Honey, this box hasn't been opened in years… let's burn it for some winter warmth....
+                </p>
+            </div>
+        </div>
+        <script src="../script/navigate_to_top.js"></script>
+    </main>
+    <footer class="bg-gray-700 text-white text-center p-4 mt-auto">
+        <p><a href="/balaji-area/">Hercules</a></p>
+    </footer>
+
+    <script>
+        // Light particles animation
+        (function () {
+            const container = document.getElementById('lightContainer');
+            const particleCount = 30; // Adjust for more/fewer particles
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'light-particle';
+
+                // Random starting position at bottom
+                const startX = Math.random() * 100;
+                particle.style.left = startX + '%';
+                particle.style.bottom = '0';
+
+                // Random animation duration (8-15 seconds for slow float)
+                const duration = 8 + Math.random() * 7;
+                particle.style.animationDuration = duration + 's';
+
+                // Random delay
+                particle.style.animationDelay = Math.random() * 5 + 's';
+
+                // Random size variation
+                const size = 2 + Math.random() * 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                container.appendChild(particle);
+
+                // Remove and recreate after animation
+                setTimeout(() => {
+                    particle.remove();
+                    createParticle();
+                }, (duration + 5) * 1000);
+            }
+
+            // Create initial particles
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => createParticle(), i * 200);
+            }
+        })();
+    </script>
+</body>
+
+</html>

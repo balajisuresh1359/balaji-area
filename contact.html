@@ -50,44 +50,78 @@
       font-weight: 900;
     }
 
-    .dots::after {
-      content: '...';
-      animation: blink 2.5s infinite;
+    .contact-text {
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-text {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .contact-text::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underlineIn 1.2s ease forwards;
       opacity: 0.6;
     }
 
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 0.2;
-      }
-
-      50% {
-        opacity: 0.6;
+    @keyframes underlineIn {
+      to {
+        transform: scaleX(1);
       }
     }
 
-    .dots::after {
-      content: '';
-      animation: dots 1.6s steps(4, end) infinite;
+    .wave {
+      display: inline-block;
+      margin-left: 6px;
+      transform-origin: 70% 70%;
+      animation: wave-hand 2.2s ease-in-out 1;
+      animation-fill-mode: both;
     }
 
-    @keyframes dots {
+
+    @keyframes wave-hand {
       0% {
-        content: '';
+        transform: rotate(0deg);
       }
 
-      25% {
-        content: '.';
+      10% {
+        transform: rotate(14deg);
+      }
+
+      20% {
+        transform: rotate(-8deg);
+      }
+
+      30% {
+        transform: rotate(14deg);
+      }
+
+      40% {
+        transform: rotate(-4deg);
       }
 
       50% {
-        content: '..';
+        transform: rotate(10deg);
       }
 
-      75% {
-        content: '...';
+      60% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
       }
     }
   </style>
@@ -119,9 +153,9 @@
 
   <main class="container mx-auto p-6 flex flex-col items-center justify-center text-center flex-grow">
     <div class="text-center mt-8">
-      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark"
+      <p class="mb-6 text-lg leading-relaxed text-text-light dark:text-text-dark contact-text"
         style="font-weight: bolder;font-size: 1.5em !important;">
-        Notes, stories, and work in progress<span class="dots">.</span>
+        Say hello <span class="wave">👋</span>
       </p>
 
     </div>
@@ -146,12 +180,6 @@
     <h2 class="text-2xl font-bold mt-8 mb-4">Other Links</h2>
 
     <div class="contact-card" style="font-weight: bolder;">
-      <a href="https://www.royalroad.com/profile/719896" target="_blank" class="contact-link">
-        <div class="contact-icon">
-          <span class="icon-book"></span>
-        </div>
-        <span>Read My Stories on Royal Road</span>
-      </a>
 
       <a href="https://github.com/balajisuresh1359" target="_blank" class="contact-link github">
         <div class="contact-icon">
